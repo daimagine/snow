@@ -7,7 +7,7 @@ import Login from '../components/Login/Login';
 
 export default (
 	<Route handler={AuthenticatedApp}>
-		<Route name="dashboard" handler={Dashboard} path="/" />
+		<Route name="home" handler={Dashboard} path="/" />
 		<Route name="login" handler={Login} />
 	</Route>
 );

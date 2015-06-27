@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
+import { Link } from 'react-router';
 import LoginForm from './LoginForm';
 
 export default class Login extends React.Component {
@@ -20,8 +21,19 @@ export default class Login extends React.Component {
 	render() {
 		return(
 			<div className="row login-container column-seperation">
+				<div className="col-md-12">
+					<Link to="home">home</Link>
+					<Link to="login">login</Link>
+				</div>
+
 		        <div className="col-md-10 col-md-offset-1">
-		          <h2>Sign in to <span className="highlight">Jualio</span></h2><br/>
+		          <h2>Login <span className="highlight">Jualio</span></h2>
+		          <p>
+		          	Jika Anda belum menjadi member Jualio, 
+		          	silahkan daftar sekarang supaya anda bisa menjual barang 
+		          	langsung ke follower / fans / teman.
+		          </p>
+		          <br/>
 		        </div>
 		        <div className="col-md-5 col-md-offset-1">
 		          <LoginForm />
@@ -30,15 +42,18 @@ export default class Login extends React.Component {
 		        <div className="col-md-5">
 		          <br/>
 		          <p>
-		            Use Facebook, Twitter or your email to sign in.
+		            Login dengan menggunakan akun sosial media Anda.
 		            <br/>
-		            <a href="sign-up.html">Sign up Now! </a>
-		            for a Jualio account, it's free and always will be..
-		              <br/>
 		          </p>
 		          <br/>
-		          <button type="button" className="btn btn-block btn-info col-md-8"><span className="pull-left"><i className="icon-facebook"></i></span><span className="bold">Login with Facebook</span></button>
-		          <button type="button" className="btn btn-block btn-success col-md-8"><span className="pull-left"><i className="icon-twitter"></i></span><span className="bold">Login with Twitter</span></button>
+		          <button type="button" className="btn btn-block btn-info col-md-8">
+		          	<span className="pull-left"><i className="icon-facebook"></i></span>
+		          	<span className="bold">Login dengan Facebook</span>
+		          </button>
+		          <button type="button" className="btn btn-block btn-success col-md-8">
+		          	<span className="pull-left"><i className="icon-twitter"></i></span>
+		          	<span className="bold">Login dengan Twitter</span>
+		          </button>
 		          <br/>
 		        </div>
 		    </div>

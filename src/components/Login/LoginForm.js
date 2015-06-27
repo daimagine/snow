@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
-import ReactScriptLoaderMixin from 'react-script-loader';
+import ReactScriptLoader from 'react-script-loader';
 
 export default class LoginForm extends React.Component {
 	constructor() {
@@ -21,18 +21,18 @@ export default class LoginForm extends React.Component {
     // ReactScriptLoaderMixin calls this function when the script has loaded
     // successfully.
     onScriptLoaded() {
-    	console.log('ReactScriptLoaderMixin: onScriptLoaded');
+    	console.log('LoginForm: onScriptLoaded');
         this.setState({scriptLoading: false});
     }
 
     // ReactScriptLoaderMixin calls this function when the script has failed to load.
     onScriptError() {
-    	console.log('ReactScriptLoaderMixin: onScriptLoaded');
+    	console.log('LoginForm: onScriptLoaded');
         this.setState({scriptLoading: false, scriptLoadError: true});
     }
 
     onScriptTagCreated() {
-    	console.log('ReactScriptLoaderMixin: onScriptTagCreated');
+    	console.log('LoginForm: onScriptTagCreated');
     }
 
 	login(e) {
@@ -106,5 +106,75 @@ export default class LoginForm extends React.Component {
 	}
 }
 
+var TestMixin = {
+	componentWillMount: function() {
+    	console.log('TestMixin: componentWillMount');
+	},
+
+	componentDidMount: function() {
+    	console.log('TestMixin: componentDidMount');
+	}
+}
+
 ReactMixin(LoginForm.prototype, React.addons.LinkedStateMixin);
-ReactMixin(LoginForm.prototype, ReactScriptLoaderMixin);
+ReactMixin(LoginForm.prototype, ReactScriptLoader.ReactScriptLoaderMixin);
+// ReactMixin(LoginForm.prototype, TestMixin);
+
+
+
+// var React = require('react');
+// var ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMixin;
+
+// var LoginForm = React.createClass({
+//     mixins: [ReactScriptLoaderMixin],
+//     getInitialState: function() {
+//         return {
+//             scriptLoading: true,
+//             scriptLoadError: false,
+//         };
+//     },
+
+//     // this function tells ReactScriptLoaderMixin where to load the script from
+//     getScriptURL: function() {
+//         return [
+//         	'https://www.google.com/recaptcha/api.js',
+//         	'http://d3js.org/d3.v3.min.js'
+//         ];
+//     },
+
+//     // ReactScriptLoaderMixin calls this function when the script has loaded
+//     // successfully.
+//     onScriptLoaded: function() {
+//     	console.log('ReactScriptLoaderMixin: onScriptLoaded');
+//         this.setState({scriptLoading: false});
+//     },
+
+//     // ReactScriptLoaderMixin calls this function when the script has failed to load.
+//     onScriptError: function() {
+//     	console.log('ReactScriptLoaderMixin: onScriptError');
+//         this.setState({scriptLoading: false, scriptLoadError: true});
+//     },
+
+//     onScriptTagCreated: function() {
+//     	console.log('ReactScriptLoaderMixin: onScriptTagCreated');
+//     },
+
+//     render: function() {
+//         var message;
+//         if (this.state.scriptLoading) {
+//             message = 'loading script...';
+//         } else if (this.state.scriptLoadError) {
+//             message = 'loading failed';
+//         } else {
+//             message = 'loading succeeded';
+//         }
+//         return (
+//         	<div>
+// 	        	<div className="g-recaptcha" data-sitekey="6Lc4zggTAAAAAIQhg0kFlMA0qpy4PLyulMaPt-8-"></div>
+// 	        	<span>{message}</span>
+//         	</div>
+//         );
+//     }
+// });
+
+// module.exports = LoginForm;

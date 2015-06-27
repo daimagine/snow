@@ -23586,7 +23586,7 @@
 	exports['default'] = _react2['default'].createElement(
 		_reactRouter.Route,
 		{ handler: _componentsAuthenticatedApp2['default'] },
-		_react2['default'].createElement(_reactRouter.Route, { name: 'dashboard', handler: _componentsDashboardDashboard2['default'], path: '/' }),
+		_react2['default'].createElement(_reactRouter.Route, { name: 'home', handler: _componentsDashboardDashboard2['default'], path: '/' }),
 		_react2['default'].createElement(_reactRouter.Route, { name: 'login', handler: _componentsLoginLogin2['default'] })
 	);
 	module.exports = exports['default'];
@@ -23683,6 +23683,11 @@
 							'h1',
 							null,
 							'Halo, Selamat Datang di Jualio'
+						),
+						_reactAddons2['default'].createElement(
+							_reactRouter.Link,
+							{ to: 'home' },
+							'home'
 						),
 						_reactAddons2['default'].createElement(
 							_reactRouter.Link,
@@ -26189,6 +26194,8 @@
 
 	var _reactMixin2 = _interopRequireDefault(_reactMixin);
 
+	var _reactRouter = __webpack_require__(157);
+
 	var _LoginForm = __webpack_require__(221);
 
 	var _LoginForm2 = _interopRequireDefault(_LoginForm);
@@ -26222,16 +26229,35 @@
 					{ className: 'row login-container column-seperation' },
 					_reactAddons2['default'].createElement(
 						'div',
+						{ className: 'col-md-12' },
+						_reactAddons2['default'].createElement(
+							_reactRouter.Link,
+							{ to: 'home' },
+							'home'
+						),
+						_reactAddons2['default'].createElement(
+							_reactRouter.Link,
+							{ to: 'login' },
+							'login'
+						)
+					),
+					_reactAddons2['default'].createElement(
+						'div',
 						{ className: 'col-md-10 col-md-offset-1' },
 						_reactAddons2['default'].createElement(
 							'h2',
 							null,
-							'Sign in to ',
+							'Login ',
 							_reactAddons2['default'].createElement(
 								'span',
 								{ className: 'highlight' },
 								'Jualio'
 							)
+						),
+						_reactAddons2['default'].createElement(
+							'p',
+							null,
+							'Jika Anda belum menjadi member Jualio, silahkan daftar sekarang supaya anda bisa menjual barang langsung ke follower / fans / teman.'
 						),
 						_reactAddons2['default'].createElement('br', null)
 					),
@@ -26248,14 +26274,7 @@
 						_reactAddons2['default'].createElement(
 							'p',
 							null,
-							'Use Facebook, Twitter or your email to sign in.',
-							_reactAddons2['default'].createElement('br', null),
-							_reactAddons2['default'].createElement(
-								'a',
-								{ href: 'sign-up.html' },
-								'Sign up Now! '
-							),
-							'for a Jualio account, it\'s free and always will be..',
+							'Login dengan menggunakan akun sosial media Anda.',
 							_reactAddons2['default'].createElement('br', null)
 						),
 						_reactAddons2['default'].createElement('br', null),
@@ -26270,7 +26289,7 @@
 							_reactAddons2['default'].createElement(
 								'span',
 								{ className: 'bold' },
-								'Login with Facebook'
+								'Login dengan Facebook'
 							)
 						),
 						_reactAddons2['default'].createElement(
@@ -26284,7 +26303,7 @@
 							_reactAddons2['default'].createElement(
 								'span',
 								{ className: 'bold' },
-								'Login with Twitter'
+								'Login dengan Twitter'
 							)
 						),
 						_reactAddons2['default'].createElement('br', null)
@@ -26361,7 +26380,7 @@
 			// ReactScriptLoaderMixin calls this function when the script has loaded
 			// successfully.
 			value: function onScriptLoaded() {
-				console.log('ReactScriptLoaderMixin: onScriptLoaded');
+				console.log('LoginForm: onScriptLoaded');
 				this.setState({ scriptLoading: false });
 			}
 		}, {
@@ -26369,13 +26388,13 @@
 
 			// ReactScriptLoaderMixin calls this function when the script has failed to load.
 			value: function onScriptError() {
-				console.log('ReactScriptLoaderMixin: onScriptLoaded');
+				console.log('LoginForm: onScriptLoaded');
 				this.setState({ scriptLoading: false, scriptLoadError: true });
 			}
 		}, {
 			key: 'onScriptTagCreated',
 			value: function onScriptTagCreated() {
-				console.log('ReactScriptLoaderMixin: onScriptTagCreated');
+				console.log('LoginForm: onScriptTagCreated');
 			}
 		}, {
 			key: 'login',
@@ -26520,8 +26539,76 @@
 
 	exports['default'] = LoginForm;
 
+	var TestMixin = {
+		componentWillMount: function componentWillMount() {
+			console.log('TestMixin: componentWillMount');
+		},
+
+		componentDidMount: function componentDidMount() {
+			console.log('TestMixin: componentDidMount');
+		}
+	};
+
 	(0, _reactMixin2['default'])(LoginForm.prototype, _reactAddons2['default'].addons.LinkedStateMixin);
-	(0, _reactMixin2['default'])(LoginForm.prototype, _reactScriptLoader2['default']);
+	(0, _reactMixin2['default'])(LoginForm.prototype, _reactScriptLoader2['default'].ReactScriptLoaderMixin);
+	// ReactMixin(LoginForm.prototype, TestMixin);
+
+	// var React = require('react');
+	// var ReactScriptLoaderMixin = require('react-script-loader').ReactScriptLoaderMixin;
+
+	// var LoginForm = React.createClass({
+	//     mixins: [ReactScriptLoaderMixin],
+	//     getInitialState: function() {
+	//         return {
+	//             scriptLoading: true,
+	//             scriptLoadError: false,
+	//         };
+	//     },
+
+	//     // this function tells ReactScriptLoaderMixin where to load the script from
+	//     getScriptURL: function() {
+	//         return [
+	//         	'https://www.google.com/recaptcha/api.js',
+	//         	'http://d3js.org/d3.v3.min.js'
+	//         ];
+	//     },
+
+	//     // ReactScriptLoaderMixin calls this function when the script has loaded
+	//     // successfully.
+	//     onScriptLoaded: function() {
+	//     	console.log('ReactScriptLoaderMixin: onScriptLoaded');
+	//         this.setState({scriptLoading: false});
+	//     },
+
+	//     // ReactScriptLoaderMixin calls this function when the script has failed to load.
+	//     onScriptError: function() {
+	//     	console.log('ReactScriptLoaderMixin: onScriptError');
+	//         this.setState({scriptLoading: false, scriptLoadError: true});
+	//     },
+
+	//     onScriptTagCreated: function() {
+	//     	console.log('ReactScriptLoaderMixin: onScriptTagCreated');
+	//     },
+
+	//     render: function() {
+	//         var message;
+	//         if (this.state.scriptLoading) {
+	//             message = 'loading script...';
+	//         } else if (this.state.scriptLoadError) {
+	//             message = 'loading failed';
+	//         } else {
+	//             message = 'loading succeeded';
+	//         }
+	//         return (
+	//         	<div>
+	// 	        	<div className="g-recaptcha" data-sitekey="6Lc4zggTAAAAAIQhg0kFlMA0qpy4PLyulMaPt-8-"></div>
+	// 	        	<span>{message}</span>
+	//         	</div>
+	//         );
+	//     }
+	// });
+
+	// module.exports = LoginForm;
 	module.exports = exports['default'];
 
 /***/ },
@@ -26555,28 +26642,27 @@
 				throw new Error('ScriptLoader: Component class must implement onScriptError()');
 			}
 			if (loadedScripts[scriptURL]) {
-				component.onScriptLoaded();
-				return;
+		    	console.log('ReactScriptLoaderMixin: reload loaded script');
+		    	delete loadedScripts[scriptURL];
 			}
 			if (erroredScripts[scriptURL]) {
-				component.onScriptError();
-				return;
+		    	console.log('ReactScriptLoaderMixin: reload errored script');
+		    	delete erroredScripts[scriptURL];
 			}
 
 			// If the script is loading, add the component to the script's observers
 			// and return. Otherwise, initialize the script's observers with the component
 			// and start loading the script.
 			if (scriptObservers[scriptURL]) {
-		    	console.log('ReactScriptLoaderMixin: add component to scriptObservers');
-				scriptObservers[scriptURL][key] = component;
-				return;
+		    	console.log('ReactScriptLoaderMixin: reload script scriptObservers');
+		    	delete erroredScripts[scriptURL];
 			}
 
 			var observers = {};
 			observers[key] = component;
 			scriptObservers[scriptURL] = observers;
 
-	    	console.log('ReactScriptLoaderMixin: creating script tag');
+	    	console.log('ReactScriptLoaderMixin: creating script tag for key', key);
 			var script = document.createElement('script');
 
 			if (typeof component.onScriptTagCreated === 'function') {
@@ -26585,6 +26671,15 @@
 
 			script.src = scriptURL;
 			script.async = 1;
+
+			// remove if exists
+			var scripts = document.getElementsByTagName("script");
+			for (var i=0;i<scripts.length;i++) {
+			    if (scripts[i].src && scripts[i].src === scriptURL ) {
+			    	console.log('ReactScriptLoaderMixin: remove previous script');
+			    	document.body.removeChild(scripts[i]);
+			    }
+			}
 
 			var callObserverFuncAndRemoveObserver = function(func) {
 				var observers = scriptObservers[scriptURL];
@@ -26595,7 +26690,6 @@
 						delete scriptObservers[scriptURL][key];
 					}
 				}
-				//delete scriptObservers[scriptURL];
 			}
 			script.onload = function() {
 				loadedScripts[scriptURL] = true;
@@ -26650,13 +26744,14 @@
 
 	var ReactScriptLoaderMixin = {
 		componentDidMount: function() {
+	    	console.log('ReactScriptLoaderMixin: componentDidMount');
 			if (typeof this.getScriptURL !== 'function') {
 				throw new Error("ScriptLoaderMixin: Component class must implement getScriptURL().")
 			}
-	    	console.log('ReactScriptLoaderMixin: componentDidMount');
 	        if (this.getScriptURL() instanceof Array) {
-	            for (var url in this.getScriptURL()) {
-			        ReactScriptLoader.componentDidMount(this.__getScriptLoaderID(), this, url);
+	    		console.log('ReactScriptLoaderMixin: load array of scripts', this.getScriptURL());
+	            for (var i in this.getScriptURL()) {
+			        ReactScriptLoader.componentDidMount(this.__getScriptLoaderID(), this, this.getScriptURL()[i]);
 	            }
 	        } else {
 			    ReactScriptLoader.componentDidMount(this.__getScriptLoaderID(), this, this.getScriptURL());
@@ -26665,8 +26760,8 @@
 		componentWillUnmount: function() {
 	    	console.log('ReactScriptLoaderMixin: componentWillUnmount');
 			if (this.getScriptURL() instanceof Array) {
-		        for (var url in this.getScriptURL()) {
-			        ReactScriptLoader.componentWillUnmount(this.__getScriptLoaderID(), this, url);
+		        for (var i in this.getScriptURL()) {
+			        ReactScriptLoader.componentWillUnmount(this.__getScriptLoaderID(), this, this.getScriptURL()[i]);
 			    }
 	        } else {
 			    ReactScriptLoader.componentWillUnmount(this.__getScriptLoaderID(), this.getScriptURL());
@@ -26674,7 +26769,7 @@
 		},
 		__getScriptLoaderID: function() {
 			if (typeof this.__reactScriptLoaderID === 'undefined') {
-				this.__reactScriptLoaderID = 'id' + idCount++;
+				this.__reactScriptLoaderID = 'scriptid' + idCount++;
 			}
 
 			return this.__reactScriptLoaderID;

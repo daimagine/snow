@@ -9,6 +9,7 @@ export default class Dashboard extends React.Component {
 			<div className="row">
 				<div className="col-md-12">
 					<h1>Halo, Selamat Datang di Jualio</h1>
+					<Link to="home">home</Link>
 					<Link to="login">login</Link>
 				</div>
 			</div>
