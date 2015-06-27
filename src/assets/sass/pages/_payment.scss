@@ -1,0 +1,41 @@
+ul.payment-list {
+	> li {
+		margin-bottom: 10px;
+		> a {
+			@extend .btn;
+		}
+		&.active {
+			> a {
+				@extend .btn-primary;
+			}
+		}
+	}
+}
+.payment-content {
+	padding: 0;
+	>.active, .pill-content>.active,
+	>.tab-pane, .pill-content>.pill-pane {
+		padding: 0;
+	}
+}
+
+/*** Phones ***/
+@media (max-width: 480px) {
+
+	.tab-responsive {
+		&.nav {
+			text-align: center;
+			li {
+				display: inline-block;
+				background: #f9f9f9;
+				float: none;
+				margin-bottom: 5px;
+				padding-left: 0;
+				.active {
+
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,41 @@
+hr {
+	&.thin {
+		border-bottom: 0;
+	}
+	&.dark {
+		border-color: $color-dark;
+		border-bottom-color: darken($color-dark, 10%);
+	}
+	&.green {
+		border-color: $color-green;
+		border-bottom-color: darken($color-green, 10%);
+	}
+	&.blue {
+		border-color: $color-blue;
+		border-bottom-color: darken($color-blue, 10%);
+	}
+	&.yellow {
+		border-color: $color-yellow;
+		border-bottom-color: darken($color-yellow, 10%);
+	}
+	&.red {
+		border-color: $color-red;
+		border-bottom-color: darken($color-red, 10%);
+	}
+	&.grey {
+		border-color: $color-grey;
+		border-bottom-color: darken($color-grey, 10%);
+	}
+	&.black {
+		border-color: $color-black;
+		border-bottom-color: darken($color-black, 10%);
+	}
+	&.purple {
+		border-color: $color-purple;
+		border-bottom-color: darken($color-purple, 10%);
+	}
+	&.primary {
+		border-top-color: $color-primary;
+		border-bottom-color: darken($color-primary, 10%);
+	}
+}

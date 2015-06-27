@@ -1,0 +1,40 @@
+#product-carousel {
+	position: relative;
+	margin-bottom: 30px;
+	border-radius: 4px;
+	.item {
+		img {
+			border-radius: 4px;
+		}
+	}
+	.owl-controls {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+	}
+}
+
+.entitites {
+	display: table;
+	margin-bottom: 20px;
+	.icon {
+		display: table-cell;
+		width: 30px;
+		vertical-align: middle;
+	}
+	.entity-content {
+		display: table-cell;
+		vertical-align: middle;
+		p {
+			margin: 0;
+			font-size: 18px;
+			font-weight: bold;
+		}
+	}
+}
+
+.payment-method {
+	li img {
+		width: 50px;
+	}
+}
