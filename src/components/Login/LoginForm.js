@@ -1,6 +1,8 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
 import ReactScriptLoader from 'react-script-loader';
+import AuthService from '../../services/AuthService';
+
 
 export default class LoginForm extends React.Component {
 	constructor() {
@@ -37,11 +39,16 @@ export default class LoginForm extends React.Component {
 
 	login(e) {
 		e.preventDefault();
-		alert('will login');
+	    var captcha = document.getElementById('g-recaptcha-response').value;
+		AuthService.login(this.state.user, this.state.password, captcha)
+			.catch(function(error) {
+				console.log('AuthService: error', error);
+				alert('Login failed. ' + error.data.message);
+			});
 	}
 
 	render() {
-		var message = "react script loader: "
+		var message = "LoginForm ScriptLoader: "
 		if (this.state.scriptLoading) {
             message += 'loading script...';
         } else if (this.state.scriptLoadError) {
@@ -98,7 +105,8 @@ export default class LoginForm extends React.Component {
 	            <div className="row">
 	              <div className="col-md-12">
 	                <button type="submit" className="btn btn-primary btn-cons pull-right" 
-	                  onClick={this.login.bind(this)}>Login</button>
+	                  onClick={this.login.bind(this)} 
+	                  disabled={this.state.scriptLoading}>Login</button>
 	              </div>
 	            </div>
 	        </form>

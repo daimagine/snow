@@ -3,8 +3,8 @@
 module.exports = {
   entry: './src/app.jsx',
   output: {
-    path: './src',
-    filename: 'app.js'
+    path: './dist/assets/scripts/',
+    filename: 'app.min.js'
   },
   module: {
     preLoaders: [
