@@ -21,6 +21,53 @@ html
     // <link rel='canonical' href='http://www.example.com/'>
     link(rel='stylesheet', href='/assets/css/bootstrap.min.css', type='text/css')
     link(rel='stylesheet', href='/assets/css/style.min.css', type='text/css')
+    // Twitter for Android this is special for you! Smooch!
+    script.
+      // loadscript function to append a script to the head
+      function loadScript(url, callback) {
+        // Adding the script tag to the head as suggested before
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        // Then bind the event to the callback function.
+        // There are several events for cross browser compatibility.
+        script.onreadystatechange = callback;
+        script.onload = callback;
+        // Fire the loading
+        head.appendChild(script);
+      }
+    script.
+      var userAgent = window.navigator.userAgent.toLowerCase(),
+      android = /android/.test(userAgent),
+      twitterAndroid =  /twitterandroid/.test(userAgent);
+      if(android) {
+        if(twitterAndroid) {
+          // if android, we just append all scripts to the head. sorry.
+          loadScript('/assets/scripts/amd.min.js');
+            loadScript('/assets/scripts/vendor.min.js', function(){
+              loadScript('/assets/scripts/gerobak.settings.min.js', function(){
+            loadScript('/assets/scripts/gerobak.extend.min.js');
+            });
+          });
+        } else {
+          loadScript('/assets/scripts/loader.min.js');
+        }
+      }
+      // otherwise, we load gerobak
+      else {
+        loadScript('/assets/scripts/loader.min.js');
+      };
+    // trying to reproduce an issue to basket.js or rsvp.js with their bug
+    // when resolved, will uncomment this line again
+    script(gerobak-load='/assets/scripts/amd.min.js').
+    script(gerobak-load='/assets/scripts/vendor.min.js').
+    script(gerobak-load='/assets/scripts/gerobak.settings.min.js').
+    script(gerobak-load='/assets/scripts/gerobak.extend.min.js').
+    // extending the gerobak again!
+    // load each package in with promises
+    // after the package loaded, the tag contained with "gerobak-package" will removed
+    script(gerobak-package='validation').
   body
     section#root
-    script(src='/assets/scripts/app.min.js').
+  script(gerobak-package='app').
