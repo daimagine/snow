@@ -2,7 +2,6 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var AppConstants = require('../constants/AppConstants.js');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
-var WebAPIUtils = require('../utils/WebAPIUtils.js');
 
 var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
@@ -45,11 +44,13 @@ StoryStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch(action.type) {
     
     case ActionTypes.RECEIVE_STORIES:
+      console.log('StoryStore: RECEIVE_STORIES')
       _stories = action.json.stories;
       StoryStore.emitChange();
       break;
 
     case ActionTypes.RECEIVE_CREATED_STORY:
+      console.log('StoryStore: RECEIVE_CREATED_STORY')
       if (action.json) {
         _stories.unshift(action.json.story);
         _errors = [];
@@ -61,6 +62,7 @@ StoryStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
     
     case ActionTypes.RECEIVE_STORY:
+      console.log('StoryStore: RECEIVE_STORY')
       if (action.json) {
         _story = action.json.story;
         _errors = [];

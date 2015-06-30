@@ -10,10 +10,12 @@ var Header = React.createClass({
     isLoggedIn: ReactPropTypes.bool,
     user: ReactPropTypes.object
   },
+  
   logout: function(e) {
     e.preventDefault();
     SessionActionCreators.logout();
   },
+
   render: function() {
     var rightNav = this.props.isLoggedIn ? (
       <ul className="right">

@@ -56,6 +56,7 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch(action.type) {
 
     case ActionTypes.LOGIN_RESPONSE:
+      console.log('SessionStore: LOGIN_RESPONSE')
       console.log(action);
       if (action.json && action.json.payload) {
         var payload = jwt.decode(action.json.payload);
@@ -74,6 +75,7 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       break;
 
     case ActionTypes.LOGOUT:
+      console.log('SessionStore: LOGOUT')
       _accessToken = null;
       _user = null;
       sessionStorage.removeItem('accessToken');

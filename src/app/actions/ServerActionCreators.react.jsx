@@ -33,6 +33,13 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveProducts: function(json) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_PRODUCTS,
+      json: json
+    });
   }
   
 };

@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var AppConstants = require('../constants/AppConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var StoryStore = require('../stores/StoryStore.react.jsx');
+var ProductStore = require('../stores/ProductStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -42,7 +43,8 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
   AppDispatcher.waitFor([
     SessionStore.dispatchToken,
-    StoryStore.dispatchToken
+    StoryStore.dispatchToken,
+    ProductStore.dispatchToken
   ]);
 
   var action = payload.action;
@@ -50,14 +52,14 @@ RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch(action.type) {
 
     case ActionTypes.REDIRECT:
+      console.log('RouterStore: REDIRECT')
       router.transitionTo(action.route);
       break;
 
     case ActionTypes.LOGIN_RESPONSE:
       if (SessionStore.isLoggedIn()) {
+        console.log('RouterStore: LOGIN_RESPONSE')
         router.transitionTo('app');
-        // Dirty hack, need to figure this out
-        $(document).foundation();
       }
       break;
     

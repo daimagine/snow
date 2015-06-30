@@ -4,6 +4,7 @@ var Header = require('../components/Header.react.jsx');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var RouteStore = require('../stores/RouteStore.react.jsx');
 
+
 function getStateFromStores() {
   return {
     isLoggedIn: SessionStore.isLoggedIn(),
@@ -13,7 +14,10 @@ function getStateFromStores() {
 
 var App = React.createClass({
 
+  // mixins: [AuthenticatedMixin],
+
   getInitialState: function() {
+    console.log('App.react: getInitialState')
     return getStateFromStores();
   },
   
@@ -26,6 +30,7 @@ var App = React.createClass({
   },
 
   _onChange: function() {
+    console.log('App.react: _onChange')
     this.setState(getStateFromStores());
   },
 

@@ -7,27 +7,27 @@ var ActionTypes = AppConstants.ActionTypes;
 module.exports = {
 
   loadStories: function() {
+    WebAPIUtils.loadStories();
     AppDispatcher.handleViewAction({
       type: ActionTypes.LOAD_STORIES
     });
-    WebAPIUtils.loadStories();
   },
   
   loadStory: function(storyId) {
+    WebAPIUtils.loadStory(storyId);
     AppDispatcher.handleViewAction({
       type: ActionTypes.LOAD_STORY,
       storyId: storyId
     });
-    WebAPIUtils.loadStory(storyId);
   },
 
   createStory: function(title, body) {
+    WebAPIUtils.createStory(title, body);
     AppDispatcher.handleViewAction({
       type: ActionTypes.CREATE_STORY,
       title: title,
       body: body
     });
-    WebAPIUtils.createStory(title, body);
   }
 
 };
