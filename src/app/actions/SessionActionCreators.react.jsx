@@ -17,12 +17,13 @@ module.exports = {
     });
   },
 
-  login: function(email, password, captcha) {
-    AuthService.login(email, password, captcha);
+  login: function(email, password, rememberme, captcha) {
+    AuthService.login(email, password, rememberme, captcha);
     AppDispatcher.handleViewAction({
       type: ActionTypes.LOGIN_REQUEST,
       email: email,
       password: password,
+      rememberme: rememberme,
       captcha: captcha
     });
   },

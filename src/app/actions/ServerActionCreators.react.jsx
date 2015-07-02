@@ -13,6 +13,14 @@ module.exports = {
     });
   },
 
+  receiveLogout: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.LOGOUT,
+      json: json,
+      errors: errors
+    });
+  },
+
   receiveStories: function(json) {
     AppDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_STORIES,

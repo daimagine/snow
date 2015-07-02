@@ -31,7 +31,7 @@ module.exports = {
       });
   },
 
-  login: function(email, password, captcha) {
+  login: function(email, password, rememberme, captcha) {
     console.log('AuthService: login');
     request.post(APIEndpoints.LOGIN)
       .send({ email: email, password: password, captcha: captcha })
@@ -44,11 +44,39 @@ module.exports = {
             ServerActionCreators.receiveLogin(null, errorMsgs);
           } else {
             var json = res.body;
+            json.rememberme = true;
             ServerActionCreators.receiveLogin(json, null);
           }
         }
       });
   },
+
+  authenticateToken: function(callback) {
+    console.log('AuthService: authenticateToken');
+    var accessToken = JSON.parse(localStorage.getItem('accessToken'));
+    console.log('AuthService: stored accessToken', accessToken);
+    if (accessToken) {
+      request.post(APIEndpoints.AUTHENTICATE_TOKEN)
+        .send({client_token: accessToken})
+        .type('json')
+        .end(function(error, res) {
+          if (res) {
+            console.log(res);
+            if (res.error) {
+              var errorMsgs = WebAPIUtils.getErrors(res);
+              console.log(errorMsgs);
+              ServerActionCreators.receiveLogout(null, errorMsgs);
+            } else {
+              var json = res.body;
+              ServerActionCreators.receiveLogin(json, null);
+            }
+          }
+          callback();
+        });
+    } else {
+      callback();
+    }
+  }
 
 };
 

@@ -67,6 +67,10 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
         // Token will always live in the session, so that the API can grab it with no hassle
         localStorage.setItem('accessToken', JSON.stringify(_accessToken));
         localStorage.setItem('user', JSON.stringify(_user));
+        if (action.json.rememberme) {
+          console.log('store rememberme: ', action.json.rememberme);
+          localStorage.setItem('rememberme', JSON.stringify(action.json.rememberme));
+        }
       }
       if (action.errors) {
         _errors = action.errors;
@@ -81,7 +85,11 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       _user = null;
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
+      localStorage.removeItem('rememberme');
       _processing = false;
+      if (action.errors) {
+        _errors = action.errors;
+      }
       SessionStore.emitChange();
       break;
 

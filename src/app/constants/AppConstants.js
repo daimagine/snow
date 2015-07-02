@@ -5,10 +5,11 @@ var APIRoot = "http://localhost:3000/api/v1";
 module.exports = {
 
   APIEndpoints: {
-    LOGIN:          APIRoot + "/sessions/create",
-    REGISTRATION:   APIRoot + "/users",
-    STORIES:        APIRoot + "/stories",
-    PRODUCTS:       APIRoot + "/products"
+    AUTHENTICATE_TOKEN:   APIRoot + "/sessions/auth_token",
+    LOGIN:                APIRoot + "/sessions/create",
+    REGISTRATION:         APIRoot + "/users",
+    STORIES:              APIRoot + "/stories",
+    PRODUCTS:             APIRoot + "/products"
   },
 
   PayloadSources: keyMirror({

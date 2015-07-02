@@ -42,8 +42,9 @@ var LoginForm = React.createClass({
     this.refs.submitButton.getDOMNode().blur();
     var email = this.refs.email.getDOMNode().value;
     var password = this.refs.password.getDOMNode().value;
+    var rememberme = this.refs.rememberme.getDOMNode().value;
     var captcha = document.getElementById('g-recaptcha-response').value;
-    SessionActionCreators.login(email, password, captcha);
+    SessionActionCreators.login(email, password, rememberme, captcha);
   },
  
   getScriptURL: function() {
@@ -115,7 +116,7 @@ var LoginForm = React.createClass({
           <div className="row">
             <div className="control-group col-md-12">
               <div className="checkbox checkbox check-success">
-                <input id="checkbox1" type="checkbox" value="1" />
+                <input ref="rememberme" id="checkbox1" type="checkbox" value="1" />
                 <label htmlFor="checkbox1">Ingat Saya untuk 2 minggu</label>
                 <p>
                   Klik <a href="#">disini?</a> untuk melaporkan kejadian fraud
