@@ -8,7 +8,6 @@
 //@prepros-append ../../../bower_components/dropzone/dist/dropzone.js
 //@prepros-append ../../../bower_components/equalize/js/equalize.js
 //@prepros-append ../../../bower_components/select2/select2.min.js
-//@prepros-append ../../../bower_components/jquery-validation/dist/jquery.validate.js
 //@prepros-append ../../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js
 //@prepros-append ../../../bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
 //@prepros-append ../../../bower_components/owl.carousel/dist/owl.carousel.js
@@ -25,7 +24,6 @@
 //@codekit-append "../../../bower_components/dropzone/dist/dropzone.js";
 //@codekit-append "../../../bower_components/equalize/js/equalize.js";
 //@codekit-append "../../../bower_components/select2/select2.min.js";
-//@codekit-append "../../../bower_components/jquery-validation/dist/jquery.validate.js";
 //@codekit-append "../../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js";
 //@codekit-append "../../../bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js";
 //@codekit-append "../../../bower_components/owl.carousel/dist/owl.carousel.js";
