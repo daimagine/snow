@@ -40,7 +40,9 @@ var App = React.createClass({
         <Header 
           isLoggedIn={this.state.isLoggedIn}
           user={this.state.user} />
-        <RouteHandler/>
+        <RouteHandler
+          isLoggedIn={this.state.isLoggedIn}
+          user={this.state.user} />
       </div>
     );
   }

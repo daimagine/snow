@@ -9,8 +9,8 @@ var CHANGE_EVENT = 'change';
 
 // Load an access token from the session storage, you might want to implement
 // a 'remember me' using localStorage
-var _accessToken = sessionStorage.getItem('accessToken');
-var _user = sessionStorage.getItem('user');
+var _accessToken = JSON.parse(localStorage.getItem('accessToken'));
+var _user = JSON.parse(localStorage.getItem('user'));
 var _errors = [];
 var _processing = false;
 
@@ -37,6 +37,7 @@ var SessionStore = assign({}, EventEmitter.prototype, {
   },
 
   getUser: function() {
+    console.log('SessionStore: getUser', _user);
     return _user;
   },
 
@@ -64,8 +65,8 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
         _accessToken = payload.client_token;
         _user = payload.user;
         // Token will always live in the session, so that the API can grab it with no hassle
-        sessionStorage.setItem('accessToken', _accessToken);
-        sessionStorage.setItem('user', _user);
+        localStorage.setItem('accessToken', JSON.stringify(_accessToken));
+        localStorage.setItem('user', JSON.stringify(_user));
       }
       if (action.errors) {
         _errors = action.errors;
@@ -78,8 +79,8 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       console.log('SessionStore: LOGOUT')
       _accessToken = null;
       _user = null;
-      sessionStorage.removeItem('accessToken');
-      sessionStorage.removeItem('user');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
       _processing = false;
       SessionStore.emitChange();
       break;

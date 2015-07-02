@@ -27,7 +27,7 @@ module.exports = {
   loadStories: function() {
     request.get(APIEndpoints.STORIES)
       .type('application/json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .set('Authorization', localStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           var json = res.body;
@@ -39,7 +39,7 @@ module.exports = {
   loadStory: function(storyId) {
     request.get(APIEndpoints.STORIES + '/' + storyId)
       .type('json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .set('Authorization', localStorage.getItem('accessToken'))
       .end(function(error, res){
         if (res) {
           var json = res.body;
@@ -51,7 +51,7 @@ module.exports = {
   createStory: function(title, body) {
     request.post(APIEndpoints.STORIES)
       .type('json')
-      .set('Authorization', sessionStorage.getItem('accessToken'))
+      .set('Authorization', localStorage.getItem('accessToken'))
       .send({ story: { title: title, body: body } })
       .end(function(error, res){
         if (res) {

@@ -13,10 +13,8 @@ module.exports = {
   loadCustomerProducts: function() {
     console.log('ProductService: loadCustomerProducts');
     request.get(APIEndpoints.PRODUCTS)
+      .query('customer=' + user.id )
       .type('application/json')
-      .query({ 
-        customer: user.id
-      })
       .set('Authorization', accessToken)
       .end(function(error, res){
         if (res) {
