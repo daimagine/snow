@@ -2,7 +2,7 @@
   "name": "snow",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.jsx",
+  "main": "src/app/app.jsx",
   "scripts": {
     "test": ""
   },

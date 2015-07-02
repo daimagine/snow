@@ -26,12 +26,14 @@ var s = {
 	],
 	init:
 	[
-		'./assets/scripts/init.min.js',
-		'./assets/scripts/app.min.js'
+		'./assets/scripts/init.min.js'
+	],
+	validation:
+	[
+		'./assets/scripts/validation.min.js',
 	],
 	app:
 	[
-		'./assets/scripts/app.min.js',
-		'https://www.google.com/recaptcha/api.js'
+		'./assets/scripts/app.min.js'
 	]
 };
