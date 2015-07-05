@@ -36245,11 +36245,11 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/src\/app\/components\/products\/ProductDetailPage.react.jsx": {
+	"\/src\/app\/components\/products\/ProductDetailpage.react.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDetailPage.react.jsx",
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDetailpage.react.jsx",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
