@@ -7,7 +7,11 @@ var PayloadSources = AppConstants.PayloadSources;
 var AppDispatcher = assign(new Dispatcher(), {
 
   handleServerAction: function(action) {
-    console.log('AppDispatcher: handleServerAction', action);
+    if (!action.type) {
+      console.log('AppDispatcher: handleServerAction empty action');
+      return
+    }
+    
     var payload = {
       source: PayloadSources.SERVER_ACTION,
       action: action
@@ -18,14 +22,14 @@ var AppDispatcher = assign(new Dispatcher(), {
         this.dispatch(payload);
       });
     } else {
+      console.log('AppDispatcher: handleServerAction', action);
       this.dispatch(payload);
     }
   },
 
   handleViewAction: function(action) {
-    console.log('AppDispatcher: handleViewAction', action);
     if (!action.type) {
-      console.log('AppDispatcher: empty action');
+      console.log('AppDispatcher: handleViewAction empty action');
       return
     }
 
@@ -39,6 +43,7 @@ var AppDispatcher = assign(new Dispatcher(), {
         this.dispatch(payload);
       });
     } else {
+      console.log('AppDispatcher: handleViewAction', action);
       this.dispatch(payload);
     }
   }

@@ -12,6 +12,14 @@ module.exports = {
       type: ActionTypes.LOAD_PRODUCTS
     });
   },
+  
+  loadProduct: function(productId) {
+    ProductService.loadProduct(productId);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_PRODUCT,
+      productId: productId
+    });
+  },
 
 };
 
