@@ -74,6 +74,8 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       }
       if (action.errors) {
         _errors = action.errors;
+      } else {
+        _errors = [];
       }
       _processing = false;
       SessionStore.emitChange();
@@ -86,10 +88,12 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
       localStorage.removeItem('rememberme');
-      _processing = false;
       if (action.errors) {
         _errors = action.errors;
+      } else {
+        _errors = [];
       }
+      _processing = false;
       SessionStore.emitChange();
       break;
 

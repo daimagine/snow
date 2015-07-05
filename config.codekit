@@ -32466,6 +32466,238 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/bower_components\/slick-carousel\/bower.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/bower.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick-carousel\/bower-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/component.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/component.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick-carousel\/component-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/package.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/package.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick-carousel\/package-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/slick.jquery.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick.jquery.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick.jquery-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick-theme.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick-theme.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick-theme.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick-theme.scss",
+		"outputAbbreviatedPath": "\/dist\/assets\/css\/slick-theme.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/slick-carousel\/slick\/slick.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick-carousel\/slick\/slick.scss",
+		"outputAbbreviatedPath": "\/dist\/assets\/css\/slick.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/bower_components\/slick.js\/bower.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/bower.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick.js\/bower-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick.js\/component.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/component.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick.js\/component-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick.js\/package.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/package.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick.js\/package-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick.js\/slick.jquery.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick.jquery.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/bower_components\/slick.js\/slick.jquery-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/bower_components\/slick.js\/slick\/slick-theme.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick-theme.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/slick.js\/slick\/slick-theme.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick-theme.scss",
+		"outputAbbreviatedPath": "\/dist\/assets\/css\/slick-theme.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
+	"\/bower_components\/slick.js\/slick\/slick.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/bower_components\/slick.js\/slick\/slick.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/slick.js\/slick\/slick.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/bower_components\/slick.js\/slick\/slick.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/bower_components\/slick.js\/slick\/slick.scss",
+		"outputAbbreviatedPath": "\/dist\/assets\/css\/slick.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/bower_components\/toastr\/bower.json": {
 		"fileType": 524288,
 		"ignore": 1,
@@ -35596,6 +35828,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/dist\/assets\/scripts\/AppConstants.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/AppConstants.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/AppConstants.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/dist\/assets\/scripts\/charts.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -35640,12 +35883,56 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/dist\/assets\/scripts\/gerobak.settings.min.js.bak.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/gerobak.settings.min.js.bak.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/gerobak.settings.min.js.bak.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/dist\/assets\/scripts\/global.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/global.min.js",
 		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/global.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/dist\/assets\/scripts\/init-carousel.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/init-carousel.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-carousel.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/dist\/assets\/scripts\/init-dashboard.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/init-dashboard.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-dashboard.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/dist\/assets\/scripts\/init-minimal.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/init-minimal.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-minimal.min.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -35728,6 +36015,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/dist\/assets\/scripts\/ProductService.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/ProductService.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/ProductService.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/dist\/assets\/scripts\/profile.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -35739,12 +36037,34 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/dist\/assets\/scripts\/slick.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/dist\/assets\/scripts\/soundmanager.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/soundmanager.min.js",
 		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/soundmanager.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/dist\/assets\/scripts\/validation.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/validation.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/validation.min.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -35781,25 +36101,321 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1
 		},
-	"\/src\/app.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app.js",
-		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/app.min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 0
-		},
-	"\/src\/app.jsx": {
+	"\/src\/app\/actions\/ProductActionCreators.react.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app.jsx",
+		"inputAbbreviatedPath": "\/src\/app\/actions\/ProductActionCreators.react.jsx",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/actions\/RouteActionCreators.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/actions\/RouteActionCreators.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/actions\/ServerActionCreators.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/actions\/ServerActionCreators.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/actions\/SessionActionCreators.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/actions\/SessionActionCreators.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/actions\/StoryActionCreators.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/actions\/StoryActionCreators.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/app.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/app.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/App.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/App.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/AuthenticatedMixin.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/AuthenticatedMixin.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/Breadcrumb.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/Breadcrumb.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/ErrorNotice.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/ErrorNotice.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/GettingStartedWidget.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/GettingStartedWidget.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/Header.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/Header.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/common\/Sidebar.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/common\/Sidebar.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/dashboard\/HomePage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/dashboard\/HomePage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/products\/ProductCarousel.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductCarousel.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/products\/ProductDescription.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDescription.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/products\/ProductDetailPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDetailPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/products\/ProductsPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductsPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/session\/LoginForm.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/session\/LoginForm.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/session\/LoginPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/session\/LoginPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/session\/SignupPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/session\/SignupPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/stories\/StoriesPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/stories\/StoriesPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/stories\/StoryNew.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/stories\/StoryNew.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/stories\/StoryPage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/stories\/StoryPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/constants\/AppConstants.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/constants\/AppConstants.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/AppConstants.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/app\/dispatcher\/AppDispatcher.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/dispatcher\/AppDispatcher.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/AppDispatcher.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/app\/routes.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/routes.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/services\/AuthService.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/services\/AuthService.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/AuthService.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/app\/services\/ProductService.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/services\/ProductService.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/ProductService.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/app\/stores\/ProductStore.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/stores\/ProductStore.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/stores\/RouteStore.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/stores\/RouteStore.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/stores\/SessionStore.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/stores\/SessionStore.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/stores\/StoryStore.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/stores\/StoryStore.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/utils\/WebAPIUtils.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/utils\/WebAPIUtils.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/WebAPIUtils.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/src\/assets\/sass\/_mixins.scss": {
 		"createSourceMap": 0,
@@ -36601,6 +37217,22 @@
 		"shouldRunBless": 0,
 		"useLibsass": 0
 		},
+	"\/src\/assets\/sass\/vendor\/_slickjs.scss": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 4,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/sass\/vendor\/_slickjs.scss",
+		"outputAbbreviatedPath": "\/dist\/assets\/css\/_slickjs.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 2,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": 0
+		},
 	"\/src\/assets\/sass\/vendor\/_soundmanager.scss": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
@@ -36714,6 +37346,39 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
+		},
+	"\/src\/assets\/scripts\/init-carousel.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/init-carousel.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-carousel.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/assets\/scripts\/init-dashboard.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/init-dashboard.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-dashboard.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/assets\/scripts\/init-minimal.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/init-minimal.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-minimal.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
 		},
 	"\/src\/assets\/scripts\/init.js": {
 		"fileType": 64,
@@ -38424,6 +39089,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/src\/assets\/scripts\/plugins\/slickjs\/slick.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/plugins\/slickjs\/slick.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/slick.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/src\/assets\/scripts\/plugins\/soundmanager\/bar-ui.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -38479,6 +39155,17 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
+	"\/src\/assets\/scripts\/validation.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/validation.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/validation.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/src\/assets\/scripts\/vendor.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -38504,15 +39191,6 @@
 	},
 "hooks": [
 	{
-		"enabled": 1,
-		"hookType": 1,
-		"name": "Hook #2",
-		"predicateDataBase64Encoded": "YnBsaXN0MDDUAQIDBAUGbW5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QFgcIDxQcJicqMjY7PEFFS1BRVlxhZmhVJG51bGzTCQoLDA0OXxAXTlNDb21wb3VuZFByZWRpY2F0ZVR5cGVfEA9OU1N1YnByZWRpY2F0ZXNWJGNsYXNzEAKAAoAV0hALERNaTlMub2JqZWN0c6ESgAOAFNQLFRYXGBkaG18QEU5TUmlnaHRFeHByZXNzaW9uXxAQTlNMZWZ0RXhwcmVzc2lvbl8QE05TUHJlZGljYXRlT3BlcmF0b3KAE4AOgASAEdUdHh8gCyEiIyQlWU5TT3BlcmFuZF5OU1NlbGVjdG9yTmFtZV8QEE5TRXhwcmVzc2lvblR5cGVbTlNBcmd1bWVudHOABoAFEAOACIANXHZhbHVlRm9yS2V5OtIfCygpEAGAB9IrLC0uWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU1NlbGZFeHByZXNzaW9uoy8wMV8QEE5TU2VsZkV4cHJlc3Npb25cTlNFeHByZXNzaW9uWE5TT2JqZWN00hALMzWhNIAJgAzTCx83ODk6WU5TS2V5UGF0aIALEAqACl1pbnB1dEZ1bGxQYXRo0issPT5fEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uoz9AMV8QHE5TS2V5UGF0aFNwZWNpZmllckV4cHJlc3Npb25cTlNFeHByZXNzaW9u0issQkNeTlNNdXRhYmxlQXJyYXmjQkQxV05TQXJyYXnSKyxGR18QE05TS2V5UGF0aEV4cHJlc3Npb26kSElKMV8QE05TS2V5UGF0aEV4cHJlc3Npb25fEBROU0Z1bmN0aW9uRXhwcmVzc2lvblxOU0V4cHJlc3Npb27TTB8LTU5PXxAPTlNDb25zdGFudFZhbHVlgA8QAIAQWGRhZW5lcnlz0issUlNfEBlOU0NvbnN0YW50VmFsdWVFeHByZXNzaW9uo1RVMV8QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Npb25cTlNFeHByZXNzaW9u1AtXWFlaTihbWk5TTW9kaWZpZXJXTlNGbGFnc15OU09wZXJhdG9yVHlwZYASEGPSKyxdXl8QFU5TSW5QcmVkaWNhdGVPcGVyYXRvcqNfYDFfEBVOU0luUHJlZGljYXRlT3BlcmF0b3JfEBNOU1ByZWRpY2F0ZU9wZXJhdG9y0issYmNfEBVOU0NvbXBhcmlzb25QcmVkaWNhdGWjZGUxXxAVTlNDb21wYXJpc29uUHJlZGljYXRlW05TUHJlZGljYXRl0issRGeiRDHSKyxpal8QE05TQ29tcG91bmRQcmVkaWNhdGWja2wxXxATTlNDb21wb3VuZFByZWRpY2F0ZVtOU1ByZWRpY2F0ZV8QD05TS2V5ZWRBcmNoaXZlctFvcFRyb290gAEACAARABoAIwAtADIANwBQAFYAXQB3AIkAkACSAJQAlgCbAKYAqACqAKwAtQDJANwA8gD0APYA+AD6AQUBDwEeATEBPQE\/AUEBQwFFAUcBVAFZAVsBXQFiAW0BdgGJAY0BoAGtAbYBuwG9Ab8BwQHIAdIB1AHWAdgB5gHrAgoCDgItAjoCPwJOAlICWgJfAnUCegKQAqcCtAK7As0CzwLRAtMC3ALhAv0DAQMdAyoDMwM+A0YDVQNXA1kDXgN2A3oDkgOoA60DxQPJA+ED7QPyA\/UD+gQQBBQEKgQ2BEgESwRQAAAAAAAAAgEAAAAAAAAAcQAAAAAAAAAAAAAAAAAABFI=",
-		"runOrder": 2,
-		"scriptSourceString": "echo 'codekit hook' > .\/webpack.log",
-		"uuidString": "9EA334C7-4381-4B62-90E8-494CEC1B103C"
-		},
-	{
 		"enabled": 0,
 		"hookType": 1,
 		"name": "compile jsx",
@@ -38520,6 +39198,15 @@
 		"runOrder": 2,
 		"scriptSourceString": ".\/compile-webpack.sh",
 		"uuidString": "14E299FD-5D21-4D37-9A80-303080A6CC03"
+		},
+	{
+		"enabled": 1,
+		"hookType": 1,
+		"name": "Hook #2",
+		"predicateDataBase64Encoded": "YnBsaXN0MDDUAQIDBAUGbW5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QFgcIDxQcJicqMjY7PEFFS1BRVlxhZmhVJG51bGzTCQoLDA0OXxAXTlNDb21wb3VuZFByZWRpY2F0ZVR5cGVfEA9OU1N1YnByZWRpY2F0ZXNWJGNsYXNzEAKAAoAV0hALERNaTlMub2JqZWN0c6ESgAOAFNQLFRYXGBkaG18QEU5TUmlnaHRFeHByZXNzaW9uXxAQTlNMZWZ0RXhwcmVzc2lvbl8QE05TUHJlZGljYXRlT3BlcmF0b3KAE4AOgASAEdUdHh8gCyEiIyQlWU5TT3BlcmFuZF5OU1NlbGVjdG9yTmFtZV8QEE5TRXhwcmVzc2lvblR5cGVbTlNBcmd1bWVudHOABoAFEAOACIANXHZhbHVlRm9yS2V5OtIfCygpEAGAB9IrLC0uWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU1NlbGZFeHByZXNzaW9uoy8wMV8QEE5TU2VsZkV4cHJlc3Npb25cTlNFeHByZXNzaW9uWE5TT2JqZWN00hALMzWhNIAJgAzTCx83ODk6WU5TS2V5UGF0aIALEAqACl1pbnB1dEZ1bGxQYXRo0issPT5fEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uoz9AMV8QHE5TS2V5UGF0aFNwZWNpZmllckV4cHJlc3Npb25cTlNFeHByZXNzaW9u0issQkNeTlNNdXRhYmxlQXJyYXmjQkQxV05TQXJyYXnSKyxGR18QE05TS2V5UGF0aEV4cHJlc3Npb26kSElKMV8QE05TS2V5UGF0aEV4cHJlc3Npb25fEBROU0Z1bmN0aW9uRXhwcmVzc2lvblxOU0V4cHJlc3Npb27TTB8LTU5PXxAPTlNDb25zdGFudFZhbHVlgA8QAIAQWGRhZW5lcnlz0issUlNfEBlOU0NvbnN0YW50VmFsdWVFeHByZXNzaW9uo1RVMV8QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Npb25cTlNFeHByZXNzaW9u1AtXWFlaTihbWk5TTW9kaWZpZXJXTlNGbGFnc15OU09wZXJhdG9yVHlwZYASEGPSKyxdXl8QFU5TSW5QcmVkaWNhdGVPcGVyYXRvcqNfYDFfEBVOU0luUHJlZGljYXRlT3BlcmF0b3JfEBNOU1ByZWRpY2F0ZU9wZXJhdG9y0issYmNfEBVOU0NvbXBhcmlzb25QcmVkaWNhdGWjZGUxXxAVTlNDb21wYXJpc29uUHJlZGljYXRlW05TUHJlZGljYXRl0issRGeiRDHSKyxpal8QE05TQ29tcG91bmRQcmVkaWNhdGWja2wxXxATTlNDb21wb3VuZFByZWRpY2F0ZVtOU1ByZWRpY2F0ZV8QD05TS2V5ZWRBcmNoaXZlctFvcFRyb290gAEACAARABoAIwAtADIANwBQAFYAXQB3AIkAkACSAJQAlgCbAKYAqACqAKwAtQDJANwA8gD0APYA+AD6AQUBDwEeATEBPQE\/AUEBQwFFAUcBVAFZAVsBXQFiAW0BdgGJAY0BoAGtAbYBuwG9Ab8BwQHIAdIB1AHWAdgB5gHrAgoCDgItAjoCPwJOAlICWgJfAnUCegKQAqcCtAK7As0CzwLRAtMC3ALhAv0DAQMdAyoDMwM+A0YDVQNXA1kDXgN2A3oDkgOoA60DxQPJA+ED7QPyA\/UD+gQQBBQEKgQ2BEgESwRQAAAAAAAAAgEAAAAAAAAAcQAAAAAAAAAAAAAAAAAABFI=",
+		"runOrder": 2,
+		"scriptSourceString": "echo 'codekit hook' > .\/webpack.log",
+		"uuidString": "9EA334C7-4381-4B62-90E8-494CEC1B103C"
 		}
 	],
 "lastSavedByUser": "Adi Kurniawan",
@@ -38527,8 +39214,8 @@
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
-	"displayValue": "daenerys",
-	"displayValueWasSetByUser": 0,
+	"displayValue": "snow",
+	"displayValueWasSetByUser": 1,
 	"iconImageName": "brackets_blue"
 	},
 "projectSettings": {

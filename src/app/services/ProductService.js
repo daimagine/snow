@@ -5,17 +5,41 @@ var APIEndpoints = AppConstants.APIEndpoints;
 var request = WebAPIUtils.api.request;
 
 var SessionStore = require('../stores/SessionStore.react.jsx');
-var user = SessionStore.getUser();
-var accessToken = SessionStore.getAccessToken();
+
+var getUser = function() {
+  return SessionStore.getUser();
+}
+var getAccessToken = function() {
+  return SessionStore.getAccessToken();
+}
 
 module.exports = {
 
-  loadCustomerProducts: function() {
-    console.log('ProductService: loadCustomerProducts');
-    request.get(APIEndpoints.PRODUCTS)
-      .query('customer=' + user.id )
+  loadProduct: function(productId) {
+    console.log('ProductService: loadProduct');
+    request.get(APIEndpoints.PRODUCTS + '/' + productId)
       .type('application/json')
-      .set('Authorization', accessToken)
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveProduct(null, errorMsgs);
+          } else {
+            var json = res.body;
+            ServerActionCreators.receiveProduct(json, null);
+          }
+        }
+      });
+  },
+
+  loadCustomerProducts: function() {
+    console.log('ProductService: loadCustomerProducts', getUser());
+    request.get(APIEndpoints.PRODUCTS)
+      .query('customer=' + getUser().id )
+      .type('application/json')
+      .set('Authorization', getAccessToken())
       .end(function(error, res){
         if (res) {
           console.log(res);

@@ -47,6 +47,9 @@ module.exports = {
             json.rememberme = true;
             ServerActionCreators.receiveLogin(json, null);
           }
+        } else {
+          var errorMsgs = ["Server tidak merespon"];
+          ServerActionCreators.receiveLogin(null, errorMsgs);
         }
       });
   },

@@ -1,8 +1,10 @@
 var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
-var Header = require('../components/Header.react.jsx');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var RouteStore = require('../stores/RouteStore.react.jsx');
+
+var Header = require('../components/common/Header.react.jsx');
+var Sidebar = require('../components/common/Sidebar.react.jsx');
 
 
 function getStateFromStores() {
@@ -35,14 +37,30 @@ var App = React.createClass({
   },
 
   render: function() {
-    return (
-      <div className="app">
+    var container = this.state.isLoggedIn ? (
+      <div className="page-container row-fluid">
         <Header 
           isLoggedIn={this.state.isLoggedIn}
           user={this.state.user} />
-        <RouteHandler
+        <Sidebar
           isLoggedIn={this.state.isLoggedIn}
           user={this.state.user} />
+        <a href="javascript:;" className="scrollup">Scroll</a>
+        <div className="page-content">
+          <RouteHandler
+            isLoggedIn={this.state.isLoggedIn}
+            user={this.state.user} />
+        </div>
+      </div>
+    ) : (
+      <RouteHandler
+          isLoggedIn={this.state.isLoggedIn}
+          user={this.state.user} />
+    );
+
+    return (
+      <div>
+        { container }
       </div>
     );
   }

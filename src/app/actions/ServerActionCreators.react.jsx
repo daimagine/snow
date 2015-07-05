@@ -43,10 +43,19 @@ module.exports = {
     });
   },
 
-  receiveProducts: function(json) {
+  receiveProducts: function(json, errors) {
     AppDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_PRODUCTS,
-      json: json
+      json: json,
+      errors: errors
+    });
+  },
+
+  receiveProduct: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_PRODUCT,
+      json: json,
+      errors: errors
     });
   }
   

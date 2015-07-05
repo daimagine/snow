@@ -35,7 +35,9 @@ module.exports = {
 
     // Products
     LOAD_PRODUCTS: null,
-    RECEIVE_PRODUCTS: null
+    RECEIVE_PRODUCTS: null,
+    LOAD_PRODUCT: null,
+    RECEIVE_PRODUCT: null,
   })
 
 };
