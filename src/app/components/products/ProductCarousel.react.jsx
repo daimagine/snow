@@ -58,27 +58,28 @@ var ProductCarousel = React.createClass({
 	},
 
 	render: function() {
+		var images = this.props.product.image.split(',');
 		return (
 			<div ref="product-carousel" id="product-carousel" style={{ display:'none'}} >
-              <div className="item">
-              	<img src="/assets/images/ajax-loader.gif"
-              		data-lazy="/assets/images/ex-product-photo-00.png"
-              		className="img-responsive center lazy" />
-              </div>
-              <div className="item">
-              	<img src="/assets/images/ajax-loader.gif" 
-              		data-lazy="/assets/images/ex-product-photo-01.png"
-              		className="img-responsive center lazy" />
-              </div>
-              <div className="item">
-              	<img src="/assets/images/ajax-loader.gif" 
-              		data-lazy="/assets/images/ex-product-photo-02.png"
-              		className="img-responsive center lazy" />
-              </div>
+				{ images.map(function(imageURL) {
+					return <ProductImage imageURL={imageURL} />
+				}) }
 			</div>
 		);
 	}
 
+});
+
+var ProductImage = React.createClass({
+	render: function() {
+		return(
+			<div className="item">
+				<img src="/assets/images/ajax-loader.gif"
+	          		data-lazy={ this.props.imageURL }
+	          		className="img-responsive center lazy" />
+	        </div>
+		);
+	}
 });
 
 module.exports = ProductCarousel;
