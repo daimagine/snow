@@ -77,6 +77,7 @@ $(document).ready(function () {
 
 
 	/*==========  MAIN MENU  ==========*/
+	$('.page-sidebar li > a').unbind('click');
 	$('.page-sidebar li > a').on('click', function (e) {
 		if ($(this).next().hasClass('sub-menu') === false) {
 				return;
@@ -84,6 +85,7 @@ $(document).ready(function () {
 		var parent = $(this).parent().parent();
 
 
+		console.log('li > a on click event');
 		parent.children('li.open').children('a').children('.arrow').removeClass('open');
 		parent.children('li.open').children('a').children('.arrow').removeClass('active');
 		parent.children('li.open').children('.sub-menu').slideUp(200);
@@ -92,12 +94,14 @@ $(document).ready(function () {
 
 		var sub = $(this).next();
 		if (sub.is(":visible")) {
+				console.log('remove open');
 				$('.arrow', $(this)).removeClass("open");
 				$(this).parent().removeClass("active");
 				sub.slideUp(200, function () {
 						handleSidenarAndContentHeight();
 				});
 		} else {
+				console.log('add open');
 				$('.arrow', $(this)).addClass("open");
 				$(this).parent().addClass("open");
 				sub.slideDown(200, function () {

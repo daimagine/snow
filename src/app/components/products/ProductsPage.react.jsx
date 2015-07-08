@@ -6,6 +6,7 @@ var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
+var ReactInfinity = require('react-infinity');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
@@ -67,49 +68,38 @@ var ProductsPage = React.createClass({
 var ProductList = React.createClass({
 	render: function() {
 		return (
-			<div className="row">
-		        { this.props.products.map(function(product, index) {
-		        	return <ProductItem product={product} key={"product-" + index}/>
-		        })}
-			</div>
+			<ReactInfinity
+		      data={this.props.products}
+		      elementWidth={300}
+		      elementHeight={310}
+		      margin={10}
+		      align="left"
+		      childComponent={React.createFactory(ProductItem)}
+		      />
 		);
 	}
 });
 
 var ProductItem = React.createClass({
 	render: function() {
-		var imageURL = this.props.product.image.split(',')[0];
+		var imageURL = this.props.image.split(',')[0];
 		return (
-			<div className="col-xs-12 col-sm-4">
-				<div className="grid simple">
-					<div className="grid-title text-center">
-						<h3>{this.props.product.name}</h3>
-					</div>
-					<div className="grid-body">
-						<div class="text-center">
-		                    <div class="product-image m-b-10">
-		                    	<img src="/assets/images/ajax-loader.gif" 
-		                    		data-src={ imageURL } className="center lazy"
-		                    		alt="gambar produk"/>
-		                    </div>
-		                </div>
-		                <hr />
-		                <p>
-		                	{ this.props.product.is_affiliate_ready ? (
-		                			<h5>
-		                				affiliate fee &nbsp;
-		                				<strong>Rp { this.props.product.affiliate_fee }</strong>
-		                			</h5>
-		                		) : (
-		                			<span>produk belum mendukung affiliate</span>
-		                		) 
-		                	}
-		                </p>
-		                <hr className="m-b-10"/>
-			    		<Link to='product' params={ {productId: this.props.product.id} }>lihat detail produk</Link>
-			    	</div>
-			    </div>
-    		</div>
+			<div className="grid simple">
+				<div className="grid-title text-center">
+					<h3>{this.props.name}</h3>
+				</div>
+				<div className="grid-body">
+					<div className="text-center">
+	                    <div className="product-image m-b-10" style={{ height:'120px' }}>
+	                    	<img src="/assets/images/ajax-loader.gif" 
+	                    		data-src={ imageURL } className="center lazy"
+	                    		alt="gambar produk"/>
+	                    </div>
+	                </div>
+	                <hr className="m-b-10"/>
+		    		<Link to='product' params={ {productId: this.props.id} }>lihat detail produk</Link>
+		    	</div>
+		    </div>
     	);
 	}
 });
