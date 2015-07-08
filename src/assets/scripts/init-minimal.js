@@ -367,8 +367,14 @@ $(document).ready(function () {
 	$('.dropdown-toggle').click(function () {
 	});
 
+	var notificationListShown = false
 	$('#my-task-list').click(function() {
-		$('#notification-list').show();
+		if (notificationListShown) {
+			$('#notification-list').fadeOut();
+		} else {
+			$('#notification-list').fadeIn();
+		}
+		notificationListShown = !notificationListShown
 	});
 
 });

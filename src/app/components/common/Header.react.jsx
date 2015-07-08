@@ -88,7 +88,7 @@ var Header = React.createClass({
                     </div>
                     <div className="iconset top-down-arrow"></div>
                 </a>
-                <div id="notification-list" style={{display:'none'}}>
+                <div id="notification-list" style={{display:'none', position: 'absolute', top: '50px'}}>
                   <div style={{width:'300px'}}>
                     <div className="notification-messages info">
                       <div className="user-profile">
