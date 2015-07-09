@@ -35938,6 +35938,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/dist\/assets\/scripts\/init-product-form.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/dist\/assets\/scripts\/init-product-form.min.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-product-form.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/dist\/assets\/scripts\/init.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -36245,11 +36256,20 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/src\/app\/components\/products\/ProductDetailpage.react.jsx": {
+	"\/src\/app\/components\/products\/ProductDetailPage.react.jsx": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDetailpage.react.jsx",
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductDetailPage.react.jsx",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/src\/app\/components\/products\/ProductsCreatePage.react.jsx": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/app\/components\/products\/ProductsCreatePage.react.jsx",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -37375,6 +37395,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/src\/assets\/scripts\/init-minimal.js",
 		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-minimal.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/src\/assets\/scripts\/init-product-form.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/src\/assets\/scripts\/init-product-form.js",
+		"outputAbbreviatedPath": "\/dist\/assets\/scripts\/init-product-form.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

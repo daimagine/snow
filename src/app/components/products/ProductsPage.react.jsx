@@ -91,8 +91,7 @@ var ProductItem = React.createClass({
 				<div className="grid-body">
 					<div className="text-center">
 	                    <div className="product-image m-b-10" style={{ height:'120px' }}>
-	                    	<img src="/assets/images/ajax-loader.gif" 
-	                    		data-src={ imageURL } className="center lazy"
+	                    	<img src={ imageURL } className="center"
 	                    		alt="gambar produk"/>
 	                    </div>
 	                </div>

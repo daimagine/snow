@@ -32,10 +32,10 @@ var GettingStartedWidget = React.createClass({
                   <h4>Mulai Berjualan!</h4>
                   <hr />
                   <p className="m-b-20">
-                  	<a href="javascript:;" className="btn btn-primary btn-large">
-                  		<span className="fa fa-plus-square">&nbsp;&nbsp;</span>
-                  		Tambah Produk
-                  	</a>
+                    <Link to="new-product" className="btn btn-primary btn-large">
+                      <span className="fa fa-plus-square">&nbsp;&nbsp;</span>
+                      Tambah Produk
+                    </Link>
                   </p>
                 </div>
                 <div className="col-xs-12 col-md-4">
