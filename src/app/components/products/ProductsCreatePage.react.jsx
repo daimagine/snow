@@ -241,6 +241,26 @@ var ProductForm = React.createClass({
 			            </label>
 			            <input id="productPreviewLink" type="text" name="productPreviewLink" placeholder="http://your.preview.link" className="form-control" />
 			          </div>
+			          <hr />
+			          <div className="form-group">
+			            <label className="form-label">
+			              Affiliate Settings
+			            </label>
+			          </div>
+			          <div className="form-group">
+			            <div className="checkbox check-default">
+		                    <input id="checkbox-affiliate" type="checkbox" value="0" />
+		                    <label htmlFor="checkbox-affiliate" className="form-label">
+				              Affiliate ready
+				            </label>
+		                  </div>
+			          </div>
+				      <div className="form-group">
+			            <label htmlFor="affiliateFee" className="form-label">
+			              Affiliate Fee :
+			            </label>
+			            <input id="affiliateFee" type="number" name="affiliateFee" className="form-control" />
+			          </div>
 			        </div>
 			      </div>
 			    </div>
