@@ -22,6 +22,10 @@ $(document).ready(function() {
 			},
 			productLocation: {
 				required: true
+			},
+			affiliateFee: {
+				required: '#affiliateReady:checked',
+				number: true
 			}
 		},
 		errorPlacement: function(label, element) {

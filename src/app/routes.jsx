@@ -12,7 +12,8 @@ var StoryNew = require('./components/stories/StoryNew.react.jsx');
 var SignupPage = require('./components/session/SignupPage.react.jsx');
 var ProductsPage = require('./components/products/ProductsPage.react.jsx');
 var ProductDetailPage = require('./components/products/ProductDetailPage.react.jsx');
-var ProductsCreatePage = require('./components/products/ProductsCreatePage.react.jsx');
+var ProductsNewPage = require('./components/products/ProductsNewPage.react.jsx');
+var ProductsEditPage = require('./components/products/ProductsEditPage.react.jsx');
 
 
 module.exports = (
@@ -25,8 +26,9 @@ module.exports = (
     <Route name="story" path="/stories/:storyId" handler={StoryPage}/>
     <Route name="new-story" path="/story/new" handler={StoryNew}/>
     <Route name="products" path="/products" handler={ProductsPage}/>
-    <Route name="new-product" path="/products/create" handler={ProductsCreatePage}/>
+    <Route name="new-product" path="/products/new" handler={ProductsNewPage}/>
     <Route name="product" path="/products/:productId" handler={ProductDetailPage}/>
+    <Route name="edit-product" path="/products/:productId/edit" handler={ProductsEditPage}/>
   </Route>
 );
 

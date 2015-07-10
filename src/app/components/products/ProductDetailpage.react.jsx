@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var State = Router.State;
+var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
@@ -111,13 +112,19 @@ var ProductOverview = React.createClass({
 				</div>
 				<div className="grid simple">
 					<div className="grid-title">
-						<h4>Social Media</h4>
+						<h4>Aksi</h4>
 					</div>
 					<div className="grid-body">
 						<ul className="list-inline with-margin">
-							<li><a href="javascript:;" className="btn btn-facebook btn normal"><span className="fa fa-facebook"></span></a></li>
-							<li><a href="javascript:;" className="btn btn-twitter btn normal"><span className="fa fa-twitter"></span></a></li>
-							<li><a href="javascript:;" className="btn btn-instagram btn normal"><span className="fa fa-instagram"></span></a></li>
+							<li>
+								<Link to='edit-product' params={{productId: this.props.id}} 
+									className="btn btn-primary">
+									<span className="fa fa-pencil-square-o">&nbsp;edit</span>
+								</Link>
+							</li>
+							<li>
+								<a href="javascript:;" className="btn btn-danger"><span className="fa fa-trash-o">&nbsp;hapus</span></a>
+							</li>
 						</ul>
 					</div>
 				</div>

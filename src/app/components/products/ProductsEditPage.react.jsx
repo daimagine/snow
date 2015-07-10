@@ -1,5 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
+var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
@@ -11,33 +12,33 @@ var ReactScriptLoader = require('react-script-loader');
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 
 
-var ProductsCreatePage = React.createClass({
+var ProductsEditPage = React.createClass({
 
-  	mixins: [AuthenticatedMixin],
+  	mixins: [State, AuthenticatedMixin],
 
 	propTypes: {
 		user: ReactPropTypes.object
 	},
 
 	getInitialState: function() {
-    	console.log('ProductsCreatePage.react: getInitialState')
+    	console.log('ProductsEditPage.react: getInitialState')
 		return {
 		}
 	},
 
 	componentDidMount: function() {
-    	console.log('ProductsCreatePage.react: componentDidMount')
+    	console.log('ProductsEditPage.react: componentDidMount')
 	},
 
 	componentWillUnmount: function() {
-    	console.log('ProductsCreatePage.react: componentWillUnmount')
+    	console.log('ProductsEditPage.react: componentWillUnmount')
 	},
 
 	_getPaths: function() {
 		return [
 			{ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' },
 			{ 'key' : 'products', 'title' : 'Daftar Produk', 'link' : 'products' },
-			{ 'key' : 'add', 'title' : 'Tambah Produk', 'link' : null }
+			{ 'key' : 'edit', 'title' : 'Edit Produk', 'link' : null }
 		]
 	},
 
@@ -45,7 +46,7 @@ var ProductsCreatePage = React.createClass({
 		return (
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
-				<ProductForm />
+				<ProductForm productId={this.getParams().productId}/>
 			</div>
 		);
 	}
@@ -60,7 +61,7 @@ var ProductForm = React.createClass({
 	getInitialState: function() {
     	console.log('ProductForm.react: getInitialState')
 		return {
-			product: ProductStore.getProduct(), // get form product store
+			product: {},
 			errors: [],
 			scriptLoading: true,
 			scriptLoadError: false, 
@@ -71,6 +72,7 @@ var ProductForm = React.createClass({
 	componentDidMount: function() {
     	console.log('ProductForm.react: componentDidMount')
 		ProductStore.addChangeListener(this._onChange);
+		ProductActionCreators.loadProduct(this.props.productId);
 	},
 
 	componentWillUnmount: function() {
@@ -196,34 +198,17 @@ var ProductForm = React.createClass({
 			            <label htmlFor="productName" className="form-label">
 			              Product Name :
 			            </label>
-			            <input id="productName" type="text" name="productName" placeholder="Your product name.." className="form-control" />
+			            <input id="productName" type="text" name="productName" 
+			            	placeholder="Your product name.." className="form-control" 
+			            	value={this.state.product.name}/>
 			          </div>
 			          <div className="form-group">
 			            <label htmlFor="productDesc" className="form-label">
 			              Product Description :
 			            </label>
 			            <textarea id="productDesc" rows="5" name="productDesc" placeholder="Your product description.." className="form-control">
+			            	{this.state.product.description}
 			            </textarea>
-			          </div>
-			        </div>
-			        <div className="col-sm-6">
-			          <div className="form-group">
-			            <label htmlFor="productStock" className="form-label">
-			              Product Stock :
-			            </label>
-			            <input id="productStock" type="number" name="productStock" placeholder="Your stock.." className="form-control" />
-			          </div>
-			          <div className="form-group">
-			            <label htmlFor="productPrice" className="form-label">
-			              Product Price :
-			            </label>
-			            <input id="productPrice" type="number" name="productPrice" className="form-control" />
-			          </div>
-			          <div className="form-group">
-			            <label htmlFor="productLocation" className="form-label">
-			              Product Location :
-			            </label>
-			            <input id="productLocation" type="text" name="productLocation" placeholder="Your product location.." className="form-control" />
 			          </div>
 			          <div style={{ display:'none' }} className="form-group digitalNeeds">
 			            <label htmlFor="productFile" className="form-label">
@@ -241,6 +226,30 @@ var ProductForm = React.createClass({
 			            </label>
 			            <input id="productPreviewLink" type="text" name="productPreviewLink" placeholder="http://your.preview.link" className="form-control" />
 			          </div>
+			        </div>
+			        <div className="col-sm-6">
+			          <div className="form-group">
+			            <label htmlFor="productStock" className="form-label">
+			              Product Stock :
+			            </label>
+			            <input id="productStock" type="number" name="productStock" 
+			            	placeholder="Your stock.." className="form-control" />
+			          </div>
+			          <div className="form-group">
+			            <label htmlFor="productPrice" className="form-label">
+			              Product Price :
+			            </label>
+			            <input id="productPrice" type="number" name="productPrice" 
+			            	className="form-control" 
+			            	value={this.state.product.price}/>
+			          </div>
+			          <div className="form-group">
+			            <label htmlFor="productLocation" className="form-label">
+			              Product Location :
+			            </label>
+			            <input id="productLocation" type="text" name="productLocation" 
+			            	placeholder="Your product location.." className="form-control" />
+			          </div>
 			          <hr />
 			          <div className="form-group">
 			            <label className="form-label">
@@ -249,8 +258,9 @@ var ProductForm = React.createClass({
 			          </div>
 			          <div className="form-group">
 			            <div className="checkbox check-default">
-		                    <input id="checkbox-affiliate" type="checkbox" value="0" />
-		                    <label htmlFor="checkbox-affiliate" className="form-label">
+		                    <input id="affiliateReady" name="affiliateReady" type="checkbox" 
+		                    	value={this.state.product.is_affiliate_ready} />
+		                    <label htmlFor="affiliateReady" className="form-label">
 				              Affiliate ready
 				            </label>
 		                  </div>
@@ -259,7 +269,9 @@ var ProductForm = React.createClass({
 			            <label htmlFor="affiliateFee" className="form-label">
 			              Affiliate Fee :
 			            </label>
-			            <input id="affiliateFee" type="number" name="affiliateFee" className="form-control" />
+			            <input id="affiliateFee" type="number" name="affiliateFee" 
+			            	className="form-control" 
+			            	value={this.state.product.affiliate_fee}/>
 			          </div>
 			        </div>
 			      </div>
@@ -474,26 +486,28 @@ var ProductForm = React.createClass({
 			<div></div>
 		);
 		
+		console.log('ProductForm: render');
+
 		return (
 			<div className="row">
 				{ errors }
 				<div className="col-xs-12">
 	              <div className="grid simple">
 	                <div className="grid-title">
-	                  <h3>Add <span className="semi-bold">Product</span></h3>
+	                  <h3>Edit <span className="semi-bold">Product</span></h3>
 	                </div>
 	                <div className="grid-body clearfix">
 	                  <form id="addProduct" action="javascript:;">
 	                    <div id="addProductWizard" className="col-md-12">
-	                  		{ this.state.scriptLoading ? (
+	                  		{ !this.state.scriptLoading && this.state.product ? (
+								<div>
+									{ form }
+								</div>
+							) : (
 								<div className="col-md-12">
 									<div className="alert alert-info" role="alert">
 						              Form produk sedang disiapkan...
 						            </div>
-								</div>
-							) : (
-								<div>
-									{ form }
 								</div>
 							)}    
 	                    </div>
@@ -506,4 +520,4 @@ var ProductForm = React.createClass({
 	}
 });
 
-module.exports = ProductsCreatePage;
+module.exports = ProductsEditPage;
