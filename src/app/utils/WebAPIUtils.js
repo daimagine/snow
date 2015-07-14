@@ -12,7 +12,7 @@ module.exports = {
 
   getErrors: function(res) {
     var errorMsgs = ["Gagal menghubungi server. Silahkan coba kembali"];
-    var json = res.body;
+    var json = res;
     if (json) {
       if (json['errors']) {
         errorMsgs = json['errors'];
@@ -20,8 +20,22 @@ module.exports = {
         errorMsgs = [json['error']];
       }
     }
-    console.log(errorMsgs);
+    console.log('Server error notices', errorMsgs);
     return errorMsgs;
+  },
+
+  getMessages: function(res) {
+    var msgs = [];
+    var json = res.body;
+    if (json) {
+      if (json['messages']) {
+        msgs = json['messages'];
+      } else if (json['message']) {
+        msgs = [json['message']];
+      }
+    }
+    console.log('Server messages', msgs);
+    return msgs;
   },
 
   loadStories: function() {

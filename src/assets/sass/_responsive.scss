@@ -139,6 +139,10 @@
 					display: none !important;
 				}
 		}
+
+	.page-search-input {
+		width: 95% !important;
+	}
 }
 
 /*** General tablets and phones ***/
@@ -1309,7 +1313,9 @@
 		width: 100%;
 	}
 
-
+	.page-search-input {
+		width: 85% !important;
+	}
 }
 @media (max-width: 320px) {
 	.header .nav > li.dropdown .dropdown-toggle {

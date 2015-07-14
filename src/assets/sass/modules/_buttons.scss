@@ -391,3 +391,39 @@ code {
 	font-size: 28px;
 	vertical-align: -5px;
 }
+
+.btn-affiliate-badge {
+	@extend .btn;
+	@extend .btn-block;
+	@extend .btn-success ;
+	@extend .btn-small;
+	width: 90px;
+	float: right;
+	position: absolute;
+	right: 0px;
+	top: 73px;
+	background-color: #5cb85c;
+	color: #fff;
+	border-color: #4cae4c;
+	border-radius: 1px;
+}
+
+.btn-affiliate-badge:hover {
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}
+
+.btn-green {
+	@extend .btn-success ;
+	background-color: #5cb85c;
+	color: #fff;
+	border-color: #4cae4c;
+	border-radius: 1px;
+}
+
+.btn-green:hover, .btn-green:active {
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}

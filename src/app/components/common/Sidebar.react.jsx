@@ -33,20 +33,19 @@ var Sidebar = React.createClass({
             <li>
               <a href="profile.html">
                 <i className="fa fa-user"></i>
-                <span className="title">Profile</span>
+                <span className="title">Profil</span>
               </a>
             </li>
             <li>
               <a href="javascript:;">
                 <i className="fa fa-edit"></i>
-                <span className="title">Products</span>
+                <span className="title">Produk</span>
                 <span className="arrow"></span>
               </a>
               <ul className="sub-menu">
-                <li><Link to="products">Products</Link></li>
-                <li><a href="pages.html">Pages</a></li>
-                <li><a href="forms.html">Forms</a></li>
-                <li><a href="javascript:;">Edit Products</a></li>
+                <li><Link to="products">Produk</Link></li>
+                <li><Link to="affiliate-products">Produk Affiliate</Link></li>
+                <li><Link to="affiliate-search">Cari Produk Affiliate</Link></li>
               </ul>
             </li>
             <li>

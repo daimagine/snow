@@ -9,10 +9,9 @@ var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.rea
 var ReactInfinity = require('react-infinity');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
-var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
 
 
-var ProductsPage = React.createClass({
+var ProductsAffiliatePage = React.createClass({
 
   	mixins: [AuthenticatedMixin],
 
@@ -21,7 +20,7 @@ var ProductsPage = React.createClass({
 	},
 
 	getInitialState: function() {
-    	console.log('ProductsPage.react: getInitialState')
+    	console.log('ProductsAffiliatePage.react: getInitialState')
 		return {
 			products: ProductStore.getAllProducts(), // get form product store
 			errors: []
@@ -29,18 +28,18 @@ var ProductsPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-    	console.log('ProductsPage.react: componentDidMount')
+    	console.log('ProductsAffiliatePage.react: componentDidMount')
 		ProductStore.addChangeListener(this._onChange);
-		ProductActionCreators.loadCustomerProducts();
+		ProductActionCreators.loadCustomerAffiliateProducts();
 	},
 
 	componentWillUnmount: function() {
-    	console.log('ProductsPage.react: componentWillUnmount')
+    	console.log('ProductsAffiliatePage.react: componentWillUnmount')
 		ProductStore.removeChangeListener(this._onChange);
 	},
 
 	_onChange: function() {
-    	console.log('ProductsPage.react: _onChange')
+    	console.log('ProductsAffiliatePage.react: _onChange')
 		this.setState({
 			products: ProductStore.getAllProducts(),
 			errors: ProductStore.getErrors()
@@ -50,7 +49,7 @@ var ProductsPage = React.createClass({
 	_getPaths: function() {
 		return [
 			{ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' },
-			{ 'key' : 'products', 'title' : 'Daftar Produk', 'link' : null }
+			{ 'key' : 'products', 'title' : 'Daftar Produk Affiliate', 'link' : null }
 		]
 	},
 
@@ -92,13 +91,6 @@ var ProductItem = React.createClass({
 					<h3 className="text-ellipsis">{this.props.name}</h3>
 				</div>
 				<div className="grid-body">
-					{this.props.is_affiliate_ready ? (
-						<a href="javascript:;" className="btn-affiliate-badge">
-							<span className="">affiliate aktif</span>
-						</a>
-					) : (
-						<div></div>
-					)}
 					<div className="text-center">
 	                    <div className="product-image m-b-10" style={{ height:'215px' }}>
 	                    	<img src={ imageURL } className="center img-responsive img-fit-height"
@@ -106,7 +98,7 @@ var ProductItem = React.createClass({
 	                    </div>
 	                </div>
 	                <hr className="m-b-10"/>
-	                <Link to='product' params={{productId: this.props.id}} 
+	                <Link to='affiliate-detail' params={{productId: this.props.id}} 
 						className="btn btn-small btn-primary">
 						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
 					</Link>
@@ -116,4 +108,4 @@ var ProductItem = React.createClass({
 	}
 });
 
-module.exports = ProductsPage;
+module.exports = ProductsAffiliatePage;

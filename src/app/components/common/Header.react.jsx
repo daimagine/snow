@@ -46,7 +46,7 @@ var Header = React.createClass({
         <div className="navbar-inner">
           <div className="header-seperation">
             <ul id="main-menu-toggle-wrapper" style={{display:'none'}} 
-              className="nav pull-left notification-center">
+              className="nav pull-left notifcation-center">
               <li className="dropdown">
                 <a id="main-menu-toggle" href="javascript:;" data-toggle="offcanvas" 
                   data-target="#main-menu" data-canvas=".page-container">
@@ -68,7 +68,7 @@ var Header = React.createClass({
                   </a>
                 </li>
               </ul>
-              <ul className="nav quick-section">
+              <ul className="nav quick-section" style={{display:'none'}}>
                 <li className="m-r-10 input-prepend inside search-form no-boarder">
                   <span className="add-on"><span className="iconset top-search"></span></span>
                   <input type="text" name="" placeholder="Search Item.." 
@@ -88,7 +88,7 @@ var Header = React.createClass({
                     </div>
                     <div className="iconset top-down-arrow"></div>
                 </a>
-                <div id="notification-list" style={{display:'none'}}>
+                <div id="notification-list" style={{display:'none', position: 'absolute', top: '50px'}}>
                   <div style={{width:'300px'}}>
                     <div className="notification-messages info">
                       <div className="user-profile">

@@ -32,11 +32,12 @@ var ProductDescription = React.createClass({
 	},
 
 	render: function() {
+		var all = this.props.product.name.split(" ");
+		var half = Math.round(all.length/2);
+		var firstName = all.slice(0, half).join(" ");
+		var secondName = all.slice(half, all.length).join(" ");
 		return (
 			<div ref="product-description" id="product-description">
-              <div className="m-b-20">
-	              <p>&nbsp;</p>
-	            </div>
 	            <ul id="tab-01" className="nav nav-tabs">
 	              <li className="active"><a href="#product-tab-00" aria-controls="product-tab-00" role="tab" data-toggle="tab">Deskripsi</a></li>
 	            </ul>
@@ -44,7 +45,7 @@ var ProductDescription = React.createClass({
 	              <div id="product-tab-00" className="tab-pane active">
 	                <div className="row">
 	                  <div className="col-md-12">
-	                    <h4>{ this.props.product.headline }</h4>
+	                    <h4>{firstName}&nbsp;<span className="semi-bold">{secondName}</span></h4>
 	                    <hr />
 	                    <p>{ this.props.product.description }</p>
 	                  </div>

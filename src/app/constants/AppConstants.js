@@ -9,7 +9,9 @@ module.exports = {
     LOGIN:                APIRoot + "/sessions/create",
     REGISTRATION:         APIRoot + "/users",
     STORIES:              APIRoot + "/stories",
-    PRODUCTS:             APIRoot + "/products"
+    PRODUCTS:             APIRoot + "/products",
+    SEARCH_AFFILIATES:    APIRoot + "/affiliates/search",
+    AFFILIATES:           APIRoot + "/affiliates" 
   },
 
   PayloadSources: keyMirror({
@@ -38,6 +40,11 @@ module.exports = {
     RECEIVE_PRODUCTS: null,
     LOAD_PRODUCT: null,
     RECEIVE_PRODUCT: null,
+    UPDATE_PRODUCT: null,
+    RECEIVE_UPDATED_PRODUCT: null,
+    LOAD_AFFILIATE_PRODUCTS: null,
+    JOIN_AFFILIATE_PRODUCT: null,
+    REMOVE_AFFILIATE_PRODUCT: null,
   })
 
 };
