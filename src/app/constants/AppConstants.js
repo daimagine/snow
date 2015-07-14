@@ -38,6 +38,9 @@ module.exports = {
     RECEIVE_PRODUCTS: null,
     LOAD_PRODUCT: null,
     RECEIVE_PRODUCT: null,
+    UPDATE_PRODUCT: null,
+    RECEIVE_UPDATED_PRODUCT: null,
+    LOAD_AFFILIATE_PRODUCTS: null
   })
 
 };

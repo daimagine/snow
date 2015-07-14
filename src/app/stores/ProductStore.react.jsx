@@ -9,6 +9,7 @@ var CHANGE_EVENT = 'change';
 var _product = null;
 var _products = [];
 var _errors = [];
+var _messages = [];
 
 
 var ProductStore = assign({}, EventEmitter.prototype, {
@@ -27,6 +28,10 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
   getErrors: function() {
     return _errors;
+  },
+
+  getMessages: function() {
+  	return _messages;
   },
 
   getAllProducts: function() {
@@ -66,6 +71,24 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 				_errors = action.errors;
 			} else {
 				_errors = [];
+			}
+			ProductStore.emitChange();
+			break;
+
+		case ActionTypes.RECEIVE_UPDATED_PRODUCT:
+			console.log('ProductStore: RECEIVE_UPDATED_PRODUCT');
+			if (action.json && action.json.product) {
+				_product = action.json.product;
+			}
+			if (action.errors) {
+				_errors = action.errors;
+			} else {
+				_errors = [];
+			}
+			if (action.messages) {
+				_messages = action.messages;
+			} else {
+				_messages = [];
 			}
 			ProductStore.emitChange();
 			break;

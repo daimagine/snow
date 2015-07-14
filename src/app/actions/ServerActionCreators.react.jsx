@@ -57,6 +57,14 @@ module.exports = {
       json: json,
       errors: errors
     });
+  },
+
+  receiveUpdatedProduct: function(json, errors) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_UPDATED_PRODUCT,
+      json: json,
+      errors: errors
+    })
   }
   
 };

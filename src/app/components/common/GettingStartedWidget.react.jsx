@@ -43,17 +43,16 @@ var GettingStartedWidget = React.createClass({
                   <hr />
                   <ul>
                     <li><Link to="products">Daftar Produk</Link></li>
-                    <li><a href="javascript:;">Forms</a></li>
-                    <li><a href="javascript:;">Pages</a></li>
+                    <li><Link to="affiliate-products">Daftar Produk Affiliate</Link></li>
                   </ul>
                 </div>
                 <div className="col-xs-12 col-md-4">
                   <h4>Fasilitas Lain</h4>
                   <hr />
                   <ul>
-                    <li><a href="javascript:;">Reports</a></li>
-                    <li><a href="javascript:;">Form Builder</a></li>
-                    <li><a href="javascript:;">Developer Tools</a></li>
+                    <li><a href="javascript:;">Report</a></li>
+                    <li><a href="javascript:;">Bantuan</a></li>
+                    <li><a href="javascript:;">Kontak Kami</a></li>
                   </ul>
                 </div>
               </div>

@@ -46,7 +46,7 @@ var Header = React.createClass({
         <div className="navbar-inner">
           <div className="header-seperation">
             <ul id="main-menu-toggle-wrapper" style={{display:'none'}} 
-              className="nav pull-left notification-center">
+              className="nav pull-left notifcation-center">
               <li className="dropdown">
                 <a id="main-menu-toggle" href="javascript:;" data-toggle="offcanvas" 
                   data-target="#main-menu" data-canvas=".page-container">

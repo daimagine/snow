@@ -21,5 +21,20 @@ module.exports = {
     });
   },
 
+  updateProduct: function(product) {
+    ProductService.updateProduct(product);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.UPDATE_PRODUCT,
+      product: product
+    });
+  },
+
+  loadCustomerAffiliateProducts: function() {
+    ProductService.loadCustomerAffiliateProducts();
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_AFFILIATE_PRODUCTS
+    });
+  },
+
 };
 

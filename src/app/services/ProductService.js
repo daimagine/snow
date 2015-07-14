@@ -52,7 +52,49 @@ module.exports = {
           }
         }
       });
-  }
+  },
+
+  updateProduct: function(product) {
+    console.log('ProductService: updateProduct', product.id);
+    request.post(APIEndpoints.PRODUCTS + "/" + product.id)
+      .send({
+        product: product
+      })
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveUpdatedProduct(null, errorMsgs);
+          } else {
+            var json = res.body;
+            ServerActionCreators.receiveUpdatedProduct(json, null);
+          }
+        }
+      });
+  },
+
+  loadCustomerAffiliateProducts: function() {
+    console.log('ProductService: loadCustomerAffiliateProducts', getUser());
+    request.get(APIEndpoints.PRODUCTS)
+      .query('affiliator=' + getUser().id )
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res){
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveProducts(null, errorMsgs);
+          } else {
+            var json = res.body;
+            ServerActionCreators.receiveProducts(json, null);
+          }
+        }
+      });
+  },
 
 };
 

@@ -61,8 +61,8 @@ var ProductCarousel = React.createClass({
 		var images = this.props.product.image.split(',');
 		return (
 			<div ref="product-carousel" id="product-carousel" style={{ display:'none'}} >
-				{ images.map(function(imageURL) {
-					return <ProductImage imageURL={imageURL} />
+				{ images.map(function(imageURL, index) {
+					return <ProductImage imageURL={imageURL} key={"img-"+index} />
 				}) }
 			</div>
 		);

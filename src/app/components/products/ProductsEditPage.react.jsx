@@ -8,6 +8,7 @@ var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactScriptLoader = require('react-script-loader');
+var DropzoneComponent = require('react-dropzone-component');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 
@@ -117,7 +118,41 @@ var ProductForm = React.createClass({
 	    });
 	},
 
+	_onUploadFile: function() {
+		console.log('ProductForm: onUploadFile');
+	},
+
+	_onUploadPhotos: function() {
+		console.log('ProductForm: onUploadPhotos');
+	},
+
 	render: function() {
+		var dropzoneConfigBase = {
+			allowedFileTypes: ['.jpg', '.png', '.gif'],
+			showFileTypeIcon: true
+		};
+
+		var dropzoneFileConfig = React.addons.update(dropzoneConfigBase, {$merge: {
+			postUrl: '/products/' + this.state.product.id + '/files'
+		}});
+
+		var dropzonePhotoConfig = React.addons.update(dropzoneConfigBase, {$merge: {
+			postUrl: '/products/' + this.state.product.id + '/photos'
+		}});
+
+		var djsConfig = {
+		    addRemoveLinks: false
+		};
+
+		var dropzoneHandlers = {
+			file: {
+				drop: this._onUploadFile
+			},
+			photo: {
+				drop: this._onUploadPhotos
+			}
+		};
+
 		var form = (
 			<div>
 			  <div className="form-wizard-steps">
@@ -214,11 +249,9 @@ var ProductForm = React.createClass({
 			            <label htmlFor="productFile" className="form-label">
 			              Product File :
 			            </label>
-			            <div id="product-file-uploader" className="dropzone no-margin validation-file-uploader">
-			              <div className="fallback">
-			                <input id="productFile" name="productFile" type="file" />
-			              </div>
-			            </div>
+			            <DropzoneComponent djsConfig={djsConfig} 
+			            	config={dropzoneFileConfig} 
+			            	eventHandlers={dropzoneHandlers.file} />
 			          </div>
 			          <div style={{ display:'none' }} className="form-group digitalNeeds">
 			            <label htmlFor="productPreviewLink" className="form-label">
@@ -291,11 +324,9 @@ var ProductForm = React.createClass({
 			            <label htmlFor="productPhoto" className="form-label">
 			              Product Photo :
 			            </label>
-			            <div action="javascript:;" className="dropzone no-margin dz-uploader-unlimited">
-			              <div className="fallback">
-			                <input id="productPhoto" name="file" type="file" className="dz-uploader-unlimited" />
-			              </div>
-			            </div>
+			            <DropzoneComponent djsConfig={djsConfig} 
+			            	config={dropzonePhotoConfig} 
+			            	eventHandlers={dropzoneHandlers.photo} />
 			          </div>
 			        </div>
 			        <div className="col-sm-12">
