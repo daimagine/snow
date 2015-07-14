@@ -40,6 +40,22 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
   getProduct: function() {
   	return _product;
+  },
+
+  isProductAffiliator: function(user, prefferedProduct) {
+  	var product = this.getProduct();
+  	if (prefferedProduct) {
+  		product = prefferedProduct;
+  	}
+  	if (product && product.affiliates) {
+	  	for (var idx in product.affiliates) {
+	  		var affiliate = product.affiliates[idx];
+	  		console.log('check isProductAffiliator', affiliate);
+	  		if (user.id == affiliate.customer.id) 
+	  			return true;
+	  	}
+  	}
+  	return false;
   }
 
 });

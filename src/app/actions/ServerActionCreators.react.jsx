@@ -59,11 +59,12 @@ module.exports = {
     });
   },
 
-  receiveUpdatedProduct: function(json, errors) {
+  receiveUpdatedProduct: function(json, errors, messages) {
     AppDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_UPDATED_PRODUCT,
       json: json,
-      errors: errors
+      errors: errors,
+      messages: messages
     })
   }
   

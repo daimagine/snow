@@ -68,7 +68,7 @@ var Header = React.createClass({
                   </a>
                 </li>
               </ul>
-              <ul className="nav quick-section">
+              <ul className="nav quick-section" style={{display:'none'}}>
                 <li className="m-r-10 input-prepend inside search-form no-boarder">
                   <span className="add-on"><span className="iconset top-search"></span></span>
                   <input type="text" name="" placeholder="Search Item.." 

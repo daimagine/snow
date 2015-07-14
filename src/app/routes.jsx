@@ -16,6 +16,7 @@ var ProductsNewPage = require('./components/products/ProductsNewPage.react.jsx')
 var ProductsEditPage = require('./components/products/ProductsEditPage.react.jsx');
 var ProductsAffiliatePage = require('./components/products/ProductsAffiliatePage.react.jsx');
 var ProductDetailAffiliatePage = require('./components/products/ProductDetailAffiliatePage.react.jsx');
+var ProductAffiliateSearchPage = require('./components/products/ProductAffiliateSearchPage.react.jsx');
 
 
 module.exports = (
@@ -36,6 +37,7 @@ module.exports = (
     <Route name="edit-product" path="/products/:productId/edit" handler={ProductsEditPage}/>
 
     <Route name="affiliate-products" path="/affiliates" handler={ProductsAffiliatePage}/>
+    <Route name="affiliate-search" path="/affiliates/search" handler={ProductAffiliateSearchPage}/>
     <Route name="affiliate-detail" path="/affiliates/:productId" handler={ProductDetailAffiliatePage}/>
   </Route>
 );

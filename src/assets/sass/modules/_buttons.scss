@@ -413,3 +413,17 @@ code {
 	background-color: #449d44;
 	border-color: #398439;
 }
+
+.btn-green {
+	@extend .btn-success ;
+	background-color: #5cb85c;
+	color: #fff;
+	border-color: #4cae4c;
+	border-radius: 1px;
+}
+
+.btn-green:hover, .btn-green:active {
+	color: #fff;
+	background-color: #449d44;
+	border-color: #398439;
+}

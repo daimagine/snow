@@ -71,9 +71,10 @@ var ProductList = React.createClass({
 			<ReactInfinity
 		      data={this.props.products}
 		      elementWidth={300}
-		      elementHeight={290}
+		      elementHeight={400}
 			  justifyOnMobile={false} // pass true to switch to a list instead of a grid on mobile.
 			  elementMobileWidth={400} // element width to use for mobile view when `justifyOnMobile === false`
+		      elementMobileHeight={400}
 		      margin={10}
 		      align="left"
 		      childComponent={React.createFactory(ProductItem)}
@@ -88,7 +89,7 @@ var ProductItem = React.createClass({
 		return (
 			<div className="grid simple">
 				<div className="grid-title text-center">
-					<h3>{this.props.name}</h3>
+					<h3 className="text-ellipsis">{this.props.name}</h3>
 				</div>
 				<div className="grid-body">
 					{this.props.is_affiliate_ready ? (
@@ -99,14 +100,14 @@ var ProductItem = React.createClass({
 						<div></div>
 					)}
 					<div className="text-center">
-	                    <div className="product-image m-b-10" style={{ height:'100px' }}>
-	                    	<img src={ imageURL } className="center"
+	                    <div className="product-image m-b-10" style={{ height:'215px' }}>
+	                    	<img src={ imageURL } className="center img-responsive img-fit-height"
 	                    		alt="gambar produk"/>
 	                    </div>
 	                </div>
 	                <hr className="m-b-10"/>
 	                <Link to='product' params={{productId: this.props.id}} 
-						className="btn btn-primary">
+						className="btn btn-small btn-primary">
 						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
 					</Link>
 		    	</div>

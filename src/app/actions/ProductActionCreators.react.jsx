@@ -36,5 +36,31 @@ module.exports = {
     });
   },
 
+  searchAffiliateProducts: function(criteria) {
+    ProductService.searchAffiliateProducts(criteria);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_AFFILIATE_PRODUCTS,
+      criteria: criteria
+    });
+  },
+
+  joinAffiliate: function(user, product) {
+    ProductService.joinAffiliate(user, product);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.JOIN_AFFILIATE_PRODUCT,
+      user: user,
+      product: product
+    });
+  },
+
+  removeAffiliate: function(user, product) {
+    ProductService.removeAffiliate(user, product);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.REMOVE_AFFILIATE_PRODUCT,
+      user: user,
+      product: product
+    });
+  }
+
 };
 

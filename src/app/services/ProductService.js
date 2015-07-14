@@ -56,7 +56,7 @@ module.exports = {
 
   updateProduct: function(product) {
     console.log('ProductService: updateProduct', product.id);
-    request.post(APIEndpoints.PRODUCTS + "/" + product.id)
+    request.put(APIEndpoints.PRODUCTS + "/" + product.id)
       .send({
         product: product
       })
@@ -95,6 +95,73 @@ module.exports = {
         }
       });
   },
+
+  searchAffiliateProducts: function(criteria) {
+    console.log('ProductService: searchAffiliateProducts', getUser());
+    request.get(APIEndpoints.SEARCH_AFFILIATES)
+      .query('customer=' + getUser().id )
+      .query('name=' + criteria )
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res){
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveProducts(null, errorMsgs);
+          } else {
+            var json = res.body;
+            ServerActionCreators.receiveProducts(json, null);
+          }
+        }
+      });
+  },
+
+  joinAffiliate: function(user, product) {
+    console.log('ProductService: joinAffiliate', product.id);
+    request.post(APIEndpoints.AFFILIATES + "/" + product.id)
+      .send({
+        customer_id: user.id
+      })
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveUpdatedProduct(null, errorMsgs, null);
+          } else {
+            var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveUpdatedProduct(json, null, messages);
+          }
+        }
+      });
+  },
+
+  removeAffiliate: function(user, product) {
+    console.log('ProductService: removeAffiliate', product.id);
+    request.del(APIEndpoints.AFFILIATES + "/" + product.id)
+      .send({
+        customer_id: user.id
+      })
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveUpdatedProduct(null, errorMsgs, null);
+          } else {
+            var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveUpdatedProduct(json, null, messages);
+          }
+        }
+      });
+  }
 
 };
 

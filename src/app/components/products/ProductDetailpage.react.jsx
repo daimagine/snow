@@ -71,7 +71,6 @@ var ProductDetailPage = React.createClass({
 	onOpenAffilateModal: function() {
 		console.log('ProductDetailPage: onOpenAffilateModal');
 		this.setState({ showAffiliateModal: true, errors: [] });
-		// TODO: should open new component for affiliate setting in modal
 	},
 
 	onCloseAffiliateModal: function() {
@@ -171,10 +170,10 @@ var ProductOverview = React.createClass({
 									Produk ini sudah terdaftar sebagai produk affiliate dan 
 									sudah tersedia bagi affiliator untuk ikut menjual produk ini.
 								</p>
-								<table class="table">
+								<table className="table">
 				                    <tbody>
-				                      <tr class="no-border">
-				                        <td>Tipe Komisi</td>
+				                      <tr className="no-border">
+				                        <td width="110px">Tipe Komisi</td>
 				                        <td width="10px">:</td>
 				                        <td>
 				                        	<span className="semi-bold">
@@ -182,8 +181,8 @@ var ProductOverview = React.createClass({
 				                        	</span>
 				                        </td>
 				                      </tr>
-				                      <tr class="no-border">
-				                        <td>Komisi Affiliate</td>
+				                      <tr className="no-border">
+				                        <td width="110px">Komisi Affiliate</td>
 				                        <td width="10px">:</td>
 				                        <td>
 			                        		{this.props.product.affiliate_fee_type == "0" ? (

@@ -38,9 +38,6 @@ var ProductDescription = React.createClass({
 		var secondName = all.slice(half, all.length).join(" ");
 		return (
 			<div ref="product-description" id="product-description">
-              <div className="m-b-20">
-	              <p>&nbsp;</p>
-	            </div>
 	            <ul id="tab-01" className="nav nav-tabs">
 	              <li className="active"><a href="#product-tab-00" aria-controls="product-tab-00" role="tab" data-toggle="tab">Deskripsi</a></li>
 	            </ul>
