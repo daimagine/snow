@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactInfinity = require('react-infinity');
-var ProductItem = require('./ProductItem.react.jsx');
+var ProductItem = require('./ProductItem.react.jsx').ProductItem;
 
 var ProductList = React.createClass({
 	render: function() {
