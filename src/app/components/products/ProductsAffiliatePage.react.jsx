@@ -9,6 +9,7 @@ var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.rea
 var ReactInfinity = require('react-infinity');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
+var ProductList = require('./ProductList.react.jsx');
 
 
 var ProductsAffiliatePage = React.createClass({
@@ -60,51 +61,6 @@ var ProductsAffiliatePage = React.createClass({
 				<ProductList products={this.state.products} />
 			</div>
 		);
-	}
-
-});
-
-var ProductList = React.createClass({
-	render: function() {
-		return (
-			<ReactInfinity
-		      data={this.props.products}
-		      elementWidth={300}
-		      elementHeight={400}
-			  justifyOnMobile={false} // pass true to switch to a list instead of a grid on mobile.
-			  elementMobileWidth={400} // element width to use for mobile view when `justifyOnMobile === false`
-		      elementMobileHeight={400}
-		      margin={10}
-		      align="left"
-		      childComponent={React.createFactory(ProductItem)}
-		      />
-		);
-	}
-});
-
-var ProductItem = React.createClass({
-	render: function() {
-		var imageURL = this.props.image ? this.props.image.split(',')[0] : '';
-		return (
-			<div className="grid simple">
-				<div className="grid-title text-center">
-					<h3 className="text-ellipsis">{this.props.name}</h3>
-				</div>
-				<div className="grid-body">
-					<div className="text-center">
-	                    <div className="product-image m-b-10" style={{ height:'215px' }}>
-	                    	<img src={ imageURL } className="center img-responsive img-fit-height"
-	                    		alt="gambar produk"/>
-	                    </div>
-	                </div>
-	                <hr className="m-b-10"/>
-	                <Link to='affiliate-detail' params={{productId: this.props.id}} 
-						className="btn btn-small btn-primary">
-						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
-					</Link>
-		    	</div>
-		    </div>
-    	);
 	}
 });
 

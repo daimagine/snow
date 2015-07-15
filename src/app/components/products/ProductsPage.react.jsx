@@ -7,6 +7,12 @@ var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactInfinity = require('react-infinity');
+var AppConstants = require('../../constants/AppConstants.js')
+	, ProductCategory = AppConstants.ProductCategory;
+var ProductItemBase = require('./ProductItem.react.jsx')
+	, DigitalOverlay = ProductItemBase.DigitalOverlay
+	, RetailOverlay = ProductItemBase.RetailOverlay
+	, TicketOverlay = ProductItemBase.TicketOverlay;
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
@@ -85,6 +91,14 @@ var ProductList = React.createClass({
 
 var ProductItem = React.createClass({
 	render: function() {
+		var badge = (<div></div>);
+		if (this.props.category.id == ProductCategory.Digital) {
+			badge = (<DigitalOverlay />);
+		} else if (this.props.category.id == ProductCategory.Retail) {
+			badge = (<RetailOverlay />);
+		} else if (this.props.category.id == ProductCategory.Ticket) {
+			badge = (<TicketOverlay />);
+		}
 		var imageURL = this.props.image ? this.props.image.split(',')[0] : '';
 		return (
 			<div className="grid simple">
@@ -110,6 +124,7 @@ var ProductItem = React.createClass({
 						className="btn btn-small btn-primary">
 						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
 					</Link>
+					{badge}
 		    	</div>
 		    </div>
     	);

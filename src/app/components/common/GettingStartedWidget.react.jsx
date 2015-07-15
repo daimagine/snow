@@ -20,23 +20,23 @@ var GettingStartedWidget = React.createClass({
             </div>
             <div className="grid-body">
               <div className="row">
-                <div className="col-xs-12 col-md-4">
+                <div className="col-xs-12 col-md-8">
                   <h4><span className="semi-bold">Baru!</span>&nbsp;Jualio Affiliate</h4>
                   <p>
                     Sekarang kamu bisa berjualan berbagai macam produk yang ada di Jualio dengan komisi yang menguntungkan.
                     <br/>
                     Ikuti langkah berikut:
                     <ol>
-                      <li><Link to="affiliate-search">Join Affiliate</Link> yang menarik untuk kamu jual</li>
+                      <li><Link to="affiliate-search">Cari Produk Affiliate</Link> yang menarik untuk kamu jual</li>
                       <li>Klik <span className="semi-bold">Join Affiliate</span> di deskripsi produk</li>
                       <li>Post ke akun sosial media kamu</li>
                       <li>Setiap produk yang dibeli, kamu akan mendapatkan komisi flat ataupun persentase harga produk</li>
                     </ol>
                   </p>
                   <p className="m-b-20">
-                    <Link to="affiliate-search" className="btn btn-primary btn-large">
-                      <span className="fa fa-users">&nbsp;&nbsp;</span>
-                      Join Affiliate
+                    <Link to="affiliate-search" className="btn btn-primary btn-medium">
+                      <span className="fa fa-search">&nbsp;&nbsp;</span>
+                      Cari Produk Affiliate
                     </Link>
                   </p>
                   <hr />

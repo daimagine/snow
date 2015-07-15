@@ -14,6 +14,12 @@ module.exports = {
     AFFILIATES:           APIRoot + "/affiliates" 
   },
 
+  ProductCategory: {
+    Digital: 1,
+    Retail: 2,
+    Ticket: 3
+  },
+
   PayloadSources: keyMirror({
     SERVER_ACTION: null,
     VIEW_ACTION: null
