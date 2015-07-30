@@ -316,6 +316,10 @@ var AffiliateModal = React.createClass({
 				});
 				return
 			}
+
+			if (product.affiliate_fee_type == null || product.affiliate_fee_type == undefined) {
+				product.affiliate_fee_type = 0;
+			}
 		}
 		console.log('AffiliateModal: updating product', product);
 		ProductActionCreators.updateProduct(product);

@@ -38,7 +38,6 @@ var ProductItem = React.createClass({
 	                <hr className="m-b-10"/>
 	                <Link to='affiliate-detail' 
 	                	params={{productId: this.props.id}} 
-	                	query={{searchMode: searchMode}}
 						className="btn btn-small btn-primary">
 						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
 					</Link>
