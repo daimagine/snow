@@ -47,6 +47,7 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   	if (prefferedProduct) {
   		product = prefferedProduct;
   	}
+  	console.log('check if affiliator of product', user.id, product.id);
   	if (product && product.affiliates) {
 	  	for (var idx in product.affiliates) {
 	  		var affiliate = product.affiliates[idx];
@@ -62,8 +63,6 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
 ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 	var action = payload.action;
-	console.log('ProductStore: action', action);
-
 	switch(action.type) {
 		case ActionTypes.RECEIVE_PRODUCTS:
 			console.log('ProductStore: RECEIVE_PRODUCTS');

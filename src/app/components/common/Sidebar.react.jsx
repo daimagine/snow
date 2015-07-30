@@ -43,7 +43,7 @@ var Sidebar = React.createClass({
                 <span className="arrow"></span>
               </a>
               <ul className="sub-menu">
-                <li><Link to="products">Produk</Link></li>
+                <li><Link to="products">Produk Anda</Link></li>
                 <li><Link to="affiliate-products">Produk Affiliate</Link></li>
                 <li><Link to="affiliate-search">Cari Produk Affiliate</Link></li>
               </ul>

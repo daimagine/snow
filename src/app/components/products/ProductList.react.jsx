@@ -5,6 +5,7 @@ var ProductItem = require('./ProductItem.react.jsx').ProductItem;
 var ProductList = React.createClass({
 	render: function() {
 		console.log('ProductList: render');
+		
 		return (
 			<ReactInfinity
 		      data={this.props.products}
@@ -20,5 +21,6 @@ var ProductList = React.createClass({
 		);
 	}
 });
+
 
 module.exports = ProductList;

@@ -11,13 +11,21 @@ module.exports = {
     STORIES:              APIRoot + "/stories",
     PRODUCTS:             APIRoot + "/products",
     SEARCH_AFFILIATES:    APIRoot + "/affiliates/search",
-    AFFILIATES:           APIRoot + "/affiliates" 
+    AFFILIATES:           APIRoot + "/affiliates",
+    CUSTOMER_SOCMEDS:     APIRoot + "/socmed_accounts",
   },
 
   ProductCategory: {
     Digital: 1,
     Retail: 2,
     Ticket: 3
+  },
+
+  SocmedType: {
+    Twitter: 1,
+    Facebook: 2,
+    FacebookPage: 3,
+    Instagram: 4
   },
 
   PayloadSources: keyMirror({
@@ -48,9 +56,18 @@ module.exports = {
     RECEIVE_PRODUCT: null,
     UPDATE_PRODUCT: null,
     RECEIVE_UPDATED_PRODUCT: null,
+
+    // Socmeds
+    LOAD_SOCMED_ACCOUNTS: null,
+    RECEIVE_SOCMED_ACCOUNTS: null,
+
+    // Affiliate
+    LOAD_AFFILIATE: null,
+    RECEIVE_AFFILIATE: null,
     LOAD_AFFILIATE_PRODUCTS: null,
     JOIN_AFFILIATE_PRODUCT: null,
     REMOVE_AFFILIATE_PRODUCT: null,
+
   })
 
 };

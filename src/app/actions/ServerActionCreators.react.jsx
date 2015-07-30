@@ -66,7 +66,25 @@ module.exports = {
       errors: errors,
       messages: messages
     })
-  }
+  },
+
+  receiveSocmedAccounts: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_SOCMED_ACCOUNTS,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveAffiliateInfo: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_AFFILIATE,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

@@ -32,7 +32,7 @@ var ProductDetailAffiliatePage = React.createClass({
 			product: ProductStore.getProduct(), // get form product store
 			errors: [],
 			messages: [],
-			isAffiliator: ProductStore.isProductAffiliator(),
+			isAffiliator: false,
 			processing: false
 		}
 	},
@@ -146,7 +146,7 @@ var ProductOverview = React.createClass({
 		processing: ReactPropTypes.bool
 	},
 
-	componentWillUnmount: function() {
+	componentWillMount: function() {
 		if (this.props.handler === undefined) {
 			throw new Error("ProductOverview: Parent component class must give handler props.")
 		}
@@ -201,7 +201,7 @@ var NotAffiliatorGrid = React.createClass({
 		processing: ReactPropTypes.bool
 	},
 
-	componentWillUnmount: function() {
+	componentWillMount: function() {
 		if (this.props.handler === undefined) {
 			throw new Error("NotAffiliatorGrid: Parent component class must give handler props.")
 		}
@@ -259,7 +259,7 @@ var NotAffiliatorGrid = React.createClass({
 								onClick={!this.props.processing ? this.props.handler.onJoinAffiliate : null}
 				                disabled={this.props.processing}>
 								<span className="fa fa-users">
-									&nbsp;&nbsp;{this.props.processing ? 'Loading...' : 'join affiliate'}
+									&nbsp;&nbsp;{this.props.processing ? 'loading...' : 'join affiliate'}
 								</span>
 							</a>
 						</li>
@@ -278,7 +278,7 @@ var AffiliatorGrid = React.createClass({
 		processing: ReactPropTypes.bool
 	},
 
-	componentWillUnmount: function() {
+	componentWillMount: function() {
 		if (this.props.handler === undefined) {
 			throw new Error("AffiliatorGrid: Parent component class must give handler props.")
 		}
@@ -336,9 +336,19 @@ var AffiliatorGrid = React.createClass({
 								onClick={!this.props.processing ? this.props.handler.onRemoveAffiliate : null}
 				                disabled={this.props.processing}>
 								<span className="fa fa-minus-circle">
-									&nbsp;&nbsp;{this.props.processing ? 'Loading...' : 'stop affiliate'}
+									&nbsp;&nbsp;{this.props.processing ? 'loading...' : 'stop affiliate'}
 								</span>
 							</a>
+						</li>
+						<li>
+							<Link to="repost" 
+								params={{productId: this.props.product.id}}
+								query={{affiliate: 1}}
+								className="btn btn-info">
+									<span className="fa fa-retweet">
+										&nbsp;&nbsp;repost produk
+									</span>
+							</Link>
 						</li>
 					</ul>
 				</div>

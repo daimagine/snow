@@ -134,7 +134,7 @@ var ProductOverview = React.createClass({
 		handler: ReactPropTypes.object
 	},
 
-	componentWillUnmount: function() {
+	componentWillMount: function() {
 		if (this.props.handler === undefined) {
 			throw new Error("ProductOverview: Parent component class must give handler props.")
 		}
@@ -253,9 +253,6 @@ var AffiliateModal = React.createClass({
 
 	componentWillMount: function() {
 		console.log('AffiliateModal: componentWillMount', this.props.product);
-	},
-
-	componentWillUnmount: function() {
 		if (this.props.handler === undefined) {
 			throw new Error("AffiliateModal: Parent component class must give handler props.")
 		}
