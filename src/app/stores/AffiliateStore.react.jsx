@@ -27,11 +27,15 @@ var AffiliateStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-    return _errors;
+  	var errors = _errors;
+  	_errors = []
+    return errors;
   },
 
   getMessages: function() {
-  	return _messages;
+  	var messages = _messages;
+  	_messages = [];
+  	return messages;
   },
 
   getAllAffiliates: function() {
@@ -40,6 +44,19 @@ var AffiliateStore = assign({}, EventEmitter.prototype, {
 
   getAffiliate: function() {
   	return _affiliate;
+  },
+
+  getServerResponses: function(action) {
+	if (action.errors) {
+		_errors = action.errors;
+	} else {
+		_errors = [];
+	}
+	if (action.messages) {
+		_messages = action.messages;
+	} else {
+		_messages = [];
+	}
   }
 
 });
@@ -52,11 +69,7 @@ AffiliateStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.affiliates) {
 				_affiliates = action.json.affiliates;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
+			AffiliateStore.getServerResponses(action);
 			AffiliateStore.emitChange();
 			break;
 
@@ -65,10 +78,15 @@ AffiliateStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.affiliate) {
 				_affiliate = action.json.affiliate;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
+			AffiliateStore.getServerResponses(action);
+			AffiliateStore.emitChange();
+			break;
+
+		case ActionTypes.RECEIVE_SOCMED_POSTING_RESPONSE:
+			console.log('AffiliateStore: RECEIVE_SOCMED_POSTING_RESPONSE');
+			if (action.json && action.json.affiliate) {
+				_affiliate = action.json.affiliate;
+				AffiliateStore.getServerResponses(action);
 			}
 			AffiliateStore.emitChange();
 			break;

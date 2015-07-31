@@ -27,11 +27,15 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-    return _errors;
+  	var errors = _errors;
+  	_errors = []
+    return errors;
   },
 
   getMessages: function() {
-  	return _messages;
+  	var messages = _messages;
+  	_messages = [];
+  	return messages;
   },
 
   getAllProducts: function() {
@@ -40,6 +44,19 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
   getProduct: function() {
   	return _product;
+  },
+
+  getServerResponses: function(action) {
+	if (action.errors) {
+		_errors = action.errors;
+	} else {
+		_errors = [];
+	}
+	if (action.messages) {
+		_messages = action.messages;
+	} else {
+		_messages = [];
+	}
   },
 
   isProductAffiliator: function(user, prefferedProduct) {
@@ -69,11 +86,7 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.products) {
 				_products = action.json.products;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
+			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;
 
@@ -82,11 +95,7 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.product) {
 				_product = action.json.product;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
+			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;
 
@@ -95,15 +104,15 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.product) {
 				_product = action.json.product;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
-			if (action.messages) {
-				_messages = action.messages;
-			} else {
-				_messages = [];
+			ProductStore.getServerResponses(action);
+			ProductStore.emitChange();
+			break;
+
+		case ActionTypes.RECEIVE_SOCMED_POSTING_RESPONSE:
+			console.log('ProductStore: RECEIVE_SOCMED_POSTING_RESPONSE');
+			if (action.json && action.json.product) {
+				_product = action.json.product;
+				ProductStore.getServerResponses(action);
 			}
 			ProductStore.emitChange();
 			break;

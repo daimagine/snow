@@ -42,7 +42,9 @@ var SessionStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-    return _errors;
+    var errors = _errors;
+    _errors = []
+    return errors;
   },
 
   isProcessing: function() {

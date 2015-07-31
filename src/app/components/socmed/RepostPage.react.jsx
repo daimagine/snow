@@ -50,8 +50,8 @@ var RepostPage = React.createClass({
 		ProductActionCreators.loadProduct(this.getParams().productId);
 		SocmedActionCreators.loadSocmedAccounts(this.props.user.id);
 
-		console.log('RepostPage.react: affiliate mode', this.props.query.affiliate);
-		if (this.props.query.affiliate) {
+		console.log('RepostPage.react: affiliate mode', this.props.query.af);
+		if (this.props.query.af) {
 			AffiliateStore.addChangeListener(this._onAffiliateChange);
 			AffiliateActionCreators.loadAffiliateInfo(this.getParams().productId, this.props.user.id);
 		}
@@ -62,28 +62,28 @@ var RepostPage = React.createClass({
 		ProductStore.removeChangeListener(this._onChange);
 		SocmedStore.removeChangeListener(this._onSocmedChange);
 
-		if (this.props.query.affiliate) {
+		if (this.props.query.af) {
 			AffiliateStore.removeChangeListener(this._onAffiliateChange);
 		}
 	},
 
 	_onAffiliateChange: function() {
     	console.log('RepostPage.react: _onAffiliateChange', 
-    		AffiliateStore.getAffiliate(),
-    		AffiliateStore.getErrors(), 
-    		AffiliateStore.getMessages());
+    		AffiliateStore.getAffiliate());
 
 		this.setState({
 			affiliate: AffiliateStore.getAffiliate(),
 			errors: AffiliateStore.getErrors(),
 			messages: AffiliateStore.getMessages()
 		});
+
+		if (this.props.query.af) {
+			this.setState({processing: false})
+		}
 	},
 
 	_onSocmedChange: function() {
-    	console.log('RepostPage.react: _onSocmedChange', 
-    		SocmedStore.getErrors(), 
-    		SocmedStore.getMessages());
+    	console.log('RepostPage.react: _onSocmedChange');
 
 		this.setState({
 			socmedAccounts: SocmedStore.getSocmedAccounts(),
@@ -93,15 +93,17 @@ var RepostPage = React.createClass({
 	},
 
 	_onChange: function() {
-    	console.log('RepostPage.react: _onChange', 
-    		ProductStore.getErrors(), 
-    		ProductStore.getMessages());
+    	console.log('RepostPage.react: _onChange');
 
 		this.setState({
 			product: ProductStore.getProduct(),
 			errors: ProductStore.getErrors(),
 			messages: ProductStore.getMessages()
 		});
+
+		if (!this.props.query.af) {
+			this.setState({processing: false})
+		}
 	},
 
 	_getPaths: function() {
@@ -111,7 +113,7 @@ var RepostPage = React.createClass({
 		var title = this.state.product ? this.state.product.name : 'Detail Produk';
 		var links = [];
 		links.push({ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' });
-		if (this.props.query.affiliate) {
+		if (this.props.query.af) {
 			links.push({ 'key' : 'affiliates', 'title' : 'Daftar Produk Affiliate', 'link' : 'affiliate-products' });
 			links.push({ 
 				'key' : 'affiliate', 
@@ -132,8 +134,10 @@ var RepostPage = React.createClass({
 		return links
 	},
 
-	onRepostProduct: function() {
-		console.log('RepostPage: onRepostProduct');
+	onRepostProduct: function(params) {
+		console.log('RepostPage: onRepostProduct', params);
+		SocmedActionCreators.postToSocmeds(params);
+		this.setState({processing: true});
 	},
 
 	render: function() {
@@ -230,7 +234,8 @@ var RepostForm = React.createClass({
 				product_page = nextProps.product.product_page;
 			}
 		}
-		console.log('RepostForm: set headline, product page', headline, product_page);
+		console.log('RepostForm: set headline', headline);
+		console.log('RepostForm: set product page', product_page);
 
 		var selections = [];
 		for (var idx in nextProps.socmedAccounts) {
@@ -265,9 +270,24 @@ var RepostForm = React.createClass({
 		this.setState({headline: headline});
 	},
 
+	onRepostProduct: function(e) {
+		e.preventDefault();
+		this.props.handler.onRepostProduct({
+			headline: this.state.headline,
+			socmedAccounts: this.state.selectedSocmeds,
+			affiliate: this.props.affiliate,
+			product: this.props.product
+		});
+	},
+
 	render: function() {
-		console.log('RepostForm: render. affiliate', this.props.affiliate);
 		var handler = this;
+		var twitterWarning = this.state.headline.length > 140 ? (
+				<p>
+					<i>Maksimum karakter untuk Twitter adalah 140 karakter. 
+					Headline Anda akan dipersingkat sehingga URL produk tetap muncul di tweet Anda</i>
+				</p>
+			) : ("");
 		return(
 			<div className="row">
 				<div className="col-xs-12 col-sm-7">
@@ -281,12 +301,14 @@ var RepostForm = React.createClass({
 									* Headline:
 								</div>
 								<div className="col-xs-12 col-md-9">
-									<textarea onChange={this._onHeadlineChange} style={{width:'100%'}}>
-										{this.state.headline}
+									<textarea onChange={this._onHeadlineChange} 
+										value={this.state.headline}
+										style={{width:'100%', minHeight:'100px'}}>
 									</textarea>
 								</div>
 								<div className="col-xs-12 col-md-9 col-md-offset-3 m-b-10">
 									* Total Karakter: <span>{this.state.headline.length}</span>
+									{twitterWarning}
 								</div>
 								<div className="col-xs-12">
 									Preview
@@ -331,7 +353,6 @@ var RepostForm = React.createClass({
 					                                </td>
 					                                <td className="v-align-middle">
 					                                	{ (() => {
-					                                		console.log('render socmed button', socmedAccount.social_media);
 					                                		switch(socmedAccount.social_media.id) {
 					                                			case SocmedType.Twitter: 
 					                                				return(
@@ -376,7 +397,7 @@ var RepostForm = React.createClass({
 							<div className="row">
 								<div className="col-xs-12">
 									<a className="btn btn-green" href="javascript:;" 
-										onClick={!this.props.processing ? this.props.handler.onRepostProduct : null}
+										onClick={!this.props.processing ? this.onRepostProduct : null}
 						                disabled={this.props.processing}>
 										<span className="fa fa-retweet">
 											&nbsp;&nbsp;{this.props.processing ? 'loading...' : 'repost'}

@@ -14,5 +14,13 @@ module.exports = {
     });
   },
 
+  postToSocmeds: function(params) {
+    SocmedService.postToSocmeds(params);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.POST_TO_SOCMEDS,
+      params: params
+    });
+  }
+
 };
 

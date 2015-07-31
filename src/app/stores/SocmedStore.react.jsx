@@ -26,15 +26,32 @@ var SocmedStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-    return _errors;
+  	var errors = _errors;
+  	_errors = []
+    return errors;
   },
 
   getMessages: function() {
-  	return _messages;
+  	var messages = _messages;
+  	_messages = [];
+  	return messages;
   },
 
   getSocmedAccounts: function() {
   	return _socmedAccounts;
+  },
+
+  getServerResponses: function(action) {
+	if (action.errors) {
+		_errors = action.errors;
+	} else {
+		_errors = [];
+	}
+	if (action.messages) {
+		_messages = action.messages;
+	} else {
+		_messages = [];
+	}
   }
 
 });
@@ -47,11 +64,7 @@ SocmedStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.social_media_accounts) {
 				_socmedAccounts = action.json.social_media_accounts;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
+			SocmedStore.getServerResponses(action);
 			SocmedStore.emitChange();
 			break;
 	}

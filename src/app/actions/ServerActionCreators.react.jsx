@@ -85,6 +85,15 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveSocmedPostingResponse: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_SOCMED_POSTING_RESPONSE,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

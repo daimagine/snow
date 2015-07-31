@@ -13,6 +13,7 @@ module.exports = {
     SEARCH_AFFILIATES:    APIRoot + "/affiliates/search",
     AFFILIATES:           APIRoot + "/affiliates",
     CUSTOMER_SOCMEDS:     APIRoot + "/socmed_accounts",
+    SOCMEDS_POSTING:      APIRoot + "/socmed_posts"
   },
 
   ProductCategory: {
@@ -60,6 +61,8 @@ module.exports = {
     // Socmeds
     LOAD_SOCMED_ACCOUNTS: null,
     RECEIVE_SOCMED_ACCOUNTS: null,
+    POST_TO_SOCMEDS: null,
+    RECEIVE_SOCMED_POSTING_RESPONSE: null,
 
     // Affiliate
     LOAD_AFFILIATE: null,

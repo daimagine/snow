@@ -48,9 +48,7 @@ var ProductDetailPage = React.createClass({
 	},
 
 	_onChange: function() {
-    	console.log('ProductDetailPage.react: _onChange', 
-    		ProductStore.getErrors(), 
-    		ProductStore.getMessages());
+    	console.log('ProductDetailPage.react: _onChange');
 
 		this.setState({
 			product: ProductStore.getProduct(),

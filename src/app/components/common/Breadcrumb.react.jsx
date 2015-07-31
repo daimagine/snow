@@ -14,7 +14,6 @@ var Breadcrumb = React.createClass({
 		return (
 			<ul className="breadcrumb">
         {this.props.paths.map(function(crumb) {
-          console.log('render crumb', crumb);
           return (
             <li key={"crumb-" + crumb.key}>
               {crumb.link ? (

@@ -49,9 +49,7 @@ var ProductDetailAffiliatePage = React.createClass({
 	},
 
 	_onChange: function() {
-    	console.log('ProductDetailAffiliatePage.react: _onChange', 
-    		ProductStore.getErrors(), 
-    		ProductStore.getMessages());
+    	console.log('ProductDetailAffiliatePage.react: _onChange');
 
 		this.setState({
 			product: ProductStore.getProduct(),
@@ -343,7 +341,7 @@ var AffiliatorGrid = React.createClass({
 						<li>
 							<Link to="repost" 
 								params={{productId: this.props.product.id}}
-								query={{affiliate: 1}}
+								query={{af: 1}}
 								className="btn btn-info">
 									<span className="fa fa-retweet">
 										&nbsp;&nbsp;repost produk
