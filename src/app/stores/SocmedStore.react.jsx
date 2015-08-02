@@ -42,16 +42,18 @@ var SocmedStore = assign({}, EventEmitter.prototype, {
   },
 
   getServerResponses: function(action) {
-	if (action.errors) {
-		_errors = action.errors;
-	} else {
-		_errors = [];
-	}
-	if (action.messages) {
-		_messages = action.messages;
-	} else {
-		_messages = [];
-	}
+  	if (action.errors) {
+  		_errors = action.errors;
+  	} else {
+  		_errors = [];
+  	}
+    console.log('SocmedStore: errors', _errors);
+  	if (action.messages) {
+  		_messages = action.messages;
+  	} else {
+  		_messages = [];
+  	}
+    console.log('SocmedStore: messages', _messages);
   }
 
 });

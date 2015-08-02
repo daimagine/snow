@@ -12,7 +12,7 @@ module.exports = {
 
   getErrors: function(res) {
     var errorMsgs = ["Gagal menghubungi server. Silahkan coba kembali"];
-    var json = res;
+    var json = res.body;
     if (json) {
       if (json['errors']) {
         errorMsgs = json['errors'];

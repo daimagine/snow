@@ -52,11 +52,13 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 	} else {
 		_errors = [];
 	}
+	console.log('ProductStore: errors', _errors);
 	if (action.messages) {
 		_messages = action.messages;
 	} else {
 		_messages = [];
 	}
+	console.log('ProductStore: messages', _messages);
   },
 
   isProductAffiliator: function(user, prefferedProduct) {
@@ -117,8 +119,8 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			console.log('ProductStore: RECEIVE_SOCMED_POSTING_RESPONSE');
 			if (action.json && action.json.product) {
 				_product = action.json.product;
-				ProductStore.getServerResponses(action);
 			}
+			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;
 	}

@@ -52,11 +52,13 @@ var AffiliateStore = assign({}, EventEmitter.prototype, {
 	} else {
 		_errors = [];
 	}
+	console.log('AffiliateStore: errors', _errors);
 	if (action.messages) {
 		_messages = action.messages;
 	} else {
 		_messages = [];
 	}
+	console.log('AffiliateStore: messages', _messages);
   }
 
 });
@@ -86,8 +88,8 @@ AffiliateStore.dispatchToken = AppDispatcher.register(function(payload) {
 			console.log('AffiliateStore: RECEIVE_SOCMED_POSTING_RESPONSE');
 			if (action.json && action.json.affiliate) {
 				_affiliate = action.json.affiliate;
-				AffiliateStore.getServerResponses(action);
 			}
+			AffiliateStore.getServerResponses(action);
 			AffiliateStore.emitChange();
 			break;
 	}

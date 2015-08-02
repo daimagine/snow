@@ -281,8 +281,9 @@ var RepostForm = React.createClass({
 	},
 
 	render: function() {
+		var suffix_length = 24;
 		var handler = this;
-		var twitterWarning = this.state.headline.length > 140 ? (
+		var twitterWarning = (this.state.headline.length + suffix_length) > 140 ? (
 				<p>
 					<i>Maksimum karakter untuk Twitter adalah 140 karakter. 
 					Headline Anda akan dipersingkat sehingga URL produk tetap muncul di tweet Anda</i>
@@ -307,7 +308,7 @@ var RepostForm = React.createClass({
 									</textarea>
 								</div>
 								<div className="col-xs-12 col-md-9 col-md-offset-3 m-b-10">
-									* Total Karakter: <span>{this.state.headline.length}</span>
+									* Total Karakter: <span>{this.state.headline.length + suffix_length}</span>
 									{twitterWarning}
 								</div>
 								<div className="col-xs-12">
