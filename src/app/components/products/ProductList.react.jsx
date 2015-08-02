@@ -1,10 +1,32 @@
 var React = require('react');
+var ReactPropTypes = React.PropTypes;
 var ReactInfinity = require('react-infinity');
-var ProductItem = require('./ProductItem.react.jsx').ProductItem;
+var assign = require('object-assign');
+var ProductItemBase = require('./ProductItem.react.jsx');
+
 
 var ProductList = React.createClass({
+	propTypes: {
+		user: ReactPropTypes.object
+	},
+
 	render: function() {
 		console.log('ProductList: render');
+		var defaultProps = { user: this.props.user }
+
+		var ItemComponent = ProductItemBase.ProductAffiliateItem;
+		if (this.props.affiliate_mode) {
+			console.log('ProductList: affiliate_mode', this.props.affiliate_mode);
+			ItemComponent = ProductItemBase.ProductAffiliateItem;
+		}
+		console.log('ProductList: product item component', ItemComponent);
+		var ProductItemFactory = React.createFactory(ItemComponent);
+
+		function ProductItemWithProps(commonProps){
+		  return function(props, children){
+		    return ProductItemFactory(assign({}, commonProps, props), children)
+		  }
+		}
 		
 		return (
 			<ReactInfinity
@@ -16,7 +38,7 @@ var ProductList = React.createClass({
 			  elementMobileHeight={400}
 		      margin={10}
 		      align="left"
-		      childComponent={React.createFactory(ProductItem)}
+		      childComponent={ProductItemWithProps(defaultProps)}
 		      />
 		);
 	}

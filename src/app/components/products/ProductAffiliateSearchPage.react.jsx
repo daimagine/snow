@@ -76,7 +76,7 @@ var ProductAffiliateSearchPage = React.createClass({
 						</div>
 					</div>
 				</div>
-				<ProductList products={this.state.products} />
+				<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true}/>
 			</div>
 		);
 	}

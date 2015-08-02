@@ -66,14 +66,19 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   	}
   	console.log('check if affiliator of product', user.id, product.id);
   	if (product && product.affiliates) {
-	  	for (var idx in product.affiliates) {
-	  		var affiliate = product.affiliates[idx];
-	  		console.log('check isProductAffiliator', affiliate);
-	  		if (user.id == affiliate.customer.id) 
-	  			return true;
-	  	}
+	   	return ProductStore.isInAffiliateList(user, product.affiliates);
   	}
   	return false;
+  },
+
+  isInAffiliateList: function(user, affiliates) {
+  	console.log('check if affiliator of affiliates', user.id, affiliates);
+  	for (var idx in affiliates) {
+  		var affiliate = affiliates[idx];
+  		console.log('check isProductAffiliator', affiliate);
+  		if (user.id == affiliate.customer.id) 
+  			return true;
+  	}
   }
 
 });

@@ -58,7 +58,7 @@ var ProductsAffiliatePage = React.createClass({
 		return (
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
-				<ProductList products={this.state.products} />
+				<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true} />
 			</div>
 		);
 	}
