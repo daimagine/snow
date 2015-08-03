@@ -18,6 +18,7 @@ var ProductsAffiliatePage = require('./components/products/ProductsAffiliatePage
 var ProductDetailAffiliatePage = require('./components/products/ProductDetailAffiliatePage.react.jsx');
 var ProductAffiliateSearchPage = require('./components/products/ProductAffiliateSearchPage.react.jsx');
 var RepostPage = require('./components/socmed/RepostPage.react.jsx');
+var ProfilePage = require('./components/users/ProfilePage.react.jsx');
 
 
 module.exports = (
@@ -42,6 +43,8 @@ module.exports = (
     <Route name="affiliate-detail" path="/affiliates/:productId" handler={ProductDetailAffiliatePage}/>
 
     <Route name="repost" path="/repost/:productId" handler={RepostPage}/>
+
+    <Route name="profile" path="/profile" handler={ProfilePage}/>
   </Route>
 );
 

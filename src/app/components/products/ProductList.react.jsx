@@ -14,7 +14,7 @@ var ProductList = React.createClass({
 		console.log('ProductList: render');
 		var defaultProps = { user: this.props.user }
 
-		var ItemComponent = ProductItemBase.ProductAffiliateItem;
+		var ItemComponent = ProductItemBase.ProductItem;
 		if (this.props.affiliate_mode) {
 			console.log('ProductList: affiliate_mode', this.props.affiliate_mode);
 			ItemComponent = ProductItemBase.ProductAffiliateItem;
@@ -31,7 +31,7 @@ var ProductList = React.createClass({
 		return (
 			<ReactInfinity
 		      data={this.props.products}
-		      elementWidth={300}
+		      elementWidth={320}
 		      elementHeight={400}
 			  justifyOnMobile={false} // pass true to switch to a list instead of a grid on mobile.
 			  elementMobileWidth={400} // element width to use for mobile view when `justifyOnMobile === false`

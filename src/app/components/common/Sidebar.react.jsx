@@ -31,10 +31,12 @@ var Sidebar = React.createClass({
               </Link>
             </li>
             <li>
-              <a href="profile.html">
-                <i className="fa fa-user"></i>
-                <span className="title">Profil</span>
-              </a>
+              <li>
+                <Link to="profile">
+                  <i  className="fa fa-user"></i>
+                  <span className="title">Akun Anda</span>
+                </Link>
+              </li>
             </li>
             <li>
               <a href="javascript:;">
