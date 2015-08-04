@@ -1,19 +1,29 @@
 var keyMirror = require('keymirror');
 
+var AppRoot = "http://127.0.0.1:3333/";
 var APIRoot = "http://localhost:3000/api/v1";
 
 module.exports = {
 
   APIEndpoints: {
-    AUTHENTICATE_TOKEN:   APIRoot + "/sessions/auth_token",
-    LOGIN:                APIRoot + "/sessions/create",
-    REGISTRATION:         APIRoot + "/users",
-    STORIES:              APIRoot + "/stories",
-    PRODUCTS:             APIRoot + "/products",
-    SEARCH_AFFILIATES:    APIRoot + "/affiliates/search",
-    AFFILIATES:           APIRoot + "/affiliates",
-    CUSTOMER_SOCMEDS:     APIRoot + "/socmed_accounts",
-    SOCMEDS_POSTING:      APIRoot + "/socmed_posts"
+    AUTHENTICATE_TOKEN:         APIRoot + "/sessions/auth_token",
+    LOGIN:                      APIRoot + "/sessions/create",
+    REGISTRATION:               APIRoot + "/users",
+    STORIES:                    APIRoot + "/stories",
+    PRODUCTS:                   APIRoot + "/products",
+    SEARCH_AFFILIATES:          APIRoot + "/affiliates/search",
+    AFFILIATES:                 APIRoot + "/affiliates",
+    CUSTOMER_SOCMEDS:           APIRoot + "/socmed_accounts",
+    SOCMEDS_POSTING:            APIRoot + "/socmed_posts",
+    GET_TWITTER_REDIRECT_URL:   APIRoot + "/socmeds/twitter/actions/redirect_url",
+    VERIFY_TWITTER_ACCOUNT:     APIRoot + "/socmeds/twitter/actions/verify",
+  },
+
+  SocmedConstant: {
+    TWITTER: {
+        REQUEST_TOKEN_KEY: 'TWITTER_TOKEN_KEY',
+        CALLBACK_URL: AppRoot + "/socmeds/callback_url/twitter"
+    }
   },
 
   ProductCategory: {
@@ -70,6 +80,12 @@ module.exports = {
     LOAD_AFFILIATE_PRODUCTS: null,
     JOIN_AFFILIATE_PRODUCT: null,
     REMOVE_AFFILIATE_PRODUCT: null,
+
+    // Twitter
+    ADD_TWITTER_ACCOUNT: null,
+    RECEIVE_TWITTER_REDIRECT_URL: null,
+    VERIFY_TWITTER_ACCOUNT: null,
+    RECEIVE_TWITTER_VERIFY_RESULT: null
 
   })
 

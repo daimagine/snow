@@ -14,6 +14,7 @@ var Sidebar = React.createClass({
   
   logout: function(e) {
     e.preventDefault();
+    console.log('Sidebar: logout');
     SessionActionCreators.logout();
   },
 

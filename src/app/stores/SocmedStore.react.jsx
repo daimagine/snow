@@ -9,6 +9,7 @@ var CHANGE_EVENT = 'change';
 var _socmedAccounts = [];
 var _errors = [];
 var _messages = [];
+var _response = {};
 
 
 var SocmedStore = assign({}, EventEmitter.prototype, {
@@ -26,19 +27,19 @@ var SocmedStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-  	var errors = _errors;
-  	_errors = []
-    return errors;
+    return _errors;
   },
 
   getMessages: function() {
-  	var messages = _messages;
-  	_messages = [];
-  	return messages;
+    return _messages;
   },
 
   getSocmedAccounts: function() {
   	return _socmedAccounts;
+  },
+
+  getResponse: function() {
+    return _response;
   },
 
   getServerResponses: function(action) {
@@ -61,14 +62,37 @@ var SocmedStore = assign({}, EventEmitter.prototype, {
 SocmedStore.dispatchToken = AppDispatcher.register(function(payload) {
 	var action = payload.action;
 	switch(action.type) {
-		case ActionTypes.RECEIVE_SOCMED_ACCOUNTS:
-			console.log('SocmedStore: RECEIVE_SOCMED_ACCOUNTS');
-			if (action.json && action.json.social_media_accounts) {
-				_socmedAccounts = action.json.social_media_accounts;
-			}
-			SocmedStore.getServerResponses(action);
-			SocmedStore.emitChange();
-			break;
+    case ActionTypes.RECEIVE_SOCMED_ACCOUNTS:
+      console.log('SocmedStore: RECEIVE_SOCMED_ACCOUNTS');
+      if (action.json && action.json.social_media_accounts) {
+        _socmedAccounts = action.json.social_media_accounts;
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_TWITTER_REDIRECT_URL:
+      console.log('SocmedStore: RECEIVE_TWITTER_REDIRECT_URL');
+      if (action.json && action.json.redirect_url) {
+        _response = {
+          redirect_url: action.json.redirect_url,
+          request_token: action.json.request_token
+        }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_TWITTER_VERIFY_RESULT:
+      console.log('SocmedStore: RECEIVE_TWITTER_VERIFY_RESULT');
+      if (action.json && action.json.twitter_account) {
+        _response = {
+          twitter_account: action.json.twitter_account
+        }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
 	}
 
 	return true;

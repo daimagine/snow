@@ -94,6 +94,24 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveTwitterRedirectUrl: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_TWITTER_REDIRECT_URL,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveTwitterVerifyResult: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_TWITTER_VERIFY_RESULT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  }
   
 };
 

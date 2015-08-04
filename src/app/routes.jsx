@@ -19,6 +19,7 @@ var ProductDetailAffiliatePage = require('./components/products/ProductDetailAff
 var ProductAffiliateSearchPage = require('./components/products/ProductAffiliateSearchPage.react.jsx');
 var RepostPage = require('./components/socmed/RepostPage.react.jsx');
 var ProfilePage = require('./components/users/ProfilePage.react.jsx');
+var TwitterCallbackPage = require('./components/socmed/TwitterCallbackPage.react.jsx');
 
 
 module.exports = (
@@ -45,6 +46,7 @@ module.exports = (
     <Route name="repost" path="/repost/:productId" handler={RepostPage}/>
 
     <Route name="profile" path="/profile" handler={ProfilePage}/>
+    <Route name="twitter_callback" path="/socmeds/callback_url/twitter" handler={TwitterCallbackPage}/>
   </Route>
 );
 

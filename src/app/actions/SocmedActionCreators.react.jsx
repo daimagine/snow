@@ -20,7 +20,24 @@ module.exports = {
       type: ActionTypes.POST_TO_SOCMEDS,
       params: params
     });
-  }
+  },
+
+  addTwitterAccount: function(customerId) {
+    SocmedService.addTwitterAccount(customerId);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ADD_TWITTER_ACCOUNT,
+      customerId: customerId
+    });
+  },
+
+  verifyTwitterAccount: function(customerId, verifier) {
+    SocmedService.verifyTwitterAccount(customerId, verifier);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.VERIFY_TWITTER_ACCOUNT,
+      customerId: customerId,
+      verifier: verifier
+    });
+  },
 
 };
 

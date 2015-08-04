@@ -27,15 +27,11 @@ var AffiliateStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-  	var errors = _errors;
-  	_errors = []
-    return errors;
+  	return _errors;
   },
 
   getMessages: function() {
-  	var messages = _messages;
-  	_messages = [];
-  	return messages;
+  	return _messages;
   },
 
   getAllAffiliates: function() {
