@@ -3,6 +3,7 @@ var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
+var StringUtils = require('../../utils/StringUtils.js');
 
 
 var ProductDescription = React.createClass({
@@ -32,10 +33,9 @@ var ProductDescription = React.createClass({
 	},
 
 	render: function() {
-		var all = this.props.product.name.split(" ");
-		var half = Math.round(all.length/2);
-		var firstName = all.slice(0, half).join(" ");
-		var secondName = all.slice(half, all.length).join(" ");
+		var names = StringUtils.split2(this.props.product.name);
+		var firstName = names[0];
+		var secondName = names[1];
 		return (
 			<div ref="product-description" id="product-description">
 	            <ul id="tab-01" className="nav nav-tabs">

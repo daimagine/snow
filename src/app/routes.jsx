@@ -47,6 +47,7 @@ module.exports = (
 
     <Route name="profile" path="/profile" handler={ProfilePage}/>
     <Route name="twitter_callback" path="/socmeds/callback_url/twitter" handler={TwitterCallbackPage}/>
+    
   </Route>
 );
 

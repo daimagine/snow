@@ -58,11 +58,11 @@ var ProductCarousel = React.createClass({
 	},
 
 	render: function() {
-		var images = this.props.product.image.split(',');
+		var images = this.props.product.product_images;
 		return (
 			<div ref="product-carousel" id="product-carousel" >
-				{ images.map(function(imageURL, index) {
-					return <ProductImage imageURL={imageURL} key={"img-"+index} />
+				{ images.map(function(image, index) {
+					return <ProductImage imageURL={image.link} key={"img-"+index} />
 				}) }
 			</div>
 		);
