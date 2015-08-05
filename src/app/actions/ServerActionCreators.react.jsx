@@ -111,7 +111,16 @@ module.exports = {
       errors: errors,
       messages: messages
     })
-  }
+  },
+
+  receiveUpdatedUser: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_UPDATED_USER,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

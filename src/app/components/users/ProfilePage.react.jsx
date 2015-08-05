@@ -11,6 +11,7 @@ var ReactBootstrap = require('react-bootstrap')
 	, Button = ReactBootstrap.Button
 	, Input = ReactBootstrap.Input;
 
+var StringUtils = require('../../utils/StringUtils.js');
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 var ProfileWidget = require('./ProfileWidget.react.jsx');
 
@@ -63,12 +64,12 @@ var ProfilePage = React.createClass({
 
 var ProfileOverview = React.createClass({
 	render: function() {
-		var username = this.props.user.email.split('@');
+		var username = StringUtils.split2(this.props.user.name);
 		return (
 			<div>
               <div className="grid simple">
                 <div className="grid-title text-center">
-                  <h3>{username[0]}<span className="semi-bold">@{username[1]}</span></h3>
+                  <h3>{username[0]} <span className="semi-bold">{username[1]}</span></h3>
                 </div>
                 <div className="grid-body">
                   <div className="text-center">

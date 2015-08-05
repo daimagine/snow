@@ -4,17 +4,23 @@ var MessageDismissable = require('./MessageDismissable.react.jsx');
 
 var MessageNotice = React.createClass({
   render: function() {
+    var content = "";
+    if (this.props.messages && this.props.messages.length) {
+      content = (
+        <div className="message-notice">
+          { this.props.messages.map(function(message, index){
+            return (
+              <MessageDismissable 
+                key={"msg-"+index} 
+                bsStyle="success" 
+                message={message}/>
+            );
+          }) }
+        </div>
+      );
+    }
     return (
-      <div className="message-notice">
-        {this.props.messages.map(function(message, index){
-          return (
-            <MessageDismissable 
-              key={"msg-"+index} 
-              bsStyle="success" 
-              message={message}/>
-          );
-        })}
-      </div>
+      <div>{content}</div>
     );
   }
 });

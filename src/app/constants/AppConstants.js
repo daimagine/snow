@@ -17,6 +17,7 @@ module.exports = {
     SOCMEDS_POSTING:            APIRoot + "/socmed_posts",
     GET_TWITTER_REDIRECT_URL:   APIRoot + "/socmeds/twitter/actions/redirect_url",
     VERIFY_TWITTER_ACCOUNT:     APIRoot + "/socmeds/twitter/actions/verify",
+    USERS:                      APIRoot + "/users",
   },
 
   SocmedConstant: {
@@ -49,6 +50,10 @@ module.exports = {
     LOGIN_REQUEST: null,
     LOGIN_RESPONSE: null,
     LOGOUT: null,
+
+    // User
+    UPDATE_USER: null,
+    RECEIVE_UPDATED_USER: null,
 
     // Routes
     REDIRECT: null,

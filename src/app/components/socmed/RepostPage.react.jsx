@@ -145,24 +145,12 @@ var RepostPage = React.createClass({
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
 				<div className="row">
-					{ this.state.messages.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<MessageNotice messages={this.state.messages}/>
-			              	</div>
-		          		) : (
-		          			<div></div>
-		          		)
-		          	}
-		          	{ this.state.errors.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<ErrorNotice errors={this.state.errors}/>
-			              	</div>
-		          		) : (
-			            	<div></div>
-		          		)
-		          	}
+					<div className="col-md-12">
+	              		<MessageNotice messages={this.state.messages}/>
+	              	</div>
+		          	<div className="col-md-12">
+	              		<ErrorNotice errors={this.state.errors}/>
+	              	</div>
 		          	<div className="col-md-12">
 						{ this.state.product && this.state.socmedAccounts ? (
 								<div>

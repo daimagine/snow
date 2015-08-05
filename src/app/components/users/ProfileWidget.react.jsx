@@ -15,7 +15,9 @@ var AppConstants = require('../../constants/AppConstants.js');
 var SocmedType = AppConstants.SocmedType;
 var SocmedConstant = AppConstants.SocmedConstant;
 var SocmedStore = require('../../stores/SocmedStore.react.jsx');
+var SessionStore = require('../../stores/SessionStore.react.jsx');
 var SocmedActionCreators = require('../../actions/SocmedActionCreators.react.jsx');
+var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 
 
 var ProfileWidget = React.createClass({
@@ -63,6 +65,7 @@ var ProfileWidget = React.createClass({
 					<GeneralInfoTab user={this.props.user} />
 					<SocmedInfoTab user={this.props.user} />
 					<SocmedInfoEditTab user={this.props.user} />
+					<GeneralInfoEditTab />
 				</div>
 			</div>
 		);
@@ -334,6 +337,130 @@ var SocmedInfoEditTab = React.createClass({
                 </div>
               </div>
             </div>
+		);
+	}
+});
+
+var GeneralInfoEditTab = React.createClass({
+	getInitialState: function() {
+		return {
+			user: SessionStore.getUser(),
+			errors: [],
+			messages: [],
+			processing: false
+		}
+	},
+
+	componentDidMount: function() {
+    	console.log('GeneralInfoEditTab.react: componentDidMount');
+		SessionStore.addChangeListener(this._onChange);
+	},
+
+	componentWillUnmount: function() {
+    	console.log('GeneralInfoEditTab.react: componentWillUnmount');
+		SessionStore.removeChangeListener(this._onChange);
+	},
+
+	_onChange: function() {
+    	console.log('GeneralInfoEditTab.react: _onChange');
+    	this.setState({
+    		user: SessionStore.getUser(),
+			errors: SessionStore.getErrors(),
+			messages: SessionStore.getMessages(),
+			processing: false
+    	});
+	},
+
+	_onPhoneChange: function(e) {
+		var value = e.target.value;
+		if (!value.startsWith('+62')) {
+			value = '+62' + value;
+		}
+		if (isNaN(value)) {
+			return false;
+		}
+		var user = this.state.user;
+		user.mobile_no = value;
+		this.setState({ user: user });
+	},
+
+	onSaveGeneralInfo: function(e) {
+		e.preventDefault();
+		console.log('GeneralInfoEditTab.react: onSaveGeneralInfo');
+		var user = this.state.user;
+		user.name = this.refs.name.getDOMNode().value.trim();
+		user.mobile_no = this.refs.mobile_no.getDOMNode().value.trim();
+		user.address = this.refs.address.getDOMNode().value.trim();
+		SessionActionCreators.updateUser(user);
+		this.setState({ processing: true });
+	},
+
+	render: function() {
+		var mobile_no = this.state.user.mobile_no ? this.state.user.mobile_no.replace('+62', '') : ''; 
+		return(
+			<div id="profile-editGI" className="tab-pane">
+            	<h4 className="m-t-20">Basic Information</h4>
+				<hr />
+				<div className="row">
+					<div className="col-md-12">
+	              		<MessageNotice messages={this.state.messages}/>
+	              	</div>
+		          	<div className="col-md-12">
+	              		<ErrorNotice errors={this.state.errors}/>
+	              	</div>
+				</div>
+				<form action="javascript:;">
+					<div className="form-group">
+                      <label htmlFor="GI-email" className="form-label">Email</label>
+                      <input id="GI-email" type="email" value={this.state.user.email} disabled className="form-control" />
+                    </div>
+					<div className="form-group">
+                      <label htmlFor="GI-name" className="form-label">Nama</label>
+                      <input ref="name" id="GI-name" type="text" className="form-control" 
+                      	defaultValue={this.state.user.name} />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="GI-phone" className="form-label">Telp :</label><span className="help">contoh +628561271000</span>
+                      <div className="input-group">
+						  <span className="input-group-addon">+62</span>
+						  <input ref="mobile_no" id="GI-phone" type="text" className="form-control" 
+	                      	onChange={this._onPhoneChange}
+	                      	value={mobile_no} />
+					  </div>
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="GI-address" className="form-label">Alamat :</label>
+                      <textarea ref="address" id="GI-address" className="form-control" 
+                      	defaultValue={this.state.user.address} />
+                    </div>
+                    <div className="form-group text-right">
+                    	<button className="btn btn-primary" type="submit"
+							onClick={!this.state.processing ? this.onSaveGeneralInfo : null}
+			                disabled={this.state.processing}>
+							{this.state.processing ? 'loading...' : 'save'}
+						</button>
+                    </div>
+				</form>
+				<h4 className="m-t-20">Security Information</h4>
+				<hr />
+				<form action="javascript:;">
+					<div className="form-group">
+						<label htmlFor="GI-oldPassword" className="form-label">Old Password :</label>
+						<input id="GI-oldPassword" type="password" placeholder="" className="form-control" />
+					</div>
+					<div className="form-group">
+						<label htmlFor="GI-newPassword" className="form-label">New Password :</label>
+						<input id="GI-newPassword" type="password" placeholder="" className="form-control" />
+					</div>
+					<div className="form-group">
+						<label htmlFor="GI-confirmNewPassword" className="form-label">Confirm New Password :</label>
+						<input id="GI-confirmNewPassword" type="password" placeholder="" className="form-control" />
+					</div>
+					<div className="form-group text-right">
+						<button type="submit" className="btn btn-primary">Save</button>
+				    </div>
+                </form>
+             </div>
 		);
 	}
 });

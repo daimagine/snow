@@ -4,17 +4,23 @@ var MessageDismissable = require('./MessageDismissable.react.jsx');
 
 var ErrorNotice = React.createClass({
   render: function() {
+    var content = "";
+    if (this.props.errors && this.props.errors.length) {
+      content = (
+        <div className="error-notice">
+          {this.props.errors.map(function(error, index){
+            return (
+              <MessageDismissable 
+                key={"error-"+index} 
+                bsStyle="danger" 
+                message={error}/>
+            );
+          })}
+        </div>
+      );
+    }
     return (
-      <div className="error-notice">
-        {this.props.errors.map(function(error, index){
-          return (
-            <MessageDismissable 
-              key={"error-"+index} 
-              bsStyle="danger" 
-              message={error}/>
-          );
-        })}
-      </div>
+      <div>{content}</div>
     );
   }
 });
