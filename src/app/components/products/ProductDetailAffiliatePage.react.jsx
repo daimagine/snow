@@ -3,15 +3,18 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
-var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactBootstrap = require('react-bootstrap')
 	, Modal = ReactBootstrap.Modal
 	, Button = ReactBootstrap.Button
 	, Input = ReactBootstrap.Input;
+
+var ProductStore = require('../../stores/ProductStore.react.jsx');
+var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
+var AffiliateStore = require('../../stores/AffiliateStore.react.jsx');
+var AffiliateActionCreators = require('../../actions/AffiliateActionCreators.react.jsx');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 var ProductCarousel = require('./ProductCarousel.react.jsx');
@@ -117,7 +120,9 @@ var ProductDetailAffiliatePage = React.createClass({
 										<ProductCarousel product={this.state.product} />
 										<ProductDescription product={this.state.product} showCustomer={true}/>
 									</div>
-									<ProductOverview handler={this} product={this.state.product} 
+									<ProductOverview handler={this} 
+										user={this.props.user}
+										product={this.state.product} 
 										isAffiliator={this.state.isAffiliator}
 										processing={this.state.processing}/>
 						          	
@@ -181,6 +186,7 @@ var ProductOverview = React.createClass({
 				</div>
 				{this.props.isAffiliator == true ? (
 					<AffiliatorGrid handler={this} product={this.props.product} 
+						user={this.props.user}
 						processing={this.props.processing}/>
 				) : (
 					<NotAffiliatorGrid handler={this} product={this.props.product} 
@@ -272,8 +278,16 @@ var NotAffiliatorGrid = React.createClass({
 var AffiliatorGrid = React.createClass({
 
 	propTypes: {
+		user: ReactPropTypes.object,
+		product: ReactPropTypes.object,
 		handler: ReactPropTypes.object,
 		processing: ReactPropTypes.bool
+	},
+
+	getInitialState: function() {
+		return {
+			affiliate: AffiliateStore.getAffiliate(),
+		}
 	},
 
 	componentWillMount: function() {
@@ -285,6 +299,24 @@ var AffiliatorGrid = React.createClass({
 		}
 	},
 
+	componentDidMount: function() {
+		console.log('AffiliatorGrid: componentDidMount');
+		AffiliateStore.addChangeListener(this._onAffiliateChange);
+		AffiliateActionCreators.loadAffiliateInfo(this.props.product.id, this.props.user.id);
+	},
+
+	componentWillUnmount: function() {
+		console.log('AffiliatorGrid: componentWillUnmount');
+		AffiliateStore.removeChangeListener(this._onAffiliateChange);
+	},
+
+	_onAffiliateChange: function() {
+    	console.log('AffiliatorGrid: _onAffiliateChange', AffiliateStore.getAffiliate());
+		this.setState({
+			affiliate: AffiliateStore.getAffiliate()
+		});
+	},
+
 	onRemoveAffiliate: function() {
 		console.log('AffiliatorGrid: onRemoveAffiliate');
 		this.props.handler.onRemoveAffiliate();
@@ -292,64 +324,87 @@ var AffiliatorGrid = React.createClass({
 
 	render: function() {
 		return(
-			<div className="grid simple">
-				<div className="grid-title">
-					<h4>Informasi <span className="semi-bold">Affiliate</span></h4>
-				</div>
-				<div className="grid-body">
-					<div>
-						<p>
-							Anda sudah terdaftar sebagai affiliator produk untuk ikut menjual produk ini.
-						</p>
-						<table className="table">
-		                    <tbody>
-		                      <tr className="no-border">
-		                        <td width="110px">Tipe Komisi</td>
-		                        <td width="10px">:</td>
-		                        <td>
-		                        	<span className="semi-bold">
-		                        		{this.props.product.affiliate_fee_type == "0" ? 'Flat' : 'Persentase'}
-		                        	</span>
-		                        </td>
-		                      </tr>
-		                      <tr className="no-border">
-		                        <td width="110px">Komisi Affiliate</td>
-		                        <td width="10px">:</td>
-		                        <td>
-	                        		{this.props.product.affiliate_fee_type == "0" ? (
-	                        			<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
-	                        		) : (
-	                        			<span className="semi-bold">{this.props.product.affiliate_fee}%</span>
-	                        		)}
-		                        </td>
-		                      </tr>
-		                    </tbody>
-		                </table>
-	                </div>
-					
-	                <hr/>
-					<ul className="list-inline with-margin">
-						<li>
-							<a className="btn btn-danger" href="javascript:;" 
-								onClick={!this.props.processing ? this.props.handler.onRemoveAffiliate : null}
-				                disabled={this.props.processing}>
-								<span className="fa fa-minus-circle">
-									&nbsp;&nbsp;{this.props.processing ? 'loading...' : 'stop affiliate'}
-								</span>
-							</a>
-						</li>
-						<li>
-							<Link to="repost" 
-								params={{productId: this.props.product.id}}
-								query={{af: 1}}
-								className="btn btn-info">
-									<span className="fa fa-retweet">
-										&nbsp;&nbsp;repost produk
+			<div>
+				<div className="grid simple">
+					<div className="grid-title">
+						<h4>Informasi <span className="semi-bold">Affiliate</span></h4>
+					</div>
+					<div className="grid-body">
+						<div>
+							<p>
+								Anda sudah terdaftar sebagai affiliator produk untuk ikut menjual produk ini.
+							</p>
+							<table className="table">
+			                    <tbody>
+			                      <tr className="no-border">
+			                        <td width="110px">Tipe Komisi</td>
+			                        <td width="10px">:</td>
+			                        <td>
+			                        	<span className="semi-bold">
+			                        		{this.props.product.affiliate_fee_type == "0" ? 'Flat' : 'Persentase'}
+			                        	</span>
+			                        </td>
+			                      </tr>
+			                      <tr className="no-border">
+			                        <td width="110px">Komisi Affiliate</td>
+			                        <td width="10px">:</td>
+			                        <td>
+		                        		{this.props.product.affiliate_fee_type == "0" ? (
+		                        			<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
+		                        		) : (
+		                        			<span className="semi-bold">{this.props.product.affiliate_fee}%</span>
+		                        		)}
+			                        </td>
+			                      </tr>
+			                    </tbody>
+			                </table>
+		                </div>
+						
+		                <hr/>
+						<ul className="list-inline with-margin">
+							<li>
+								<a className="btn btn-danger" href="javascript:;" 
+									onClick={!this.props.processing ? this.props.handler.onRemoveAffiliate : null}
+					                disabled={this.props.processing}>
+									<span className="fa fa-minus-circle">
+										&nbsp;&nbsp;{this.props.processing ? 'loading...' : 'stop affiliate'}
 									</span>
-							</Link>
-						</li>
-					</ul>
+								</a>
+							</li>
+							<li>
+								<Link to="repost" 
+									params={{productId: this.props.product.id}}
+									query={{af: 1}}
+									className="btn btn-info">
+										<span className="fa fa-retweet">
+											&nbsp;&nbsp;repost produk
+										</span>
+								</Link>
+							</li>
+						</ul>
+					</div>
 				</div>
+
+				{ this.state.affiliate ? (
+						<div className="grid simple">
+							<div className="grid-title">
+								<h4>Link <span className="semi-bold">Produk</span></h4>
+							</div>
+							<div className="grid-body">
+								<div className="entitites">
+									<div className="icon"><span className="fa fa-globe"></span></div>
+									<div className="entity-content">
+										<a href={this.state.affiliate.product_page} target="_blank">
+											{this.state.affiliate.product_page}
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					) : (
+						<div></div>
+					) 
+				}
 			</div>
 		);
 	}

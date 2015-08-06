@@ -189,7 +189,7 @@ var RetailOverlay = React.createClass({
 		return(
 			<OverlayTrigger placement='top' overlay={retailTooltip}>
 				<Badge pullRight={true} className="m-t-5 m-l-5" >
-					<span className="fa fa-truck"></span>
+					<span className="fa fa-cubes"></span>
 				</Badge>
 		    </OverlayTrigger>
 		);

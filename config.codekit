@@ -36391,15 +36391,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/src\/app\/components\/public\/PublicProductPage.react.jsx": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/src\/app\/components\/public\/PublicProductPage.react.jsx",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/src\/app\/components\/session\/LoginForm.react.jsx": {
 		"fileType": 8192,
 		"ignore": 0,

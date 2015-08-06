@@ -10,10 +10,15 @@
   "dependencies": {
     "bootstrap": "^3.3.0",
     "flux": "^2.0.1",
-    "jwt-decode": "^1.1.0",
+    "jwt-decode": "^1.4.0",
     "react": "^0.13",
-    "react-mixin": "^1.1.0",
-    "react-router": "^0.13.2"
+    "react-mixin": "^1.7.0",
+    "react-router": "^0.13.2",
+    "object-assign": "^2.1.1",
+    "keymirror": "^0.1.1",
+    "react-bootstrap": "^0.23.7",
+    "react-script-loader": "daimagine/ReactScriptLoader",
+    "superagent": "^1.2.0"
   },
   "devDependencies": {
     "axios": "^0.5.4",
