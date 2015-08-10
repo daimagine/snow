@@ -7,19 +7,12 @@ var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactInfinity = require('react-infinity');
-var AppConstants = require('../../constants/AppConstants.js')
-	, ProductCategory = AppConstants.ProductCategory;
-var ProductItemBase = require('./ProductItem.react.jsx')
-	, DigitalOverlay = ProductItemBase.DigitalOverlay
-	, RetailOverlay = ProductItemBase.RetailOverlay
-	, TicketOverlay = ProductItemBase.TicketOverlay;
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
-var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
 var ProductList = require('./ProductList.react.jsx');
 
 
-var ProductsPage = React.createClass({
+var ProductsAffiliatePage = React.createClass({
 
   	mixins: [AuthenticatedMixin],
 
@@ -28,7 +21,7 @@ var ProductsPage = React.createClass({
 	},
 
 	getInitialState: function() {
-    	console.log('ProductsPage.react: getInitialState')
+    	console.log('ProductsAffiliatePage.react: getInitialState')
 		return {
 			products: ProductStore.getAllProducts(), // get form product store
 			errors: []
@@ -36,18 +29,18 @@ var ProductsPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-    	console.log('ProductsPage.react: componentDidMount')
+    	console.log('ProductsAffiliatePage.react: componentDidMount')
 		ProductStore.addChangeListener(this._onChange);
-		ProductActionCreators.loadCustomerProducts();
+		ProductActionCreators.loadCustomerAffiliateProducts();
 	},
 
 	componentWillUnmount: function() {
-    	console.log('ProductsPage.react: componentWillUnmount')
+    	console.log('ProductsAffiliatePage.react: componentWillUnmount')
 		ProductStore.removeChangeListener(this._onChange);
 	},
 
 	_onChange: function() {
-    	console.log('ProductsPage.react: _onChange')
+    	console.log('ProductsAffiliatePage.react: _onChange')
 		this.setState({
 			products: ProductStore.getAllProducts(),
 			errors: ProductStore.getErrors()
@@ -57,7 +50,7 @@ var ProductsPage = React.createClass({
 	_getPaths: function() {
 		return [
 			{ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' },
-			{ 'key' : 'products', 'title' : 'Daftar Produk', 'link' : null }
+			{ 'key' : 'products', 'title' : 'Daftar Produk Affiliate', 'link' : null }
 		]
 	},
 
@@ -65,11 +58,10 @@ var ProductsPage = React.createClass({
 		return (
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
-				<ProductList user={this.props.user} products={this.state.products} />
+				<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true} />
 			</div>
 		);
 	}
-
 });
 
-module.exports = ProductsPage;
+module.exports = ProductsAffiliatePage;

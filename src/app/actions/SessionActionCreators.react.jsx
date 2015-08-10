@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var AppConstants = require('../constants/AppConstants.js');
 var AuthService = require('../services/AuthService.js');
+var UserService = require('../services/UserService.js');
 
 var ActionTypes = AppConstants.ActionTypes;
 
@@ -32,6 +33,13 @@ module.exports = {
     AppDispatcher.handleViewAction({
       type: ActionTypes.LOGOUT
     });
+  },
+
+  updateUser: function(user) {
+    UserService.updateUser(user);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.UPDATE_USER
+    })
   }
   
 };

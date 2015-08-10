@@ -10,7 +10,7 @@ loadScript('/assets/scripts/global.min.js', function(){
 					    arrows: true,
 					    dots: true,
 					    mobileFirst: true,
-					    // adaptiveHeight: true,
+					    adaptiveHeight: true,
 					    autoplay: true,
 					    swipe: true
 				    };

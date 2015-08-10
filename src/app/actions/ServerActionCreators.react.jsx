@@ -57,7 +57,70 @@ module.exports = {
       json: json,
       errors: errors
     });
-  }
+  },
+
+  receiveUpdatedProduct: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_UPDATED_PRODUCT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveSocmedAccounts: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_SOCMED_ACCOUNTS,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveAffiliateInfo: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_AFFILIATE,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveSocmedPostingResponse: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_SOCMED_POSTING_RESPONSE,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveTwitterRedirectUrl: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_TWITTER_REDIRECT_URL,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveTwitterVerifyResult: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_TWITTER_VERIFY_RESULT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveUpdatedUser: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_UPDATED_USER,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

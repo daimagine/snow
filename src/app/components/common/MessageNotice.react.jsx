@@ -2,20 +2,20 @@ var React = require('react');
 var Alert = require('react-bootstrap').Alert;
 var MessageDismissable = require('./MessageDismissable.react.jsx');
 
-var ErrorNotice = React.createClass({
+var MessageNotice = React.createClass({
   render: function() {
     var content = "";
-    if (this.props.errors && this.props.errors.length) {
+    if (this.props.messages && this.props.messages.length) {
       content = (
-        <div className="error-notice">
-          {this.props.errors.map(function(error, index){
+        <div className="message-notice">
+          { this.props.messages.map(function(message, index){
             return (
               <MessageDismissable 
-                key={"error-"+index} 
-                bsStyle="danger" 
-                message={error}/>
+                key={"msg-"+index} 
+                bsStyle="success" 
+                message={message}/>
             );
-          })}
+          }) }
         </div>
       );
     }
@@ -25,5 +25,6 @@ var ErrorNotice = React.createClass({
   }
 });
 
-module.exports = ErrorNotice;
+
+module.exports = MessageNotice;
 

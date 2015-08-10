@@ -12,6 +12,8 @@ var AuthenticatedMixin = {
 	      	 		"trigger router redirect action to login");
 	      	
 	      	RouteActionCreators.redirect('login');
+	      } else {
+	      	console.log('AuthenticatedMixin: user is logged in');
 	      }
 	    }
 	},

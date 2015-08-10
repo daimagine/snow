@@ -116,7 +116,7 @@ var LoginForm = React.createClass({
           <div className="row">
             <div className="control-group col-md-12">
               <div className="checkbox checkbox check-success">
-                <input ref="rememberme" id="checkbox1" type="checkbox" value="1" />
+                <input ref="rememberme" id="checkbox1" type="checkbox" value="1" defaultChecked={true}/>
                 <label htmlFor="checkbox1">Ingat Saya untuk 2 minggu</label>
                 <p>
                   Klik <a href="#">disini?</a> untuk melaporkan kejadian fraud

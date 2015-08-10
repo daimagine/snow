@@ -17,7 +17,7 @@ var Breadcrumb = React.createClass({
           return (
             <li key={"crumb-" + crumb.key}>
               {crumb.link ? (
-                <Link to={crumb.link} >{crumb.title}</Link>
+                <Link to={crumb.link} params={crumb.params} >{crumb.title}</Link>
               ) : (
                 <a href="#" className="active">{crumb.title}</a>
               )}

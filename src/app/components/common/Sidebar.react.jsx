@@ -14,6 +14,7 @@ var Sidebar = React.createClass({
   
   logout: function(e) {
     e.preventDefault();
+    console.log('Sidebar: logout');
     SessionActionCreators.logout();
   },
 
@@ -31,22 +32,23 @@ var Sidebar = React.createClass({
               </Link>
             </li>
             <li>
-              <a href="profile.html">
-                <i className="fa fa-user"></i>
-                <span className="title">Profile</span>
-              </a>
+              <li>
+                <Link to="profile">
+                  <i  className="fa fa-user"></i>
+                  <span className="title">Akun Anda</span>
+                </Link>
+              </li>
             </li>
             <li>
               <a href="javascript:;">
                 <i className="fa fa-edit"></i>
-                <span className="title">Products</span>
+                <span className="title">Produk</span>
                 <span className="arrow"></span>
               </a>
               <ul className="sub-menu">
-                <li><Link to="products">Products</Link></li>
-                <li><a href="pages.html">Pages</a></li>
-                <li><a href="forms.html">Forms</a></li>
-                <li><a href="javascript:;">Edit Products</a></li>
+                <li><Link to="products">Produk Anda</Link></li>
+                <li><Link to="affiliate-products">Produk Affiliate</Link></li>
+                <li><Link to="affiliate-search">Cari Produk Affiliate</Link></li>
               </ul>
             </li>
             <li>

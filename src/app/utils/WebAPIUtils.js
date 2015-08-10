@@ -20,8 +20,22 @@ module.exports = {
         errorMsgs = [json['error']];
       }
     }
-    console.log(errorMsgs);
+    console.log('Server error notices', errorMsgs);
     return errorMsgs;
+  },
+
+  getMessages: function(res) {
+    var msgs = [];
+    var json = res.body;
+    if (json) {
+      if (json['messages']) {
+        msgs = json['messages'];
+      } else if (json['message']) {
+        msgs = [json['message']];
+      }
+    }
+    console.log('Server messages', msgs);
+    return msgs;
   },
 
   loadStories: function() {

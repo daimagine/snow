@@ -12,6 +12,7 @@ var CHANGE_EVENT = 'change';
 var _accessToken = JSON.parse(localStorage.getItem('accessToken'));
 var _user = JSON.parse(localStorage.getItem('user'));
 var _errors = [];
+var _messages = [];
 var _processing = false;
 
 var SessionStore = assign({}, EventEmitter.prototype, {
@@ -45,9 +46,28 @@ var SessionStore = assign({}, EventEmitter.prototype, {
     return _errors;
   },
 
+  getMessages: function() {
+    return _messages;
+  },
+
   isProcessing: function() {
     return _processing;
-  }
+  },
+
+  getServerResponses: function(action) {
+    if (action.errors) {
+      _errors = action.errors;
+    } else {
+      _errors = [];
+    }
+    console.log('SessionStore: errors', _errors);
+    if (action.messages) {
+      _messages = action.messages;
+    } else {
+      _messages = [];
+    }
+    console.log('SessionStore: messages', _messages);
+  },
 
 });
 
@@ -72,12 +92,9 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
           localStorage.setItem('rememberme', JSON.stringify(action.json.rememberme));
         }
       }
-      if (action.errors) {
-        _errors = action.errors;
-      } else {
-        _errors = [];
-      }
+      
       _processing = false;
+      SessionStore.getServerResponses(action);
       SessionStore.emitChange();
       break;
 
@@ -88,12 +105,19 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
       localStorage.removeItem('rememberme');
-      if (action.errors) {
-        _errors = action.errors;
-      } else {
-        _errors = [];
-      }
+      
       _processing = false;
+      SessionStore.getServerResponses(action);
+      SessionStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_UPDATED_USER:
+      console.log('SessionStore: RECEIVE_UPDATED_USER');
+      if (action.json && action.json.user) {
+        _user = action.json.user;
+        localStorage.setItem('user', JSON.stringify(_user));
+      }
+      SessionStore.getServerResponses(action);
       SessionStore.emitChange();
       break;
 

@@ -9,6 +9,7 @@ var CHANGE_EVENT = 'change';
 var _product = null;
 var _products = [];
 var _errors = [];
+var _messages = [];
 
 
 var ProductStore = assign({}, EventEmitter.prototype, {
@@ -26,7 +27,11 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   },
 
   getErrors: function() {
-    return _errors;
+  	return _errors;
+  },
+
+  getMessages: function() {
+  	return _messages;
   },
 
   getAllProducts: function() {
@@ -35,25 +40,56 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
   getProduct: function() {
   	return _product;
+  },
+
+  getServerResponses: function(action) {
+	if (action.errors) {
+		_errors = action.errors;
+	} else {
+		_errors = [];
+	}
+	console.log('ProductStore: errors', _errors);
+	if (action.messages) {
+		_messages = action.messages;
+	} else {
+		_messages = [];
+	}
+	console.log('ProductStore: messages', _messages);
+  },
+
+  isProductAffiliator: function(user, prefferedProduct) {
+  	var product = this.getProduct();
+  	if (prefferedProduct) {
+  		product = prefferedProduct;
+  	}
+  	console.log('check if affiliator of product', user.id, product.id);
+  	if (product && product.affiliates) {
+	   	return ProductStore.isInAffiliateList(user, product.affiliates);
+  	}
+  	return false;
+  },
+
+  isInAffiliateList: function(user, affiliates) {
+  	console.log('check if affiliator of affiliates', user.id, affiliates);
+  	for (var idx in affiliates) {
+  		var affiliate = affiliates[idx];
+  		console.log('check isProductAffiliator', affiliate);
+  		if (user.id == affiliate.customer.id) 
+  			return true;
+  	}
   }
 
 });
 
 ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 	var action = payload.action;
-	console.log('ProductStore: action', action);
-
 	switch(action.type) {
 		case ActionTypes.RECEIVE_PRODUCTS:
 			console.log('ProductStore: RECEIVE_PRODUCTS');
 			if (action.json && action.json.products) {
 				_products = action.json.products;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
-			}
+			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;
 
@@ -62,11 +98,25 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.product) {
 				_product = action.json.product;
 			}
-			if (action.errors) {
-				_errors = action.errors;
-			} else {
-				_errors = [];
+			ProductStore.getServerResponses(action);
+			ProductStore.emitChange();
+			break;
+
+		case ActionTypes.RECEIVE_UPDATED_PRODUCT:
+			console.log('ProductStore: RECEIVE_UPDATED_PRODUCT');
+			if (action.json && action.json.product) {
+				_product = action.json.product;
 			}
+			ProductStore.getServerResponses(action);
+			ProductStore.emitChange();
+			break;
+
+		case ActionTypes.RECEIVE_SOCMED_POSTING_RESPONSE:
+			console.log('ProductStore: RECEIVE_SOCMED_POSTING_RESPONSE');
+			if (action.json && action.json.product) {
+				_product = action.json.product;
+			}
+			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;
 	}

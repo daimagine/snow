@@ -6,20 +6,12 @@ var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
-var ReactInfinity = require('react-infinity');
-var AppConstants = require('../../constants/AppConstants.js')
-	, ProductCategory = AppConstants.ProductCategory;
-var ProductItemBase = require('./ProductItem.react.jsx')
-	, DigitalOverlay = ProductItemBase.DigitalOverlay
-	, RetailOverlay = ProductItemBase.RetailOverlay
-	, TicketOverlay = ProductItemBase.TicketOverlay;
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
-var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
 var ProductList = require('./ProductList.react.jsx');
 
 
-var ProductsPage = React.createClass({
+var ProductAffiliateSearchPage = React.createClass({
 
   	mixins: [AuthenticatedMixin],
 
@@ -28,7 +20,7 @@ var ProductsPage = React.createClass({
 	},
 
 	getInitialState: function() {
-    	console.log('ProductsPage.react: getInitialState')
+    	console.log('ProductAffiliateSearchPage.react: getInitialState')
 		return {
 			products: ProductStore.getAllProducts(), // get form product store
 			errors: []
@@ -36,28 +28,33 @@ var ProductsPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-    	console.log('ProductsPage.react: componentDidMount')
+    	console.log('ProductAffiliateSearchPage.react: componentDidMount')
 		ProductStore.addChangeListener(this._onChange);
-		ProductActionCreators.loadCustomerProducts();
 	},
 
 	componentWillUnmount: function() {
-    	console.log('ProductsPage.react: componentWillUnmount')
+    	console.log('ProductAffiliateSearchPage.react: componentWillUnmount')
 		ProductStore.removeChangeListener(this._onChange);
 	},
 
 	_onChange: function() {
-    	console.log('ProductsPage.react: _onChange')
+    	console.log('ProductAffiliateSearchPage.react: _onChange')
 		this.setState({
 			products: ProductStore.getAllProducts(),
 			errors: ProductStore.getErrors()
 		});
 	},
 
+	_onSearch: function(e) {
+		console.log('ProductAffiliateSearchPage.react: _onSearch');
+		var criteria = e.target.value;
+		ProductActionCreators.searchAffiliateProducts(criteria);
+	},
+
 	_getPaths: function() {
 		return [
 			{ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' },
-			{ 'key' : 'products', 'title' : 'Daftar Produk', 'link' : null }
+			{ 'key' : 'products', 'title' : 'Cari Produk Affiliate', 'link' : null }
 		]
 	},
 
@@ -65,11 +62,24 @@ var ProductsPage = React.createClass({
 		return (
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
-				<ProductList user={this.props.user} products={this.state.products} />
+				<div className="row">
+					<div className="col-xs-12">
+						<div className="m-r-10 input-prepend inside search-form no-boarder" style={{width:'100%'}}>
+							<span className="add-on">
+								<span className="iconset top-search"></span>
+							</span>
+		                	<input type="text"
+		                		ref="searchInput"
+		                		onChange={this._onSearch}
+				               	placeholder="Search Item.." 
+				               	className="no-boarder page-search-input" />
+						</div>
+					</div>
+				</div>
+				<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true}/>
 			</div>
 		);
 	}
-
 });
 
-module.exports = ProductsPage;
+module.exports = ProductAffiliateSearchPage;
