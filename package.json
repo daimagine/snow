@@ -4,7 +4,10 @@
   "description": "",
   "main": "src/app/app.jsx",
   "scripts": {
-    "test": ""
+    "dev": "NODE_ENV=dev webpack --display-errors --config codekit.webpack.config.js",
+    "dev-server": "webpack-dev-server --devtool eval --progress --colors --hot --content-base dist --config codekit.webpack.config.js",
+    "staging": "NODE_ENV=staging webpack -p --config codekit.webpack.config.js",
+    "deploy": "NODE_ENV=production webpack -p --config codekit.webpack.config.js"
   },
   "author": "",
   "dependencies": {

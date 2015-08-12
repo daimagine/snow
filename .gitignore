@@ -2,7 +2,6 @@ node_modules/
 .DS_Store/
 npm-debug.log
 .codekit-cache/
-dist/
 bower_components/
 .sass-cache/
 webpack.log

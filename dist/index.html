@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Jualio, Cara Aman dan Mudah Jual Beli via Media Sosial">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jualio</title>
+    <!-- Add to homescreen for Chrome on Android-->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" size="192x192" href="/assets/images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="Jualio">
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/touch/apple-touch-icon-precomposed.png">
+    <!-- Tile icon for Win8 (144x144 + tile color)-->
+    <meta name="msapplication-TileImage" content="/assets/images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones-->
+    <!-- <link rel='canonical' href='http://www.example.com/'>-->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/style.min.css" type="text/css">
+    <!-- Twitter for Android this is special for you! Smooch!-->
+    <script>
+      // loadscript function to append a script to the head
+      function loadScript(url, callback) {
+        // Adding the script tag to the head as suggested before
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        // Then bind the event to the callback function.
+        // There are several events for cross browser compatibility.
+        script.onreadystatechange = callback;
+        script.onload = callback;
+        // Fire the loading
+        head.appendChild(script);
+      }
+    </script>
+    <script>
+      var userAgent = window.navigator.userAgent.toLowerCase(),
+      android = /android/.test(userAgent),
+      twitterAndroid =  /twitterandroid/.test(userAgent);
+      if(android) {
+        if(twitterAndroid) {
+          // if android, we just append all scripts to the head. sorry.
+          loadScript('/assets/scripts/amd.min.js');
+            loadScript('/assets/scripts/vendor.min.js', function(){
+              loadScript('/assets/scripts/gerobak.settings.min.js', function(){
+            loadScript('/assets/scripts/gerobak.extend.min.js');
+            });
+          });
+        } else {
+          loadScript('/assets/scripts/loader.min.js');
+        }
+      }
+      // otherwise, we load gerobak
+      else {
+        loadScript('/assets/scripts/loader.min.js');
+      };
+    </script>
+    <!-- trying to reproduce an issue to basket.js or rsvp.js with their bug-->
+    <!-- when resolved, will uncomment this line again-->
+    <script gerobak-load="/assets/scripts/amd.min.js"></script>
+    <script gerobak-load="/assets/scripts/vendor.min.js"></script>
+    <script gerobak-load="/assets/scripts/gerobak.settings.min.js"></script>
+    <script gerobak-load="/assets/scripts/gerobak.extend.min.js"></script>
+    <!-- extending the gerobak again!-->
+    <!-- load each package in with promises-->
+    <!-- after the package loaded, the tag contained with "gerobak-package" will removed-->
+    <script gerobak-package="validation"></script>
+  </head>
+  <body>
+    <section id="root"></section>
+  </body>
+  <script gerobak-package="app"></script>
+  </body>
+</html>

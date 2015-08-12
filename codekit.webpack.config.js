@@ -1,4 +1,5 @@
 /* jshint ignore:start */
+var path = require('path');
 
 module.exports = {
   entry: './src/app/app.jsx',
@@ -23,6 +24,9 @@ module.exports = {
     ]
   },
   resolve: {
+    alias: {
+      config: path.join(__dirname, 'src/app/config', process.env.NODE_ENV)
+    },
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   },
 };
