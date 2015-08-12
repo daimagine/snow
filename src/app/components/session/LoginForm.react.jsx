@@ -3,6 +3,7 @@ var SessionActionCreators = require('../../actions/SessionActionCreators.react.j
 var SessionStore = require('../../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ReactScriptLoader = require('react-script-loader');
+var Config = require('config');
 
 var LoginForm = React.createClass({
 
@@ -108,7 +109,7 @@ var LoginForm = React.createClass({
               <div className="controls">
                 <div className="input-with-icon right"><i></i>
                   <div className="g-recaptcha" 
-                    data-sitekey="6Lc4zggTAAAAAIQhg0kFlMA0qpy4PLyulMaPt-8-"></div>
+                    data-sitekey={Config.CaptchaSiteKey}></div>
                 </div>
               </div>
             </div>
