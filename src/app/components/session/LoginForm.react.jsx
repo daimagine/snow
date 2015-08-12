@@ -70,7 +70,7 @@ var LoginForm = React.createClass({
   },
 
   render: function() {
-    console.log('error state', this.state.errors);
+    console.log('captcha site key', Config.CaptchaSiteKey);
     var errors = (this.state.errors.length > 0) ? <ErrorNotice errors={this.state.errors}/> : <div></div>;
     return (
       <div>
