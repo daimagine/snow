@@ -1,29 +1,27 @@
 var keyMirror = require('keymirror');
-
-var AppRoot = "http://127.0.0.1:3333/";
-var APIRoot = "http://localhost:3000/api/v1";
+var Config = require('config');
 
 module.exports = {
 
   APIEndpoints: {
-    AUTHENTICATE_TOKEN:         APIRoot + "/sessions/auth_token",
-    LOGIN:                      APIRoot + "/sessions/create",
-    REGISTRATION:               APIRoot + "/users",
-    STORIES:                    APIRoot + "/stories",
-    PRODUCTS:                   APIRoot + "/products",
-    SEARCH_AFFILIATES:          APIRoot + "/affiliates/search",
-    AFFILIATES:                 APIRoot + "/affiliates",
-    CUSTOMER_SOCMEDS:           APIRoot + "/socmed_accounts",
-    SOCMEDS_POSTING:            APIRoot + "/socmed_posts",
-    GET_TWITTER_REDIRECT_URL:   APIRoot + "/socmeds/twitter/actions/redirect_url",
-    VERIFY_TWITTER_ACCOUNT:     APIRoot + "/socmeds/twitter/actions/verify",
-    USERS:                      APIRoot + "/users",
+    AUTHENTICATE_TOKEN:         Config.APIRoot + "/sessions/auth_token",
+    LOGIN:                      Config.APIRoot + "/sessions/create",
+    REGISTRATION:               Config.APIRoot + "/users",
+    STORIES:                    Config.APIRoot + "/stories",
+    PRODUCTS:                   Config.APIRoot + "/products",
+    SEARCH_AFFILIATES:          Config.APIRoot + "/affiliates/search",
+    AFFILIATES:                 Config.APIRoot + "/affiliates",
+    CUSTOMER_SOCMEDS:           Config.APIRoot + "/socmed_accounts",
+    SOCMEDS_POSTING:            Config.APIRoot + "/socmed_posts",
+    GET_TWITTER_REDIRECT_URL:   Config.APIRoot + "/socmeds/twitter/actions/redirect_url",
+    VERIFY_TWITTER_ACCOUNT:     Config.APIRoot + "/socmeds/twitter/actions/verify",
+    USERS:                      Config.APIRoot + "/users",
   },
 
   SocmedConstant: {
     TWITTER: {
         REQUEST_TOKEN_KEY: 'TWITTER_TOKEN_KEY',
-        CALLBACK_URL: AppRoot + "/socmeds/callback_url/twitter"
+        CALLBACK_URL: Config.AppRoot + "/socmeds/callback_url/twitter"
     }
   },
 
