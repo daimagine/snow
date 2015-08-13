@@ -86,7 +86,7 @@ var LoginForm = React.createClass({
               <div className="controls">
                 <div className="input-with-icon right">
                   <i></i>
-                  <input ref="email" id="txtemail" type="text" value="daimod90@gmail.com"
+                  <input ref="email" id="txtemail" type="text"
                     name="email" className="form-control" placeholder="email@anda.com" />
                 </div>
               </div>
@@ -97,7 +97,7 @@ var LoginForm = React.createClass({
               <label className="form-label">Password</label><span className="help"></span>
               <div className="controls">
                 <div className="input-with-icon right"><i></i>
-                  <input ref="password" id="txtpassword" type="password" value="jualio123"
+                  <input ref="password" id="txtpassword" type="password"
                     name="txtpassword" className="form-control" placeholder="password"/>
                 </div>
               </div>
