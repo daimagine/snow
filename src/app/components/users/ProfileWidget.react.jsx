@@ -149,6 +149,7 @@ var SocmedInfoTab = React.createClass({
 	},
 
 	render: function() {
+		console.log('SocmedType ', SocmedType);
 		var handler = this;
 		return(
 			<div id="profileSI" className="tab-pane">
