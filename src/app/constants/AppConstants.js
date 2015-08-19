@@ -31,12 +31,7 @@ module.exports = {
     Ticket: 3
   },
 
-  SocmedType: {
-    Twitter: 1,
-    Facebook: 2,
-    FacebookPage: 3,
-    Instagram: 4
-  },
+  SocmedType: Config.SocmedType,
 
   PayloadSources: keyMirror({
     SERVER_ACTION: null,
