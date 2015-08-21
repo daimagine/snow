@@ -106,6 +106,13 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			console.log('ProductStore: RECEIVE_UPDATED_PRODUCT');
 			if (action.json && action.json.product) {
 				_product = action.json.product;
+				for (var idx in _products) {
+			  		var product = _products[idx];
+			  		if (product.id == _product.id) {
+			  			_products[idx] = _product;
+			  			break;
+			  		}
+			  	}
 			}
 			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();

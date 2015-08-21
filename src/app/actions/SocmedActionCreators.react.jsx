@@ -39,5 +39,13 @@ module.exports = {
     });
   },
 
+  deleteSocmedAccount: function(id) {
+    SocmedService.deleteSocmedAccount(id);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.DELETE_SOCMED_ACCOUNT,
+      id: id
+    })
+  }
+
 };
 

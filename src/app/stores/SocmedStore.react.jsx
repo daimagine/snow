@@ -93,6 +93,43 @@ SocmedStore.dispatchToken = AppDispatcher.register(function(payload) {
       SocmedStore.getServerResponses(action);
       SocmedStore.emitChange();
       break;
+
+    case ActionTypes.RECEIVE_UPDATED_SOCMED_ACCOUNT:
+      console.log('SocmedStore: RECEIVE_UPDATED_SOCMED_ACCOUNT');
+      if (action.json && action.json.social_media_account) {
+        var _socmedAccount = action.json.social_media_account;
+        for (var idx in _socmedAccounts) {
+            var socmedAccount = _socmedAccounts[idx];
+            if (socmedAccount.id == _socmedAccount.id) {
+              _socmedAccounts[idx] = _socmedAccount;
+              break;
+            }
+          }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
+
+    case ActionTypes.RECEIVE_REMOVE_RESPONSE_SOCMED_ACCOUNT:
+      console.log('SocmedStore: RECEIVE_REMOVE_RESPONSE_SOCMED_ACCOUNT');
+      if (action.json && action.json.success) {
+        var affected_ids = [];
+        if (action.json.affected_ids) {
+          affected_ids = action.json.affected_ids
+        }
+        console.log('SocmedStore: affected_ids', affected_ids);
+        for (var idx in _socmedAccounts) {
+          var socmedAccount = _socmedAccounts[idx];
+          console.log('SocmedStore: socmedAccount', socmedAccount);
+          if (affected_ids.indexOf(socmedAccount.id) > -1) {
+            _socmedAccounts.splice(idx, 1);
+            break;
+          }
+        }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
 	}
 
 	return true;

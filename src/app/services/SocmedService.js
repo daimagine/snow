@@ -122,6 +122,27 @@ module.exports = {
           }
         }
       });
+  },
+
+  deleteSocmedAccount: function(id) {
+    console.log('SocmedService: deleteSocmedAccount', id);
+    request.del(APIEndpoints.CUSTOMER_SOCMEDS + "/" + id)
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveRemoveResponseSocmedAccount(null, errorMsgs);
+          } else {
+            var json = res.body;
+            json.affected_ids = [Number(id)];
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveRemoveResponseSocmedAccount(json, null, messages);
+          }
+        }
+      });
   }
 
 };

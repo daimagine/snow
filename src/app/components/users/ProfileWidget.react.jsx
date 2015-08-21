@@ -136,7 +136,7 @@ var SocmedInfoTab = React.createClass({
 	},
 
 	_onSocmedChange: function() {
-    	console.log('ProfileWidget.react: _onSocmedChange');
+    	console.log('ProfileWidget.react: _onSocmedChange', SocmedStore.getSocmedAccounts());
 		this.setState({
 			socmedAccounts: SocmedStore.getSocmedAccounts(),
 			errors: SocmedStore.getErrors(),
@@ -144,8 +144,11 @@ var SocmedInfoTab = React.createClass({
 		});
 	},
 
-	deleteSocmedAccount: function() {
+	deleteSocmedAccount: function(e) {
 		console.log('ProfileWidget: deleteSocmedAccount');
+		var id = e.target.getAttribute('data-socmed-account-id');
+		console.log('ProfileWidget: socmed account id', id);
+		SocmedActionCreators.deleteSocmedAccount(id);
 	},
 
 	render: function() {
@@ -219,6 +222,7 @@ var SocmedInfoTab = React.createClass({
                                 </td>
 								<td className="v-align-middle">
 									<a className="btn btn-danger btn-small" href="javascript:;" 
+										data-socmed-account-id={socmedAccount.id}
 										onClick={!handler.state.processing ? handler.deleteSocmedAccount : null}
 						                disabled={handler.state.processing}>
 										{handler.state.processing ? 'loading...' : 'delete'}
@@ -229,9 +233,16 @@ var SocmedInfoTab = React.createClass({
 				        })}
 					</tbody>
 					<tfoot>
-						<tr>
-							<td colSpan="2"><small>daftar akun social media yang sudah terintegrasi.</small></td>
-						</tr>
+						{this.state.socmedAccounts.length < 0 ? (
+								<tr>
+									<td colSpan="2"><small>Daftar akun social media yang sudah terintegrasi.</small></td>
+								</tr>
+							) : (
+								<tr>
+									<td colSpan="2"><small>Tidak ada social media yang terintegrasi. klik tab edit untuk melakukan integrasi dengan social media Anda</small></td>
+								</tr>
+							)
+						}
 					</tfoot>
 				</table>
 			</div>

@@ -121,6 +121,24 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveUpdatedSocmedAccount: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_UPDATED_SOCMED_ACCOUNT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
+
+  receiveRemoveResponseSocmedAccount: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_REMOVE_RESPONSE_SOCMED_ACCOUNT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 
