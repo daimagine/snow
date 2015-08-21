@@ -80,7 +80,7 @@ $(document).ready(function () {
 	$('.page-sidebar li > a').unbind('click');
 	$('.page-sidebar li > a').on('click', function (e) {
 		if ($(this).next().hasClass('sub-menu') === false) {
-				return;
+			return;
 		}
 		var parent = $(this).parent().parent();
 

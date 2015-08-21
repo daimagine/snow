@@ -53,13 +53,19 @@ RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
 
     case ActionTypes.REDIRECT:
       console.log('RouterStore: REDIRECT')
-      router.transitionTo(action.route);
+      if (action.route == 'login') {
+        var location = router.makePath('login');
+        window.location = location;
+      } else {
+        router.transitionTo(action.route);
+      }
       break;
 
     case ActionTypes.LOGIN_RESPONSE:
       if (SessionStore.isLoggedIn()) {
         console.log('RouterStore: LOGIN_RESPONSE')
-        router.transitionTo('app');
+        var location = router.makePath('app');
+        window.location = location;
       }
       break;
     

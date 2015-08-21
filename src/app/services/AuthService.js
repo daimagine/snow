@@ -44,7 +44,7 @@ module.exports = {
             ServerActionCreators.receiveLogin(null, errorMsgs);
           } else {
             var json = res.body;
-            json.rememberme = true;
+            json.rememberme = rememberme;
             ServerActionCreators.receiveLogin(json, null);
           }
         } else {
@@ -52,6 +52,11 @@ module.exports = {
           ServerActionCreators.receiveLogin(null, errorMsgs);
         }
       });
+  },
+
+  logout: function() {
+    console.log('AuthService: logout');
+    ServerActionCreators.receiveLogout();
   },
 
   authenticateToken: function(callback) {

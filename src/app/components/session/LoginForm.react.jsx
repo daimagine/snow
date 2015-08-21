@@ -43,7 +43,7 @@ var LoginForm = React.createClass({
     this.refs.submitButton.getDOMNode().blur();
     var email = this.refs.email.getDOMNode().value;
     var password = this.refs.password.getDOMNode().value;
-    var rememberme = this.refs.rememberme.getDOMNode().value;
+    var rememberme = this.refs.rememberme.getDOMNode().checked;
     var captcha = document.getElementById('g-recaptcha-response').value;
     SessionActionCreators.login(email, password, rememberme, captcha);
   },

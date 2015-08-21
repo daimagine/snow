@@ -2,6 +2,7 @@ var React = require('react');
 var RouteHandler = require('react-router').RouteHandler;
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var RouteStore = require('../stores/RouteStore.react.jsx');
+var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
 
 var Header = require('../components/common/Header.react.jsx');
 var Sidebar = require('../components/common/Sidebar.react.jsx');
@@ -16,8 +17,6 @@ function getStateFromStores() {
 
 var App = React.createClass({
 
-  // mixins: [AuthenticatedMixin],
-
   getInitialState: function() {
     console.log('App.react: getInitialState')
     return getStateFromStores();
@@ -29,6 +28,8 @@ var App = React.createClass({
 
   componentWillUnmount: function() {
     SessionStore.removeChangeListener(this._onChange);
+    console.log('App.react: App will unmount, clear and logout');
+    SessionActionCreators.logout();
   },
 
   _onChange: function() {

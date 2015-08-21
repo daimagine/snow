@@ -1,4 +1,5 @@
 var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
+var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
 
 
@@ -14,6 +15,14 @@ var AuthenticatedMixin = {
 	      	RouteActionCreators.redirect('login');
 	      } else {
 	      	console.log('AuthenticatedMixin: user is logged in');
+	      	var rememberMe = SessionStore.isRememberMe();
+	      	console.log('AuthenticatedMixin: check if remember me is active', rememberMe);
+	      	if (!rememberMe) {
+	      		if (!SessionStore.isSessionValid()) {
+		      		console.log('AuthenticatedMixin: session is expired, logout instead');
+		      		SessionActionCreators.logout();
+	      		}
+	      	}
 	      }
 	    }
 	},

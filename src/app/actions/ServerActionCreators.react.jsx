@@ -13,11 +13,12 @@ module.exports = {
     });
   },
 
-  receiveLogout: function(json, errors) {
+  receiveLogout: function(json, errors, messages) {
     AppDispatcher.handleServerAction({
-      type: ActionTypes.LOGOUT,
+      type: ActionTypes.LOGOUT_RESPONSE,
       json: json,
-      errors: errors
+      errors: errors,
+      messages: messages
     });
   },
 

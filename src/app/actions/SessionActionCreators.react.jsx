@@ -30,8 +30,9 @@ module.exports = {
   },
 
   logout: function() {
+    AuthService.logout();
     AppDispatcher.handleViewAction({
-      type: ActionTypes.LOGOUT
+      type: ActionTypes.LOGOUT_REQUEST
     });
   },
 
