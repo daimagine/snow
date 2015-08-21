@@ -80,7 +80,9 @@ $(document).ready(function () {
 	/*==========  MAIN MENU  ==========*/
 	$('.page-sidebar li > a').on('click', function (e) {
 		if ($(this).next().hasClass('sub-menu') === false) {
-				return;
+			console.log('offcanvas hide');
+			$('.offcanvas').offcanvas('hide');
+			return;
 		}
 		var parent = $(this).parent().parent();
 

@@ -36,22 +36,33 @@ var LoginPage = React.createClass({
           <br/>
         </div>
         <div className="col-md-5">
-          <br/>
-          <p>
-            Login dengan menggunakan akun sosial media Anda.
-            <br/>
-          </p>
-          <br/>
-          <button type="button" className="btn btn-block btn-info col-md-8">
-            <span className="pull-left"><i className="icon-facebook"></i></span>
-            <span className="bold">Login dengan Facebook</span>
-          </button>
-          <button type="button" className="btn btn-block btn-success col-md-8">
-            <span className="pull-left"><i className="icon-twitter"></i></span>
-            <span className="bold">Login dengan Twitter</span>
-          </button>
-          <br/>
+          
         </div>
+      </div>
+    );
+  }
+});
+
+
+var LoginSocialMedia = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <br/>
+        <p>
+          Login dengan menggunakan akun sosial media Anda.
+          <br/>
+        </p>
+        <br/>
+        <button type="button" className="btn btn-block btn-info col-md-8">
+          <span className="pull-left"><i className="icon-facebook"></i></span>
+          <span className="bold">Login dengan Facebook</span>
+        </button>
+        <button type="button" className="btn btn-block btn-success col-md-8">
+          <span className="pull-left"><i className="icon-twitter"></i></span>
+          <span className="bold">Login dengan Twitter</span>
+        </button>
+        <br/>
       </div>
     );
   }

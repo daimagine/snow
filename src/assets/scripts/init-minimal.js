@@ -80,6 +80,8 @@ $(document).ready(function () {
 	$('.page-sidebar li > a').unbind('click');
 	$('.page-sidebar li > a').on('click', function (e) {
 		if ($(this).next().hasClass('sub-menu') === false) {
+			console.log('offcanvas hide');
+			$('.offcanvas').offcanvas('hide');
 			return;
 		}
 		var parent = $(this).parent().parent();
