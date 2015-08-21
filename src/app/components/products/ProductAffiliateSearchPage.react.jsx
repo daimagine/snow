@@ -22,8 +22,10 @@ var ProductAffiliateSearchPage = React.createClass({
 	getInitialState: function() {
     	console.log('ProductAffiliateSearchPage.react: getInitialState')
 		return {
-			products: ProductStore.getAllProducts(), // get form product store
-			errors: []
+			products: [], // get form product store
+			errors: [],
+			searching: false,
+			timeout: null
 		}
 	},
 
@@ -41,13 +43,28 @@ var ProductAffiliateSearchPage = React.createClass({
     	console.log('ProductAffiliateSearchPage.react: _onChange')
 		this.setState({
 			products: ProductStore.getAllProducts(),
-			errors: ProductStore.getErrors()
+			errors: ProductStore.getErrors(),
+			searching: false
 		});
 	},
 
 	_onSearch: function(e) {
 		console.log('ProductAffiliateSearchPage.react: _onSearch');
 		var criteria = e.target.value;
+
+	    if (this.state.timeout !== null) {
+	        clearTimeout(this.state.timeout);
+	    }
+	    var that = this;
+	    this.setState({
+	    	timeout: setTimeout(function () {
+				        	that._searchAffiliateProduct(criteria);
+				    	}, 1000)
+	    });
+	},
+
+	_searchAffiliateProduct: function(criteria) {
+		this.setState({ searching: true });
 		ProductActionCreators.searchAffiliateProducts(criteria);
 	},
 
@@ -66,12 +83,16 @@ var ProductAffiliateSearchPage = React.createClass({
 					<div className="col-xs-12">
 						<div className="m-r-10 input-prepend inside search-form no-boarder" style={{width:'100%'}}>
 							<span className="add-on">
-								<span className="iconset top-search"></span>
+								{this.state.searching ? (
+									<span className="fa fa-spinner fa-pulse"></span>
+								) : (
+									<span className="iconset top-search"></span>
+								)}
 							</span>
 		                	<input type="text"
 		                		ref="searchInput"
 		                		onChange={this._onSearch}
-				               	placeholder="Search Item.." 
+				               	placeholder="Cari Produk" 
 				               	className="no-boarder page-search-input" />
 						</div>
 					</div>
