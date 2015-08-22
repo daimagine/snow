@@ -97,7 +97,19 @@ var ProductAffiliateSearchPage = React.createClass({
 						</div>
 					</div>
 				</div>
-				<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true}/>
+				{
+					this.state.products.length > 0 ? (
+						<ProductList user={this.props.user} products={this.state.products} affiliate_mode={true}/>
+					) : (
+						<div className="row">
+							<div className="col-xs-12">
+								<div className="alert alert-info" role="alert">
+					              Masukkan nama produk yang dicari di textbox di atas.
+					            </div>
+							</div>
+						</div>
+					)
+				}
 			</div>
 		);
 	}

@@ -60,7 +60,7 @@ var App = React.createClass({
     );
 
     return (
-      <div>
+      <div className="root-content">
         { container }
       </div>
     );

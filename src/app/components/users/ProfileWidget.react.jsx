@@ -386,11 +386,15 @@ var GeneralInfoEditTab = React.createClass({
 	_onPhoneChange: function(e) {
 		var value = e.target.value;
 		if (!value.startsWith('+62')) {
+			if (value.startsWith('0')) {
+				value = value.substr(1);
+			}
 			value = '+62' + value;
 		}
 		if (isNaN(value)) {
 			return false;
 		}
+		console.log('GeneralInfoEditTab.react: mobile number', value);
 		var user = this.state.user;
 		user.mobile_no = value;
 		this.setState({ user: user });
@@ -408,7 +412,11 @@ var GeneralInfoEditTab = React.createClass({
 	},
 
 	render: function() {
-		var mobile_no = this.state.user.mobile_no ? this.state.user.mobile_no.replace('+62', '') : ''; 
+		var mobile_no = this.state.user.mobile_no; 
+		if (mobile_no) {
+			mobile_no = mobile_no.replace('+62', '');
+		}
+		console.log('GeneralInfoEditTab.react: render mobile number', mobile_no);
 		return(
 			<div id="profile-editGI" className="tab-pane">
             	<h4 className="m-t-20">Basic Information</h4>
