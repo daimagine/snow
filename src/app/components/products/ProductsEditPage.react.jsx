@@ -9,6 +9,7 @@ var ProductActionCreators = require('../../actions/ProductActionCreators.react.j
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactScriptLoader = require('react-script-loader');
 var DropzoneComponent = require('react-dropzone-component');
+var NumberFormatter = require('../../utils/StringUtils.js').numberFormatter();
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 
@@ -274,7 +275,7 @@ var ProductForm = React.createClass({
 			            </label>
 			            <input id="productPrice" type="number" name="productPrice" 
 			            	className="form-control" 
-			            	value={this.state.product.price}/>
+			            	value={NumberFormatter.formatNumber(this.state.product.price)}/>
 			          </div>
 			          <div className="form-group">
 			            <label htmlFor="productLocation" className="form-label">

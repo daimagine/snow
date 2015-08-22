@@ -10,6 +10,7 @@ var ReactBootstrap = require('react-bootstrap')
 	, Modal = ReactBootstrap.Modal
 	, Button = ReactBootstrap.Button
 	, Input = ReactBootstrap.Input;
+var NumberFormatter = require('../../utils/StringUtils.js').numberFormatter();
 
 var ProductStore = require('../../stores/ProductStore.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
@@ -179,7 +180,7 @@ var ProductOverview = React.createClass({
 						<div className="entitites">
 							<div className="icon"><span className="fa fa-tag"></span></div>
 							<div className="entity-content">
-								<p>Rp. {this.props.product.price}</p>
+								<p>{NumberFormatter.formatMoney(this.props.product.price)}</p>
 							</div>
 						</div>
 					</div>

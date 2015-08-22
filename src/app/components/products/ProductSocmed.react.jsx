@@ -1,3 +1,6 @@
+var NumberFormatter = require('../../utils/StringUtils.js').numberFormatter();
+
+
 var ProductSocmed = React.createClass({
 
 	propTypes: {
@@ -21,7 +24,7 @@ var ProductSocmed = React.createClass({
 						<div className="entitites">
 							<div className="icon"><span className="fa fa-tag"></span></div>
 							<div className="entity-content">
-								<p>Rp. {this.props.product.price}</p>
+								<p>{NumberFormatter.formatMoney(this.props.product.price)}</p>
 							</div>
 						</div>
 					</div>
