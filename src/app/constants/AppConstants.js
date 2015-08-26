@@ -54,6 +54,9 @@ module.exports = {
     // Routes
     REDIRECT: null,
 
+    // Notifications
+    NOTIFY: null,
+
     LOAD_STORIES: null,
     RECEIVE_STORIES: null,
     LOAD_STORY: null,

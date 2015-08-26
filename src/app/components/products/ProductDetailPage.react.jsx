@@ -5,7 +5,6 @@ var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactBootstrap = require('react-bootstrap')
@@ -31,8 +30,6 @@ var ProductDetailPage = React.createClass({
     	console.log('ProductDetailPage.react: getInitialState')
 		return {
 			product: ProductStore.getProduct(), // get form product store
-			errors: [],
-			messages: [],
 			showAffiliateModal: false
 		}
 	},
@@ -52,9 +49,7 @@ var ProductDetailPage = React.createClass({
     	console.log('ProductDetailPage.react: _onChange');
 
 		this.setState({
-			product: ProductStore.getProduct(),
-			errors: ProductStore.getErrors(),
-			messages: ProductStore.getMessages()
+			product: ProductStore.getProduct()
 		});
 	},
 
@@ -69,7 +64,7 @@ var ProductDetailPage = React.createClass({
 
 	onOpenAffilateModal: function() {
 		console.log('ProductDetailPage: onOpenAffilateModal');
-		this.setState({ showAffiliateModal: true, errors: [] });
+		this.setState({ showAffiliateModal: true });
 	},
 
 	onCloseAffiliateModal: function() {
@@ -82,13 +77,7 @@ var ProductDetailPage = React.createClass({
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
 				<div className="row">
-					<div className="col-md-12">
-	              		<MessageNotice messages={this.state.messages}/>
-	              	</div>
             		<div className="col-md-12">
-	              		<ErrorNotice errors={this.state.errors}/>
-	              	</div>
-		          	<div className="col-md-12">
 						{ this.state.product ? (
 								<div>
 									<div className="col-xs-12 col-sm-6">
@@ -266,7 +255,8 @@ var AffiliateModal = React.createClass({
 		var product = this.state.product;
 		product.is_affiliate_ready = !product.is_affiliate_ready;
 		var nextState = {
-			product: product
+			product: product,
+			errors: []
 		};
 		console.log('AffiliateModal: onAffiliateChange', nextState);
 	    this.setState(nextState);
@@ -278,7 +268,8 @@ var AffiliateModal = React.createClass({
 		product.affiliate_fee_type = type;
 		product = this._calculateFeeProduct(product);
 	    var nextState = {
-			product: product
+			product: product,
+			errors: []
 		};
 		console.log('AffiliateModal: onAffiliateFeeTypeChange', nextState);
 	    this.setState(nextState);	
@@ -292,7 +283,8 @@ var AffiliateModal = React.createClass({
 		var fee = Number(e.target.value);
 		var product = this._calculateFee(fee, 0);
 		var nextState = {
-			product: product
+			product: product,
+			errors: []
 		};
 	    this.setState(nextState);
 	},
@@ -305,7 +297,8 @@ var AffiliateModal = React.createClass({
 		var percent = Number(e.target.value);
 		var product = this._calculateFee(0, percent);
 		var nextState = {
-			product: product
+			product: product,
+			errors: []
 		};
 	    this.setState(nextState);
 	},
@@ -366,9 +359,7 @@ var AffiliateModal = React.createClass({
 	render: function() {
 		var errors = this.state.errors.length > 0 ? (
 			<div className="form-row"><ErrorNotice errors={this.state.errors} /></div>
-		) : (
-			<div></div>
-		);
+		) : ("");
 
 		return(
 			<Modal show={this.props.show} onHide={this.props.handler.onCloseAffiliateModal} bySize="medium">

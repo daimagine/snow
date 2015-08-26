@@ -417,3 +417,19 @@
         left:auto;
     }
 }
+
+
+/** growl **/
+#growl-wrapper {
+    position: fixed;
+    right: 8px;
+    z-index: 9999;
+    top: 120px;
+    opacity: 0.8;   
+
+    .message-notice {
+        .alert {
+            margin-bottom: 5px;
+        }
+    }
+}

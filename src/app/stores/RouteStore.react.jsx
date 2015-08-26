@@ -3,6 +3,8 @@ var AppConstants = require('../constants/AppConstants.js');
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var StoryStore = require('../stores/StoryStore.react.jsx');
 var ProductStore = require('../stores/ProductStore.react.jsx');
+var AffiliateStore = require('../stores/StoryStore.react.jsx');
+var SocmedStore = require('../stores/StoryStore.react.jsx');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -44,7 +46,9 @@ RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
   AppDispatcher.waitFor([
     SessionStore.dispatchToken,
     StoryStore.dispatchToken,
-    ProductStore.dispatchToken
+    ProductStore.dispatchToken,
+    AffiliateStore.dispatchToken,
+    SocmedStore.dispatchToken
   ]);
 
   var action = payload.action;
