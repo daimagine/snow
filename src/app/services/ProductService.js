@@ -161,7 +161,30 @@ module.exports = {
           }
         }
       });
-  }
+  },
+
+  updateProductAffiliateInfo: function(product) {
+    console.log('ProductService: updateProductAffiliateInfo', product.id);
+    request.put(APIEndpoints.PRODUCTS_AFFILIATE_INFO + "/" + product.id)
+      .send({
+        product: product
+      })
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveUpdatedProduct(null, errorMsgs);
+          } else {
+            var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveUpdatedProduct(json, null, messages);
+          }
+        }
+      });
+  },
 
 };
 
