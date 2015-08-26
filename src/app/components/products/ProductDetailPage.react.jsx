@@ -155,7 +155,8 @@ var ProductOverview = React.createClass({
 							<div>
 								<p>
 									Produk ini sudah terdaftar sebagai produk affiliate dan 
-									sudah tersedia bagi affiliator untuk ikut menjual produk ini.
+									sudah tersedia bagi affiliator untuk ikut menjual menggunakan 
+									akun social media masing-masing.
 								</p>
 								<table className="table">
 				                    <tbody>
@@ -172,15 +173,28 @@ var ProductOverview = React.createClass({
 				                        <td width="110px">Komisi Affiliate</td>
 				                        <td width="10px">:</td>
 				                        <td>
-			                        		{this.props.product.affiliate_fee_type == "0" ? (
-			                        			<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
-			                        		) : (
-			                        			<span className="semi-bold">{this.props.product.affiliate_fee}%</span>
-			                        		)}
+			                        		<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
 				                        </td>
 				                      </tr>
+				                      {this.props.product.affiliate_fee_type == "0" ? ("") : (
+				                      	<tr className="no-border">
+					                        <td width="110px">Persentase Komisi</td>
+					                        <td width="10px">:</td>
+					                        <td>
+				                        		<span className="semi-bold">{this.props.product.affiliate_percentage}%</span>
+					                        </td>
+					                    </tr>
+				                      )}
 				                    </tbody>
 				                </table>
+				                <p>
+				                	<small>
+				                		Besar komisi nett yang akan diterima affiliator 
+				                		akan dikenai PPN 10% dan relatif terhadap 
+				                		perhitungan komisi produk sesuai dengan 
+				                		perjanjian kerjasama penjual dengan Jualio
+				                	</small>
+				                </p>
 			                </div>
 						) : (
 							<p>
@@ -259,13 +273,15 @@ var AffiliateModal = React.createClass({
 	},
 
 	onAffiliateFeeTypeChange: function(e) {
+		var type = e.target.value;
 		var product = this.state.product;
-		product.affiliate_fee_type = e.target.value;
-		var nextState = {
+		product.affiliate_fee_type = type;
+		product = this._calculateFeeProduct(product);
+	    var nextState = {
 			product: product
 		};
 		console.log('AffiliateModal: onAffiliateFeeTypeChange', nextState);
-	    this.setState(nextState);
+	    this.setState(nextState);	
 	},
 
 	onAffiliateFeeChange: function(e) {
@@ -273,12 +289,46 @@ var AffiliateModal = React.createClass({
 			e.preventDefault();
 			return;
 		}
-		var product = this.state.product;
-		product.affiliate_fee = Number(e.target.value);
+		var fee = Number(e.target.value);
+		var product = this._calculateFee(fee, 0);
 		var nextState = {
 			product: product
 		};
 	    this.setState(nextState);
+	},
+
+	onAffiliatePercentageChange: function(e) {
+		if (!e.target.value && Number(e.target.value) == 0) {
+			e.preventDefault();
+			return;
+		}
+		var percent = Number(e.target.value);
+		var product = this._calculateFee(0, percent);
+		var nextState = {
+			product: product
+		};
+	    this.setState(nextState);
+	},
+
+	_calculateFeeProduct: function(product) {
+		return this._calculateFee(product.affiliate_fee, product.affiliate_percentage, product.affiliate_fee_type);
+	},
+
+	_calculateFee: function(fee, percent, type) {
+		console.log('AffiliateModal: _calculateFee', fee, percent, type);
+		var product = this.state.product;
+		if (type == undefined || type == null) {
+			type = product.affiliate_fee_type
+		}
+		if (type == "0") {
+			percent = 0;
+		} else {
+			fee = product.price * percent / 100;
+		}
+		product.affiliate_percentage = percent;
+		product.affiliate_fee = fee;
+
+		return product;
 	},
 
 	onSave: function() {
@@ -287,7 +337,7 @@ var AffiliateModal = React.createClass({
 			saving: true
 		});
 
-		var product = this.state.product;
+		var product = this._calculateFeeProduct(this.state.product);
 		if (product.is_affiliate_ready ) {
 			if (product.affiliate_fee <= 0) {
 				this.setState({
@@ -296,7 +346,7 @@ var AffiliateModal = React.createClass({
 				});
 				return
 
-			} else if (product.affiliate_fee_type == 1 && product.affiliate_fee > 100) {
+			} else if (product.affiliate_fee_type == 1 && product.affiliate_percentage > 100) {
 				this.setState({
 					errors: ["Affiliate fee tidak boleh kurang dari 0% dan tidak lebih dari 100%"],
 					saving: false
@@ -309,7 +359,7 @@ var AffiliateModal = React.createClass({
 			}
 		}
 		console.log('AffiliateModal: updating product', product);
-		ProductActionCreators.updateProduct(product);
+		ProductActionCreators.updateProductAffiliateInfo(product);
 		this.props.handler.onCloseAffiliateModal();
 	},
 
@@ -341,7 +391,7 @@ var AffiliateModal = React.createClass({
 				        </div>
 				        <div className="form-group">
 							<label htmlFor="affiliateFeeType">
-								Product Type :
+								Tipe Komisi :
 								<select ref="affiliateFeeType" name="affiliateFeeType" 
 									className="select2 form-control" 
 									value={this.state.product.affiliate_fee_type}
@@ -359,23 +409,52 @@ var AffiliateModal = React.createClass({
 								</select>
 							</label>
 			          	</div>
-					    <div className="form-group">
-				            <label htmlFor="affiliateFee" className="form-label">
-				              Affiliate Fee :
-				            </label>
-				            <input
-				            	type="number"
-				            	ref="affiliateFee"
-				            	className="form-control" 
-				            	value={this.state.product.affiliate_fee}
-				            	onChange={this.onAffiliateFeeChange}
-				            	addonAfter={this.state.product.affiliate_fee_type == '1' ? '%' : ''} />
-				        </div>
+			          	{this.state.product.affiliate_fee_type == '0' ? (
+			          			<div className="form-group">
+						            <label htmlFor="affiliateFee" className="form-label">
+						              Komisi Affiliate :
+						            </label>
+						            <input
+						            	type="number"
+						            	ref="affiliateFee"
+						            	className="form-control" 
+						            	value={this.state.product.affiliate_fee}
+						            	onChange={this.onAffiliateFeeChange}
+						            	addonBefore='Rp' />
+						        </div>
+			          		) : (
+			          			<div>
+				          			<div className="form-group">
+							            <label htmlFor="affiliateFee" className="form-label">
+							              Persentase Affiliate :
+							            </label>
+							            <input
+							            	type="number"
+							            	ref="affiliateFee"
+							            	className="form-control" 
+							            	value={this.state.product.affiliate_percentage}
+							            	onChange={this.onAffiliatePercentageChange}
+							            	addonAfter='%' />
+							        </div>
+				          			<div className="form-group">
+							            <label htmlFor="affiliateFee" className="form-label">
+							              Komisi Affiliate :
+							            </label>
+							            <input
+							            	readOnly={true}
+							            	ref="affiliateFee"
+							            	className="form-control" 
+							            	value={this.state.product.affiliate_fee}
+							            	addonBefore='Rp' />
+							        </div>
+						        </div>
+			          		)
+			          	}
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button bsStyle="primary" onClick={this.onSave} disabled={this.state.saving}>
-						{this.state.saving ? "meyimpan..." : "simpan"} 
+						{this.state.saving ? "loading..." : "simpan"} 
 					</Button>
 				</Modal.Footer>
 			</Modal>

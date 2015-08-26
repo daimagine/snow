@@ -60,7 +60,15 @@ module.exports = {
       user: user,
       product: product
     });
-  }
+  },
+
+  updateProductAffiliateInfo: function(product) {
+    ProductService.updateProductAffiliateInfo(product);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.UPDATE_PRODUCT_AFFILIATE_INFO,
+      product: product
+    });
+  },
 
 };
 
