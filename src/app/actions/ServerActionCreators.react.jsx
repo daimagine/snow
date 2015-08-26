@@ -140,6 +140,15 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveSalesOverview: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_SALES_OVERVIEW,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

@@ -16,6 +16,7 @@ module.exports = {
     GET_TWITTER_REDIRECT_URL:   Config.APIRoot + "/socmeds/twitter/actions/redirect_url",
     VERIFY_TWITTER_ACCOUNT:     Config.APIRoot + "/socmeds/twitter/actions/verify",
     USERS:                      Config.APIRoot + "/users",
+    SALES_OVERVIEW:             Config.APIRoot + "/affiliate_sales"
   },
 
   SocmedConstant: {
@@ -87,8 +88,11 @@ module.exports = {
     ADD_TWITTER_ACCOUNT: null,
     RECEIVE_TWITTER_REDIRECT_URL: null,
     VERIFY_TWITTER_ACCOUNT: null,
-    RECEIVE_TWITTER_VERIFY_RESULT: null
+    RECEIVE_TWITTER_VERIFY_RESULT: null,
 
+    // Reports
+    LOAD_SALES_OVERVIEW: null,
+    RECEIVE_SALES_OVERVIEW: null,
   })
 
 };

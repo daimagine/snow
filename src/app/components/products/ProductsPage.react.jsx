@@ -15,7 +15,6 @@ var ProductItemBase = require('./ProductItem.react.jsx')
 	, TicketOverlay = ProductItemBase.TicketOverlay;
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
-var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
 var ProductList = require('./ProductList.react.jsx');
 
 

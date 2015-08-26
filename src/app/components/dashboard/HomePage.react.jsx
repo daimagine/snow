@@ -5,7 +5,8 @@ var ReactPropTypes = React.PropTypes;
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
-var GettingStartedWidget = require('../../components/common/GettingStartedWidget.react.jsx');
+var GettingStartedWidget = require('./GettingStartedWidget.react.jsx');
+var SalesOverviewWidget = require('./SalesOverviewWidget.react.jsx');
 
 
 var HomePage = React.createClass({
@@ -26,7 +27,15 @@ var HomePage = React.createClass({
 		return (
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
-				<GettingStartedWidget user={this.props.user} />
+
+				<div className="row">
+					<div className="col-xs-12 col-md-8">
+						<GettingStartedWidget {...this.props} />
+					</div>
+					<div className="col-xs-12 col-md-4">
+						<SalesOverviewWidget {...this.props} />
+					</div>
+				</div>
 			</div>
 		);
 	}
