@@ -7,6 +7,7 @@ var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.rea
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
 var GettingStartedWidget = require('./GettingStartedWidget.react.jsx');
 var SalesOverviewWidget = require('./SalesOverviewWidget.react.jsx');
+var LinksWidget = require('./LinksWidget.react.jsx');
 
 
 var HomePage = React.createClass({
@@ -34,6 +35,9 @@ var HomePage = React.createClass({
 					</div>
 					<div className="col-xs-12 col-md-4">
 						<SalesOverviewWidget {...this.props} />
+					</div>
+					<div className="col-xs-12 col-md-4">
+						<LinksWidget {...this.props} />
 					</div>
 				</div>
 			</div>

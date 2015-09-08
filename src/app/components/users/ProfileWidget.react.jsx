@@ -3,13 +3,7 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
-var ReactBootstrap = require('react-bootstrap')
-	, Modal = ReactBootstrap.Modal
-	, Button = ReactBootstrap.Button
-	, Input = ReactBootstrap.Input;
 
 var AppConstants = require('../../constants/AppConstants.js');
 var SocmedType = AppConstants.SocmedType;
@@ -118,8 +112,8 @@ var SocmedInfoTab = React.createClass({
 	getInitialState: function() {
 		return {
 			socmedAccounts: SocmedStore.getSocmedAccounts(),
-			errors: [],
-			messages: [],
+			showAlert: false,
+			deletedSocmedId: null,
 			processing: false
 		}
 	},
@@ -138,46 +132,47 @@ var SocmedInfoTab = React.createClass({
 	_onSocmedChange: function() {
     	console.log('ProfileWidget.react: _onSocmedChange', SocmedStore.getSocmedAccounts());
 		this.setState({
-			socmedAccounts: SocmedStore.getSocmedAccounts(),
-			errors: SocmedStore.getErrors(),
-			messages: SocmedStore.getMessages()
+			socmedAccounts: SocmedStore.getSocmedAccounts()
 		});
 	},
 
-	deleteSocmedAccount: function(e) {
-		console.log('ProfileWidget: deleteSocmedAccount');
+	showDeleteConfirmation: function(e) {
+		e.preventDefault();
 		var id = e.target.getAttribute('data-socmed-account-id');
-		console.log('ProfileWidget: socmed account id', id);
-		SocmedActionCreators.deleteSocmedAccount(id);
+		console.log('ProfileWidget: showDeleteConfirmation socmed account id', id);
+		this.setState({ showAlert: true, deletedSocmedId: id });
+	},
+
+	deleteSocmedAccount: function(e) {
+		e.preventDefault();
+		var id = this.state.deleteSocmedAccount
+		console.log('ProfileWidget: showDeleteConfirmation socmed account id', id);
+		if (id) {
+			SocmedActionCreators.deleteSocmedAccount(id);
+		}
+		this.setState({ showAlert: false, deletedSocmedId: null });
 	},
 
 	render: function() {
 		console.log('SocmedType ', SocmedType);
 		var handler = this;
+		if (this.state.socmedAccounts.length <= 0) {
+			return (
+				<div id="profileSI" className="tab-pane">
+	              <h3>Tambah Akun Social Media</h3>
+	              <hr />
+	              <p>
+	              	<small>Tidak ada social media yang terintegrasi.</small>
+	              </p>
+	              <SocmedInfoEditTabContent {...this.props} />
+	            </div>
+			);
+		}
+
 		return(
 			<div id="profileSI" className="tab-pane">
 				<h3>Akun <span className="semi-bold">Social Media</span></h3>
 				<hr />
-				<div className="row">
-					{ this.state.messages.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<MessageNotice messages={this.state.messages}/>
-			              	</div>
-		          		) : (
-		          			<div></div>
-		          		)
-		          	}
-		          	{ this.state.errors.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<ErrorNotice errors={this.state.errors}/>
-			              	</div>
-		          		) : (
-			            	<div></div>
-		          		)
-		          	}
-				</div>
 				<table className="table">
 					<thead>
 						<tr>
@@ -223,7 +218,7 @@ var SocmedInfoTab = React.createClass({
 								<td className="v-align-middle">
 									<a className="btn btn-danger btn-small" href="javascript:;" 
 										data-socmed-account-id={socmedAccount.id}
-										onClick={!handler.state.processing ? handler.deleteSocmedAccount : null}
+										onClick={!handler.state.processing ? handler.showDeleteConfirmation : null}
 						                disabled={handler.state.processing}>
 										{handler.state.processing ? 'loading...' : 'delete'}
 									</a>
@@ -233,24 +228,37 @@ var SocmedInfoTab = React.createClass({
 				        })}
 					</tbody>
 					<tfoot>
-						{this.state.socmedAccounts.length < 0 ? (
-								<tr>
-									<td colSpan="2"><small>Daftar akun social media yang sudah terintegrasi.</small></td>
-								</tr>
-							) : (
-								<tr>
-									<td colSpan="2"><small>Tidak ada social media yang terintegrasi. klik tab edit untuk melakukan integrasi dengan social media Anda</small></td>
-								</tr>
-							)
-						}
+						<td colSpan="2"><small>Daftar akun social media yang sudah terintegrasi.</small></td>
 					</tfoot>
 				</table>
+
+				<Alert bsStyle='danger' onDismiss={this.handleAlertDismiss} show={this.state.showAlert}>
+		          <h4>Hapus Social Media!</h4>
+		          <p>Aksi ini akan menghapus integrasi social media Anda dengan Jualio sehingga Anda tidak dapat melakukan posting ke akun Social Media tersebut.</p>
+		          <p>Apakah yakin untuk menghapus Social Media ini?</p>
+		          <p>
+		            <Button onClick={this.deleteSocmedAccount} bsStyle='danger'>Delete</Button>
+		            <Button onClick={this.handleAlertDismiss}>Cancel</Button>
+		          </p>
+		        </Alert>
 			</div>
 		);
 	}
 });
 
 var SocmedInfoEditTab = React.createClass({
+	render: function() {
+		return(
+			<div id="profile-editSI" className="tab-pane">
+              <h3>Tambah Akun Social Media</h3>
+              <hr />
+              <SocmedInfoEditTabContent {...this.props} />
+            </div>
+		);
+	}
+});
+
+var SocmedInfoEditTabContent = React.createClass({
 	propTypes: {
 		user: ReactPropTypes.object
 	},
@@ -258,24 +266,22 @@ var SocmedInfoEditTab = React.createClass({
 	getInitialState: function() {
 		return {
 			response: SocmedStore.getResponse(),
-			errors: [],
-			messages: [],
 			processing: false
 		}
 	},
 
 	componentDidMount: function() {
-    	console.log('SocmedInfoEditTab.react: componentDidMount')
+    	console.log('SocmedInfoEditTabContent.react: componentDidMount')
 		SocmedStore.addChangeListener(this._onChange);
 	},
 
 	componentWillUnmount: function() {
-    	console.log('SocmedInfoEditTab.react: componentWillUnmount')
+    	console.log('SocmedInfoEditTabContent.react: componentWillUnmount')
 		SocmedStore.removeChangeListener(this._onChange);
 	},
 
 	_onChange: function() {
-    	console.log('SocmedInfoEditTab.react: _onChange');
+    	console.log('SocmedInfoEditTabContent.react: _onChange');
     	var response = SocmedStore.getResponse();
     	if (response.request_token) {
     		var token = JSON.stringify(response.request_token);
@@ -286,48 +292,32 @@ var SocmedInfoEditTab = React.createClass({
     	}
     	this.setState({ 
     		response: response,
-			errors: SocmedStore.getErrors(),
-			messages: SocmedStore.getMessages(),
 			processing: false
     	});
 	},
 
 	addTwitterAccount: function(e) {
 		e.preventDefault();
-		console.log('SocmedInfoEditTab.react: addTwitterAccount');
-		this.setState({ 
-			errors: [],
-			messages: [],
+		console.log('SocmedInfoEditTabContent.react: addTwitterAccount');
+		this.setState({
 			processing: true
 		});
 		SocmedActionCreators.addTwitterAccount(this.props.user.id);
 	},
+
+	addFbAccount: function(e) {
+		e.preventDefault();
+		console.log('SocmedInfoEditTabContent.react: addFbAccount');
+		this.setState({
+			processing: true
+		});
+		SocmedActionCreators.addFbAccount(this.props.user.id);
+	},
 	
 	render: function() {
 		return(
-			<div id="profile-editSI" className="tab-pane">
-              <h3>Tambah Akun Social Media</h3>
-              <hr />
-              <div className="row">
-	            { this.state.messages.length > 0 ?
-	          		(
-	            		<div className="col-md-12">
-		              		<MessageNotice messages={this.state.messages}/>
-		              	</div>
-	          		) : (
-	          			<div></div>
-	          		)
-	          	}
-	          	{ this.state.errors.length > 0 ?
-	          		(
-	            		<div className="col-md-12">
-		              		<ErrorNotice errors={this.state.errors}/>
-		              	</div>
-	          		) : (
-		            	<div></div>
-	          		)
-	          	}
-                <div className="col-xs-12">
+			<div className="row">
+	            <div className="col-xs-12">
                   <p>
                   	<a href="javascript:;" className="btn btn-twitter btn-block"
                   		onClick={this.state.processing ? null : this.addTwitterAccount}>
@@ -337,8 +327,11 @@ var SocmedInfoEditTab = React.createClass({
                   	</a>
                   </p>
                   <p>
-                  	<a href="javascript:;" className="btn btn-facebook btn-block">
-                  		<span className="fa fa-facebook">&nbsp;&nbsp;&nbsp;Facebook</span>
+                  	<a href="javascript:;" className="btn btn-facebook btn-block"
+                  		onClick={this.state.processing ? null : this.addFbAccount}>
+                  		<span className="fa fa-facebook">&nbsp;&nbsp;&nbsp;
+                  			{this.state.processing ? 'loading...' : 'Facebook'}
+                  		</span>
                   	</a>
                   </p>
                   <p>
@@ -346,19 +339,20 @@ var SocmedInfoEditTab = React.createClass({
                   		<span className="fa fa-instagram">&nbsp;&nbsp;&nbsp;Instagram</span>
                   	</a>
                   </p>
+                  <p>
+	              	<small>Klik tombol diatas untuk melakukan integrasi dengan social media Anda</small>
+	              </p>
                 </div>
-              </div>
             </div>
 		);
 	}
 });
 
+
 var GeneralInfoEditTab = React.createClass({
 	getInitialState: function() {
 		return {
 			user: SessionStore.getUser(),
-			errors: [],
-			messages: [],
 			processing: false
 		}
 	},
@@ -377,8 +371,6 @@ var GeneralInfoEditTab = React.createClass({
     	console.log('GeneralInfoEditTab.react: _onChange');
     	this.setState({
     		user: SessionStore.getUser(),
-			errors: SessionStore.getErrors(),
-			messages: SessionStore.getMessages(),
 			processing: false
     	});
 	},
@@ -421,14 +413,6 @@ var GeneralInfoEditTab = React.createClass({
 			<div id="profile-editGI" className="tab-pane">
             	<h4 className="m-t-20">Basic Information</h4>
 				<hr />
-				<div className="row">
-					<div className="col-md-12">
-	              		<MessageNotice messages={this.state.messages}/>
-	              	</div>
-		          	<div className="col-md-12">
-	              		<ErrorNotice errors={this.state.errors}/>
-	              	</div>
-				</div>
 				<form action="javascript:;">
 					<div className="form-group">
                       <label htmlFor="GI-email" className="form-label">Email</label>

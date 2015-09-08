@@ -3,7 +3,6 @@ var Router = require('react-router');
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactInfinity = require('react-infinity');
@@ -30,7 +29,6 @@ var ProductsPage = React.createClass({
     	console.log('ProductsPage.react: getInitialState')
 		return {
 			products: ProductStore.getAllProducts(), // get form product store
-			errors: []
 		}
 	},
 
@@ -48,8 +46,7 @@ var ProductsPage = React.createClass({
 	_onChange: function() {
     	console.log('ProductsPage.react: _onChange')
 		this.setState({
-			products: ProductStore.getAllProducts(),
-			errors: ProductStore.getErrors()
+			products: ProductStore.getAllProducts()
 		});
 	},
 

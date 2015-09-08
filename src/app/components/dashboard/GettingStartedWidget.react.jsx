@@ -52,22 +52,6 @@ var GettingStartedWidget = React.createClass({
               </p>
               <hr />
             </div>
-            <div className="col-xs-12 col-md-6">
-              <h4>Informasi Lebih Lengkap</h4>
-              <ul>
-                <li><Link to="products">Daftar Produk</Link></li>
-                <li><Link to="affiliate-products">Daftar Produk Affiliate</Link></li>
-                <li><Link to="affiliate-search">Cari Produk Affiliate</Link></li>
-              </ul>
-            </div>
-            <div className="col-xs-12 col-md-6">
-              <h4>Fasilitas Lain</h4>
-              <ul>
-                <li><a href="javascript:;">Report</a></li>
-                <li><a href="javascript:;">Bantuan</a></li>
-                <li><a href="javascript:;">Kontak Kami</a></li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

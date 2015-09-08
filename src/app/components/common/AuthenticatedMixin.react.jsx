@@ -21,6 +21,7 @@ var AuthenticatedMixin = {
 	      		if (!SessionStore.isSessionValid()) {
 		      		console.log('AuthenticatedMixin: session is expired, logout instead');
 		      		SessionActionCreators.logout();
+		      		RouteActionCreators.redirect('login', 'session_expired');
 	      		}
 	      	}
 	      }

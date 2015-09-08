@@ -3,8 +3,6 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactBootstrap = require('react-bootstrap')
 	, Modal = ReactBootstrap.Modal
@@ -34,8 +32,6 @@ var ProductDetailAffiliatePage = React.createClass({
     	console.log('ProductDetailAffiliatePage.react: getInitialState')
 		return {
 			product: ProductStore.getProduct(), // get form product store
-			errors: [],
-			messages: [],
 			isAffiliator: false,
 			processing: false
 		}
@@ -57,8 +53,6 @@ var ProductDetailAffiliatePage = React.createClass({
 
 		this.setState({
 			product: ProductStore.getProduct(),
-			errors: ProductStore.getErrors(),
-			messages: ProductStore.getMessages(),
 			isAffiliator: ProductStore.isProductAffiliator(this.props.user),
 			processing: false
 		});
@@ -96,25 +90,7 @@ var ProductDetailAffiliatePage = React.createClass({
 			<div className="content">
 				<Breadcrumb paths={this._getPaths()} />
 				<div className="row">
-					{ this.state.messages.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<MessageNotice messages={this.state.messages}/>
-			              	</div>
-		          		) : (
-		          			<div></div>
-		          		)
-		          	}
-		          	{ this.state.errors.length > 0 ?
-		          		(
-		            		<div className="col-md-12">
-			              		<ErrorNotice errors={this.state.errors}/>
-			              	</div>
-		          		) : (
-			            	<div></div>
-		          		)
-		          	}
-		          	<div className="col-md-12">
+					<div className="col-md-12">
 						{ this.state.product ? (
 								<div>
 									<div className="col-xs-12 col-sm-6">

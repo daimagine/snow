@@ -3,7 +3,6 @@ var Router = require('react-router');
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 
@@ -23,7 +22,6 @@ var ProductAffiliateSearchPage = React.createClass({
     	console.log('ProductAffiliateSearchPage.react: getInitialState')
 		return {
 			products: [], // get form product store
-			errors: [],
 			searching: false,
 			timeout: null
 		}
@@ -43,7 +41,6 @@ var ProductAffiliateSearchPage = React.createClass({
     	console.log('ProductAffiliateSearchPage.react: _onChange')
 		this.setState({
 			products: ProductStore.getAllProducts(),
-			errors: ProductStore.getErrors(),
 			searching: false
 		});
 	},

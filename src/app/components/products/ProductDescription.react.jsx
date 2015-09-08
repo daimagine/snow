@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var StringUtils = require('../../utils/StringUtils.js');
 

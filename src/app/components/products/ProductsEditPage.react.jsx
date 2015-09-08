@@ -4,7 +4,6 @@ var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 var ReactScriptLoader = require('react-script-loader');
@@ -64,7 +63,6 @@ var ProductForm = React.createClass({
     	console.log('ProductForm.react: getInitialState')
 		return {
 			product: {},
-			errors: [],
 			scriptLoading: true,
 			scriptLoadError: false, 
 			formProcessing: false 
@@ -85,8 +83,7 @@ var ProductForm = React.createClass({
 	_onChange: function() {
     	console.log('ProductForm.react: _onChange')
 		this.setState({
-			product: ProductStore.getProduct(),
-			errors: ProductStore.getErrors()
+			product: ProductStore.getProduct()
 		});
 	},
 
@@ -114,7 +111,6 @@ var ProductForm = React.createClass({
 	_onSubmit: function(e) {
 		e.preventDefault();
 	    this.setState({ 
-	      errors: [], 
 	      formProcessing: true 
 	    });
 	},
@@ -512,17 +508,10 @@ var ProductForm = React.createClass({
 			</div>
 		);
 		
-		var errors = this.state.errors.length > 0 ? (
-			<div className="col-xs-12"><ErrorNotice errors={this.state.errors}/></div>
-		) : (
-			<div></div>
-		);
-		
 		console.log('ProductForm: render');
 
 		return (
 			<div className="row">
-				{ errors }
 				<div className="col-xs-12">
 	              <div className="grid simple">
 	                <div className="grid-title">

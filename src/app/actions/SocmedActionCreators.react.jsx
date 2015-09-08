@@ -45,6 +45,14 @@ module.exports = {
       type: ActionTypes.DELETE_SOCMED_ACCOUNT,
       id: id
     })
+  },
+
+  addFbAccount: function(customerId) {
+    SocmedService.addFbAccount(customerId);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.ADD_FB_ACCOUNT,
+      customerId: customerId
+    });
   }
 
 };

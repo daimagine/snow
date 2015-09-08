@@ -27,9 +27,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveProduct(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveProduct(json, null);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -47,9 +50,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveProducts(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveProducts(json, null);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -69,9 +75,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveUpdatedProduct(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveUpdatedProduct(json, null);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -89,9 +98,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveProducts(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveProducts(json, null);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -110,9 +122,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveProducts(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveProducts(json, null);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -132,10 +147,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveUpdatedProduct(null, errorMsgs, null);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveUpdatedProduct(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -155,10 +172,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveUpdatedProduct(null, errorMsgs, null);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveUpdatedProduct(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });

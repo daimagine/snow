@@ -3,13 +3,7 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
-var ReactBootstrap = require('react-bootstrap')
-	, Modal = ReactBootstrap.Modal
-	, Button = ReactBootstrap.Button
-	, Input = ReactBootstrap.Input;
 
 var AppConstants = require('../../constants/AppConstants.js');
 var SocmedType = AppConstants.SocmedType;
@@ -37,8 +31,6 @@ var RepostPage = React.createClass({
 			product: ProductStore.getProduct(), // get form product store
 			socmedAccounts: SocmedStore.getSocmedAccounts(),
 			affiliate: AffiliateStore.getAffiliate(),
-			errors: [],
-			messages: [],
 			processing: false
 		}
 	},
@@ -72,9 +64,7 @@ var RepostPage = React.createClass({
     		AffiliateStore.getAffiliate());
 
 		this.setState({
-			affiliate: AffiliateStore.getAffiliate(),
-			errors: AffiliateStore.getErrors(),
-			messages: AffiliateStore.getMessages()
+			affiliate: AffiliateStore.getAffiliate()
 		});
 
 		if (this.props.query.af) {
@@ -86,9 +76,7 @@ var RepostPage = React.createClass({
     	console.log('RepostPage.react: _onSocmedChange');
 
 		this.setState({
-			socmedAccounts: SocmedStore.getSocmedAccounts(),
-			errors: SocmedStore.getErrors(),
-			messages: SocmedStore.getMessages()
+			socmedAccounts: SocmedStore.getSocmedAccounts()
 		});
 	},
 
@@ -96,9 +84,7 @@ var RepostPage = React.createClass({
     	console.log('RepostPage.react: _onChange');
 
 		this.setState({
-			product: ProductStore.getProduct(),
-			errors: ProductStore.getErrors(),
-			messages: ProductStore.getMessages()
+			product: ProductStore.getProduct()
 		});
 
 		if (!this.props.query.af) {
@@ -146,12 +132,6 @@ var RepostPage = React.createClass({
 				<Breadcrumb paths={this._getPaths()} />
 				<div className="row">
 					<div className="col-md-12">
-	              		<MessageNotice messages={this.state.messages}/>
-	              	</div>
-		          	<div className="col-md-12">
-	              		<ErrorNotice errors={this.state.errors}/>
-	              	</div>
-		          	<div className="col-md-12">
 						{ this.state.product && this.state.socmedAccounts ? (
 								<div>
 									<RepostForm 

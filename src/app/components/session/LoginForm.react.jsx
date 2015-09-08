@@ -28,6 +28,10 @@ var LoginForm = React.createClass({
 
   _onChange: function() {
     // get state from store 
+    console.log('LoginForm: grecaptcha', grecaptcha);
+    if (grecaptcha) {
+      grecaptcha.reset();
+    }
     this.setState({ 
       errors: SessionStore.getErrors(), 
       loginProcessing: SessionStore.isProcessing() 

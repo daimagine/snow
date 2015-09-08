@@ -2,6 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
 var SessionActionCreators = require('../../actions/SessionActionCreators.react.jsx');
+var GrowlActionCreators = require('../../actions/GrowlActionCreators.react.jsx');
 var SessionStore = require('../../stores/SessionStore.react.jsx');
 var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
 var LoginForm = require('./LoginForm.react.jsx');
@@ -11,6 +12,10 @@ var LoginPage = React.createClass({
   componentDidMount: function() {
     document.body.classList.add('error-body');
     document.body.classList.add('no-top');
+    var storageMessage = JSON.parse(localStorage.getItem('storage_message'));
+    if (storageMessage) {
+      GrowlActionCreators.notify(storageMessage, 'info');
+    }
   },
 
   componentWillUnmount: function() {

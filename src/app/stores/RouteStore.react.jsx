@@ -56,7 +56,10 @@ RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch(action.type) {
 
     case ActionTypes.REDIRECT:
-      console.log('RouterStore: REDIRECT')
+      console.log('RouterStore: REDIRECT');
+      if (action.storageMessage) {
+        localStorage.setItem('storage_message', JSON.stringify(action.storageMessage));
+      }
       if (action.route == 'login') {
         var location = router.makePath('login');
         window.location = location;

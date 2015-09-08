@@ -23,8 +23,9 @@ var App = React.createClass({
   growler: null,
 
   getInitialState: function() {
-    console.log('App.react: getInitialState');
-    return getStateFromStores();
+    var nextState = getStateFromStores();
+    console.log('App.react: getInitialState', nextState);
+    return nextState;
   },
   
   componentDidMount: function() {

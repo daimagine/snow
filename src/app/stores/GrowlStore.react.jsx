@@ -36,7 +36,7 @@ GrowlStore.dispatchToken = AppDispatcher.register(function(payload) {
 	var action = payload.action;
 	switch(action.type) {
     case ActionTypes.NOTIFY:
-      console.log('GrowlStore: NOTIFY');
+      console.log('GrowlStore: NOTIFY', action);
       _notification =  action.notification
       GrowlStore.emitChange();
       break;

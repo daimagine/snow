@@ -130,6 +130,17 @@ SocmedStore.dispatchToken = AppDispatcher.register(function(payload) {
       SocmedStore.getServerResponses(action);
       SocmedStore.emitChange();
       break;
+
+    case ActionTypes.RECEIVE_FB_REDIRECT_URL:
+      console.log('SocmedStore: RECEIVE_FB_REDIRECT_URL');
+      if (action.json && action.json.redirect_url) {
+        _response = {
+          redirect_url: action.json.redirect_url
+        }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
 	}
 
 	return true;

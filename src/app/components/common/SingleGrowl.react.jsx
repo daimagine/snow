@@ -80,8 +80,15 @@ var SingleGrowl = React.createClass({
 
 	render: function() {
 		var level = this.props.notification.level;
-		if (level == 'error') {
-			level = 'danger';
+		switch (level) {
+			case 'error':
+				level = 'danger';
+				break;
+			case 'warn':
+				level = 'warning';
+				break;
+			default:
+				break;
 		}
 		return (
 			<Alert bsStyle={level} onDismiss={this.setRemove}>

@@ -3,13 +3,7 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
-var ReactBootstrap = require('react-bootstrap')
-	, Modal = ReactBootstrap.Modal
-	, Button = ReactBootstrap.Button
-	, Input = ReactBootstrap.Input;
 
 var StringUtils = require('../../utils/StringUtils.js');
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');

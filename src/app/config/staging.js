@@ -3,6 +3,7 @@ module.exports = {
   APIRoot: "http://dev.api.aff.jualio.com/api/v1",
   ShortlrAPIRoot: "https://dev.app.jualio.com/apis",
   CaptchaSiteKey: "6LfKLQsTAAAAADmSKy_DjHCUyqKBVOm_nD99UXS5",
+  SessionValidTime: 15, // {n} minutes
 
   SocmedType: {
     Twitter: 5,
