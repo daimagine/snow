@@ -3,6 +3,8 @@ var RouteHandler = require('react-router').RouteHandler;
 var SessionStore = require('../stores/SessionStore.react.jsx');
 var RouteStore = require('../stores/RouteStore.react.jsx');
 var SessionActionCreators = require('../actions/SessionActionCreators.react.jsx');
+var Growl = require('../components/common/Growl.react.jsx');
+var GrowlStore = require('../stores/GrowlStore.react.jsx');
 
 var Header = require('../components/common/Header.react.jsx');
 var Sidebar = require('../components/common/Sidebar.react.jsx');
@@ -11,30 +13,44 @@ var Sidebar = require('../components/common/Sidebar.react.jsx');
 function getStateFromStores() {
   return {
     isLoggedIn: SessionStore.isLoggedIn(),
-    user: SessionStore.getUser()
+    user: SessionStore.getUser(),
+    notification: GrowlStore.getNotification()
   };
 }
 
 var App = React.createClass({
 
+  growler: null,
+
   getInitialState: function() {
-    console.log('App.react: getInitialState')
-    return getStateFromStores();
+    var nextState = getStateFromStores();
+    console.log('App.react: getInitialState', nextState);
+    return nextState;
   },
   
   componentDidMount: function() {
+    this.growler = this.refs.growler;
     SessionStore.addChangeListener(this._onChange);
+    GrowlStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
     SessionStore.removeChangeListener(this._onChange);
+    GrowlStore.removeChangeListener(this._onChange);
     console.log('App.react: App will unmount, clear and logout');
     SessionActionCreators.logout();
   },
 
   _onChange: function() {
-    console.log('App.react: _onChange')
-    this.setState(getStateFromStores());
+    var nextState = getStateFromStores();
+    console.log('App.react: _onChange', nextState);
+    this.setState(nextState);
+    if (nextState.notification) {
+      console.log('App.react: notify with growl', nextState.notification);
+      var level = nextState.notification.lvl;
+      var msg = nextState.notification.msg;
+      this.growler.addNotification({ level: level, msg: msg });
+    }
   },
 
   render: function() {
@@ -61,6 +77,7 @@ var App = React.createClass({
 
     return (
       <div className="root-content">
+        <Growl ref="growler" />
         { container }
       </div>
     );

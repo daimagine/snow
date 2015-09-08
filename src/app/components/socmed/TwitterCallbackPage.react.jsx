@@ -3,13 +3,7 @@ var Router = require('react-router');
 var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
-var ErrorNotice = require('../../components/common/ErrorNotice.react.jsx');
-var MessageNotice = require('../../components/common/MessageNotice.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
-var ReactBootstrap = require('react-bootstrap')
-	, Modal = ReactBootstrap.Modal
-	, Button = ReactBootstrap.Button
-	, Input = ReactBootstrap.Input;
 
 var AppConstants = require('../../constants/AppConstants.js');
 var SocmedType = AppConstants.SocmedType;
@@ -29,8 +23,6 @@ var TwitterCallbackPage = React.createClass({
 	getInitialState: function() {
 		return {
 			response: SocmedStore.getResponse(),
-			errors: [],
-			messages: [],
 			processing: true
 		}
 	},
@@ -50,10 +42,6 @@ var TwitterCallbackPage = React.createClass({
 		console.log('TwitterCallbackPage.react: _verifyAccount');
 		var verifier = this.props.query.oauth_verifier;
 		var customerId = this.props.user.id;
-		this.setState({ 
-			errors: [],
-			messages: []
-		});
 		SocmedActionCreators.verifyTwitterAccount(customerId, verifier);
 	},
 
@@ -63,8 +51,6 @@ var TwitterCallbackPage = React.createClass({
 		console.log('TwitterCallbackPage.react: response', response);
     	this.setState({ 
     		response: response,
-			errors: SocmedStore.getErrors(),
-			messages: SocmedStore.getMessages(),
 			processing: false
     	});
 	},

@@ -149,6 +149,15 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveFbRedirectUrl: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_FB_REDIRECT_URL,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 

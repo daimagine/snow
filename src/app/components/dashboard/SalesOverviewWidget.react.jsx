@@ -42,7 +42,7 @@ var SalesOverviewWidget = React.createClass({
         	<div className="tiles green m-b-10">
                 <div className="tiles-body">
                   <div className="tiles-title text-black">
-                  	<h4>Transaksi Affiliate</h4>
+                  	<h3>Transaksi Affiliate</h3>
                   </div>
                   <div className="widget-stats">
                     <div className="wrapper transparent">

@@ -143,7 +143,29 @@ module.exports = {
           }
         }
       });
-  }
+  },
+
+  addFbAccount: function(customerId) {
+    console.log('SocmedService: addFbAccount', customerId);
+    request.get(APIEndpoints.GET_FB_REDIRECT_URL)
+      .query({ customer: customerId })
+      .query({ callback_url: SocmedConstant.FB.CALLBACK_URL })
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveFbRedirectUrl(null, errorMsgs);
+          } else {
+            var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveFbRedirectUrl(json, null, messages);
+          }
+        }
+      });
+  },
 
 };
 

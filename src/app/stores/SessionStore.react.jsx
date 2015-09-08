@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var AppConstants = require('../constants/AppConstants.js');
+var Config = require('config');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var jwt = require('jsonwebtoken');
@@ -106,7 +107,7 @@ SessionStore.dispatchToken = AppDispatcher.register(function(payload) {
         localStorage.setItem('user', JSON.stringify(_user));
 
         var now = new Date();
-        var validTime = new Date(now.getTime() + 60000 * 5);
+        var validTime = new Date(now.getTime() + 60 * 1000 * Config.SessionValidTime);
         _sessionValidTime = validTime.getTime();
         console.log('session valid time', _sessionValidTime);
         localStorage.setItem('session_valid_time', JSON.stringify(_sessionValidTime));

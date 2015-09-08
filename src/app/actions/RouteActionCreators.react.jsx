@@ -5,10 +5,11 @@ var ActionTypes = AppConstants.ActionTypes;
 
 module.exports = {
 
-  redirect: function(route) {
+  redirect: function(route, storageMessage=null) {
     AppDispatcher.handleViewAction({
       type: ActionTypes.REDIRECT,
-      route: route
+      route: route,
+      storageMessage: storageMessage
     });
   },
 
