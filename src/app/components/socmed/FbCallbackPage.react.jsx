@@ -13,7 +13,7 @@ var SocmedActionCreators = require('../../actions/SocmedActionCreators.react.jsx
 var RouteActionCreators = require('../../actions/RouteActionCreators.react.jsx');
 
 
-var TwitterCallbackPage = React.createClass({
+var FbCallbackPage = React.createClass({
   	mixins: [AuthenticatedMixin, State],
 
 	propTypes: {
@@ -28,27 +28,27 @@ var TwitterCallbackPage = React.createClass({
 	},
 
 	componentDidMount: function() {
-    	console.log('TwitterCallbackPage.react: componentDidMount');
+    	console.log('FbCallbackPage.react: componentDidMount');
 		SocmedStore.addChangeListener(this._onChange);
 		this._verifyAccount();
 	},
 
 	componentWillUnmount: function() {
-    	console.log('TwitterCallbackPage.react: componentWillUnmount');
+    	console.log('FbCallbackPage.react: componentWillUnmount');
 		SocmedStore.removeChangeListener(this._onChange);
 	},
 
 	_verifyAccount: function() {
-		console.log('TwitterCallbackPage.react: _verifyAccount');
-		var verifier = this.props.query.oauth_verifier;
+		console.log('FbCallbackPage.react: _verifyAccount');
+		var verifier = this.props.query.code;
 		var customerId = this.props.user.id;
-		SocmedActionCreators.verifyTwitterAccount(customerId, verifier);
+		SocmedActionCreators.verifyFbAccount(customerId, verifier);
 	},
 
 	_onChange: function() {
-    	console.log('TwitterCallbackPage.react: _onChange');
+    	console.log('FbCallbackPage.react: _onChange');
     	var response = SocmedStore.getResponse();
-		console.log('TwitterCallbackPage.react: response', response);
+		console.log('FbCallbackPage.react: response', response);
     	this.setState({ 
     		response: response,
 			processing: false
@@ -66,14 +66,14 @@ var TwitterCallbackPage = React.createClass({
 	render: function() {
 		var resultContent = (
 			<div>
-				<h2>Mohon tunggu, akun twitter Anda sedang dalam pemrosesan</h2>
+				<h2>Mohon tunggu, akun facebook Anda sedang dalam pemrosesan</h2>
 			</div>
 		);
-		if (this.state.response.twitter_account) {
-			var twitter_account = this.state.response.twitter_account;
+		if (this.state.response.fb_account) {
+			var fb_account = this.state.response.fb_account;
 			resultContent = (
 				<div>
-					<h2>Akun Anda <strong>@{twitter_account.social_name}</strong>, berhasil ditambahkan</h2>
+					<h2>Akun Anda <strong>{fb_account.social_name}</strong>, berhasil ditambahkan</h2>
 					<p>
 						Halaman ini akan dialihkan (redirect) otomatis. 
 					</p>
@@ -93,4 +93,4 @@ var TwitterCallbackPage = React.createClass({
 	}
 });
 
-module.exports = TwitterCallbackPage;
+module.exports = FbCallbackPage;

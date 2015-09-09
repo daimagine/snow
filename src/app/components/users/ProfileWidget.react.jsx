@@ -4,6 +4,10 @@ var State = Router.State;
 var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
+var ReactBootstrap = require('react-bootstrap')
+	, Alert = ReactBootstrap.Alert
+	, Button = ReactBootstrap.Button
+	, Modal = ReactBootstrap.Modal;
 
 var AppConstants = require('../../constants/AppConstants.js');
 var SocmedType = AppConstants.SocmedType;
@@ -143,9 +147,13 @@ var SocmedInfoTab = React.createClass({
 		this.setState({ showAlert: true, deletedSocmedId: id });
 	},
 
+	handleAlertDismiss: function() {
+		this.setState({ showAlert: false });
+	},
+
 	deleteSocmedAccount: function(e) {
 		e.preventDefault();
-		var id = this.state.deleteSocmedAccount
+		var id = this.state.deletedSocmedId
 		console.log('ProfileWidget: showDeleteConfirmation socmed account id', id);
 		if (id) {
 			SocmedActionCreators.deleteSocmedAccount(id);
@@ -232,15 +240,20 @@ var SocmedInfoTab = React.createClass({
 					</tfoot>
 				</table>
 
-				<Alert bsStyle='danger' onDismiss={this.handleAlertDismiss} show={this.state.showAlert}>
-		          <h4>Hapus Social Media!</h4>
-		          <p>Aksi ini akan menghapus integrasi social media Anda dengan Jualio sehingga Anda tidak dapat melakukan posting ke akun Social Media tersebut.</p>
-		          <p>Apakah yakin untuk menghapus Social Media ini?</p>
-		          <p>
-		            <Button onClick={this.deleteSocmedAccount} bsStyle='danger'>Delete</Button>
-		            <Button onClick={this.handleAlertDismiss}>Cancel</Button>
-		          </p>
-		        </Alert>
+				<Modal bsStyle='danger' onHide={this.handleAlertDismiss} 
+					bySize="medium" show={this.state.showAlert}>
+					<Modal.Header>
+						<Modal.Title>Hapus Social Media!</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+			          <p>Aksi ini akan menghapus integrasi social media Anda dengan Jualio sehingga Anda tidak dapat melakukan posting ke akun Social Media tersebut.</p>
+			          <p>Apakah yakin untuk menghapus Social Media ini?</p>
+			          <p>
+			            <Button onClick={this.deleteSocmedAccount} bsStyle='danger'>Delete</Button>&nbsp;&nbsp;
+			            <Button onClick={this.handleAlertDismiss}>Cancel</Button>
+			          </p>
+			        </Modal.Body>
+		        </Modal>
 			</div>
 		);
 	}

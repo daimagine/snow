@@ -141,6 +141,17 @@ SocmedStore.dispatchToken = AppDispatcher.register(function(payload) {
       SocmedStore.getServerResponses(action);
       SocmedStore.emitChange();
       break;
+
+    case ActionTypes.RECEIVE_FB_VERIFY_RESULT:
+      console.log('SocmedStore: RECEIVE_FB_VERIFY_RESULT');
+      if (action.json && action.json.fb_account) {
+        _response = {
+          fb_account: action.json.fb_account
+        }
+      }
+      SocmedStore.getServerResponses(action);
+      SocmedStore.emitChange();
+      break;
 	}
 
 	return true;

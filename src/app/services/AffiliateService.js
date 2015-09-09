@@ -1,4 +1,5 @@
 var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
+var GrowlActionCreators = require('../actions/GrowlActionCreators.react.jsx');
 var AppConstants = require('../constants/AppConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils');
 var APIEndpoints = AppConstants.APIEndpoints;
@@ -28,9 +29,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveAffiliateInfo(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
-            ServerActionCreators.receiveAffiliateInfo(json, null);
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveAffiliateInfo(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });

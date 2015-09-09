@@ -19,6 +19,7 @@ module.exports = {
     SALES_OVERVIEW:             Config.APIRoot + "/affiliate_sales",
     PRODUCTS_AFFILIATE_INFO:    Config.APIRoot + "/product_affiliate_info",
     GET_FB_REDIRECT_URL:        Config.APIRoot + "/socmeds/fb/actions/redirect_url",
+    VERIFY_FB_ACCOUNT:          Config.APIRoot + "/socmeds/fb/actions/verify",
   },
 
   SocmedConstant: {
@@ -27,7 +28,7 @@ module.exports = {
         CALLBACK_URL: Config.AppRoot + "/socmeds/callback_url/twitter"
     },
     FB: {
-        REQUEST_TOKEN_KEY: 'TWITTER_TOKEN_KEY',
+        REQUEST_TOKEN_KEY: 'FB_TOKEN_KEY',
         CALLBACK_URL: Config.AppRoot + "/socmeds/callback_url/fb"
     }
   },
@@ -103,6 +104,8 @@ module.exports = {
     // Facebook
     ADD_FB_ACCOUNT: null,
     RECEIVE_FB_REDIRECT_URL: null,
+    VERIFY_FB_ACCOUNT: null,
+    RECEIVE_FB_VERIFY_RESULT: null,
 
     // Reports
     LOAD_SALES_OVERVIEW: null,

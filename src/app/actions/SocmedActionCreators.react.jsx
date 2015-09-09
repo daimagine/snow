@@ -53,7 +53,16 @@ module.exports = {
       type: ActionTypes.ADD_FB_ACCOUNT,
       customerId: customerId
     });
-  }
+  },
+
+  verifyFbAccount: function(customerId, verifier) {
+    SocmedService.verifyFbAccount(customerId, verifier);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.VERIFY_FB_ACCOUNT,
+      customerId: customerId,
+      verifier: verifier
+    });
+  },
 
 };
 

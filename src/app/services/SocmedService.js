@@ -1,4 +1,5 @@
 var ServerActionCreators = require('../actions/ServerActionCreators.react.jsx');
+var GrowlActionCreators = require('../actions/GrowlActionCreators.react.jsx');
 var AppConstants = require('../constants/AppConstants.js');
 var WebAPIUtils = require('../utils/WebAPIUtils');
 var APIEndpoints = AppConstants.APIEndpoints;
@@ -28,10 +29,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveSocmedAccounts(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveSocmedAccounts(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -63,10 +66,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveSocmedPostingResponse(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveSocmedPostingResponse(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -85,10 +90,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveTwitterRedirectUrl(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveTwitterRedirectUrl(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -115,10 +122,12 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveTwitterVerifyResult(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveTwitterVerifyResult(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -135,11 +144,13 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveRemoveResponseSocmedAccount(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             json.affected_ids = [Number(id)];
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveRemoveResponseSocmedAccount(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
@@ -147,9 +158,10 @@ module.exports = {
 
   addFbAccount: function(customerId) {
     console.log('SocmedService: addFbAccount', customerId);
+    var callback_url = SocmedConstant.FB.CALLBACK_URL;
     request.get(APIEndpoints.GET_FB_REDIRECT_URL)
       .query({ customer: customerId })
-      .query({ callback_url: SocmedConstant.FB.CALLBACK_URL })
+      .query({ callback_url: callback_url })
       .type('application/json')
       .set('Authorization', getAccessToken())
       .end(function(error, res) {
@@ -158,10 +170,42 @@ module.exports = {
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
             ServerActionCreators.receiveFbRedirectUrl(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
             ServerActionCreators.receiveFbRedirectUrl(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
+          }
+        }
+      });
+  },
+
+  verifyFbAccount: function(customerId, verifier) {
+    console.log('SocmedService: verifyFbAccount', customerId, verifier);
+    var socmedParams = {
+      customer_id: customerId,
+      verifier: verifier,
+      callback_url: SocmedConstant.FB.CALLBACK_URL
+    }
+    console.log('SocmedService: verifyFbAccount socmedParams', socmedParams);
+
+    request.post(APIEndpoints.VERIFY_FB_ACCOUNT)
+      .send(socmedParams)
+      .type('application/json')
+      .set('Authorization', getAccessToken())
+      .end(function(error, res) {
+        if (res) {
+          console.log(res);
+          if (res.error) {
+            var errorMsgs = WebAPIUtils.getErrors(res);
+            ServerActionCreators.receiveFbVerifyResult(null, errorMsgs);
+            GrowlActionCreators.notify(errorMsgs, 'error');
+          } else {
+            var json = res.body;
+            var messages = WebAPIUtils.getMessages(res);
+            ServerActionCreators.receiveFbVerifyResult(json, null, messages);
+            GrowlActionCreators.notify(messages, 'success');
           }
         }
       });

@@ -158,6 +158,15 @@ module.exports = {
       messages: messages
     })
   },
+
+  receiveFbVerifyResult: function(json, errors, messages) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.RECEIVE_FB_VERIFY_RESULT,
+      json: json,
+      errors: errors,
+      messages: messages
+    })
+  },
   
 };
 
