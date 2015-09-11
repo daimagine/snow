@@ -215,6 +215,15 @@ var RepostForm = React.createClass({
 		this.setState({headline: headline, product_page: product_page, selectedSocmeds: selections});
 	},
 
+	_isChecked: function(id) {
+		console.log('RepostForm: _isChecked', id);
+		var selection = this.state.selectedSocmeds;
+		if (selection.indexOf(id) >= 0) {
+			return true;
+		}
+		return false;	
+	},
+
 	_socmedSelection: function(e) {
 		var id = Number(e.target.value);
 		var isChecked = e.target.checked;
@@ -313,11 +322,11 @@ var RepostForm = React.createClass({
 									            <tr key={"socmed-"+index}>
 					                                <td className="v-align-middle" style={{width:'1%'}}>
 					                                  <div className="checkbox check-success">
-					                                    <input id="activeSM01" type="checkbox" 
+					                                    <input id={"activeSM-"+index} type="checkbox" 
 					                                    	value={socmedAccount.id} 
 					                                    	onChange={handler._socmedSelection}
-					                                    	defaultChecked={true} />
-					                                    <label htmlFor="activeSM01"></label>
+					                                    	checked={handler._isChecked(socmedAccount.id)} />
+					                                    <label htmlFor={"activeSM-"+index}></label>
 					                                  </div>
 					                                </td>
 					                                <td className="v-align-middle">
