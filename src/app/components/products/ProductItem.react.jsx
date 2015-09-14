@@ -8,6 +8,7 @@ var ReactBootstrap = require('react-bootstrap')
 	, Badge = ReactBootstrap.Badge
 	, Tooltip = ReactBootstrap.Tooltip
 	, OverlayTrigger = ReactBootstrap.OverlayTrigger;
+var NumberFormatter = require('../../utils/StringUtils.js').numberFormatter();
 
 var ProductStore = require('../../stores/ProductStore.react.jsx');
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
@@ -44,10 +45,20 @@ var ProductItem = React.createClass({
 	                    </div>
 	                </div>
 	                <hr className="m-b-10"/>
-	                <Link to='product' params={{productId: this.props.id}} 
-						className="btn btn-small btn-primary">
-						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
-					</Link>
+	                <p style={{ marginBottom: '0px' }}>
+	                	<span>Harga&nbsp;&nbsp;: </span>&nbsp;
+	                	<strong>{NumberFormatter.formatMoney(this.props.price)}</strong>
+	                </p>
+	                <p>
+	                	<span>Komisi&nbsp;: </span>&nbsp;
+	                	<strong>{NumberFormatter.formatMoney(this.props.affiliate_fee)}</strong>
+	                </p>
+	                <p>
+	                	<Link to='product' params={{productId: this.props.id}} 
+							className="btn btn-small btn-primary">
+							<span className="fa fa-info-circle">&nbsp;lihat detail</span>
+						</Link>
+	                </p>
 					{badge}
 		    	</div>
 		    </div>
@@ -81,14 +92,24 @@ var ProductAffiliateItem = React.createClass({
 	                    </div>
 	                </div>
 	                <hr className="m-b-10"/>
-	                <Link to='affiliate-detail' 
-	                	params={{productId: this.props.id}} 
-						className="btn btn-small btn-primary">
-						<span className="fa fa-info-circle">&nbsp;lihat detail</span>
-					</Link>
-					&nbsp;
-					<AffiliatorButton user={this.props.user} product={this.props} />
-					{badge}
+	                <p style={{ marginBottom: '0px' }}>
+	                	<span>Harga&nbsp;&nbsp;: </span>&nbsp;
+	                	<strong>{NumberFormatter.formatMoney(this.props.price)}</strong>
+	                </p>
+	                <p>
+	                	<span>Komisi&nbsp;: </span>&nbsp;
+	                	<strong>{NumberFormatter.formatMoney(this.props.affiliate_fee)}</strong>
+	                </p>
+	                <p>
+		                <Link to='affiliate-detail' 
+		                	params={{productId: this.props.id}} 
+							className="btn btn-small btn-primary">
+							<span className="fa fa-info-circle">&nbsp;lihat detail</span>
+						</Link>
+						&nbsp;
+						<AffiliatorButton user={this.props.user} product={this.props} />
+						{badge}
+	                </p>
 		    	</div>
 		    </div>
     	);

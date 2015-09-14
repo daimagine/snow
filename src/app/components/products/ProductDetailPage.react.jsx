@@ -162,7 +162,7 @@ var ProductOverview = React.createClass({
 				                        <td width="110px">Komisi Affiliate</td>
 				                        <td width="10px">:</td>
 				                        <td>
-			                        		<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
+			                        		<span className="semi-bold">{NumberFormatter.formatMoney(this.props.product.affiliate_fee)}</span>
 				                        </td>
 				                      </tr>
 				                      {this.props.product.affiliate_fee_type == "0" ? ("") : (

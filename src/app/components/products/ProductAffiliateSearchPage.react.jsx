@@ -26,17 +26,14 @@ var ProductAffiliateSearchPage = React.createClass({
 			timeout: null,
 			advance_search: {
 				advance: false,
-				sort: {'fee' : 1}, // 0: ascending, 1: descending
+				order_by: 'affiliate_fee',
+				order_method : 1, // 0: ascending, 1: descending
 				name: null,
-				price: {
-					min: null,
-					max: null
-				},
+				price_min: null,
+				price_max: null,
 				seller: null,
-				fee: {
-					min: null,
-					max: null
-				},
+				fee_min: null,
+				fee_max: null
 			}
 		}
 	},
@@ -76,23 +73,20 @@ var ProductAffiliateSearchPage = React.createClass({
 			case 'name':
 				advance_search.name = val;
 				break;
-			case 'price':
-				advance_search.price = val;
-				break;
 			case 'seller':
 				advance_search.seller = val;
 				break;
-			case 'fee.min':
-				advance_search.fee.min = val;
+			case 'fee_min':
+				advance_search.fee_min = val;
 				break;
-			case 'fee.max':
-				advance_search.fee.max = val;
+			case 'fee_max':
+				advance_search.fee_max = val;
 				break;
-			case 'price.min':
-				advance_search.fee.min = val;
+			case 'price_min':
+				advance_search.price_min = val;
 				break;
-			case 'price.max':
-				advance_search.fee.max = val;
+			case 'price_max':
+				advance_search.price_max = val;
 				break;
 		}
 		console.log('ProductAffiliateSearchPage.react: advance_search state', advance_search);
@@ -134,6 +128,22 @@ var ProductAffiliateSearchPage = React.createClass({
 		ProductActionCreators.searchAffiliateProducts(advance_search);
 	},
 
+	_onChangeOrderBy: function(e) {
+		var val = e.target.value;
+		console.log('ProductAffiliateSearchPage.react: _onChangeOrderBy', val);
+		var advance_search = this.state.advance_search;
+		advance_search.order_by = val;
+		ProductActionCreators.sortAffiliateProducts(advance_search);
+	},
+
+	_onChangeOrderMethod: function(e) {
+		var val = e.target.value;
+		console.log('ProductAffiliateSearchPage.react: _onChangeOrderMethod', val);
+		var advance_search = this.state.advance_search;
+		advance_search.order_method = Number(val);
+		ProductActionCreators.sortAffiliateProducts(advance_search);
+	},
+
 	_getPaths: function() {
 		return [
 			{ 'key' : 'home', 'title' : 'Dashboard', 'link' : 'home' },
@@ -164,40 +174,58 @@ var ProductAffiliateSearchPage = React.createClass({
 					</div>
 					<div className="col-xs-12" style={{ display: this.state.advance_search.advance ? 'block' : 'none' }}>
 						<h3>Cari berdasarkan kriteria lebih lanjut</h3>
-						<p>
+						<div className="col-xs-6">
 							Nama Produk:
 							<input value={this.state.advance_search.name} 
 								data-attribute='name'
 								onChange={this._onAdvanceSearchChange} />
-						</p>
-						<p>
+						</div>
+						<div className="col-xs-6">
 							Nama Penjual:
 							<input value={this.state.advance_search.seller} 
 								data-attribute='seller'
 								onChange={this._onAdvanceSearchChange} />
-						</p>
-						<p>
+						</div>
+						<div className="col-xs-6">
 							Harga Minimal:
-							<input value={this.state.advance_search.price.min} 
-								data-attribute='price.min'
+							<input value={this.state.advance_search.price_min} 
+								data-attribute='price_min'
 								onChange={this._onAdvanceSearchChange} />
-
+						</div>
+						<div className="col-xs-6">
 							Harga Maksimal:
-							<input value={this.state.advance_search.price.max} 
-								data-attribute='price.max'
+							<input value={this.state.advance_search.price_max} 
+								data-attribute='price_max'
 								onChange={this._onAdvanceSearchChange} />
-						</p>
-						<p>
+						</div>
+						<div className="col-xs-6">
 							Komisi Minimal:
-							<input value={this.state.advance_search.fee.min} 
-								data-attribute='fee.min'
+							<input value={this.state.advance_search.fee_min} 
+								data-attribute='fee_min'
 								onChange={this._onAdvanceSearchChange} />
-
+						</div>
+						<div className="col-xs-6">
 							Komisi Maksimal:
-							<input value={this.state.advance_search.fee.max} 
-								data-attribute='fee.max'
+							<input value={this.state.advance_search.fee_max} 
+								data-attribute='fee_max'
 								onChange={this._onAdvanceSearchChange} />
-						</p>
+						</div>
+
+						<div className="col-xs-6">
+							Urut berdasarkan:
+							<select value={this.state.advance_search.order_by}
+								onChange={this._onChangeOrderBy}>
+								<option value='name'>Nama</option>
+								<option value='affiliate_fee'>Komisi</option>
+								<option value='price'>Harga</option>
+								<option value='customer.name'>Penjual</option>
+							</select>
+							<select value={this.state.advance_search.order_method}
+								onChange={this._onChangeOrderMethod}>
+								<option value='1'>Tertinggi ke terendah</option>
+								<option value='0'>Terendah ke tertinggi</option>
+							</select>
+						</div>
 					</div>
 					<div className="col-xs-6 col-xs-offset-6 text-right">
 						<a href="#" className="btn btn-link" onClick={this.showAdvanceSearch}>
@@ -212,7 +240,7 @@ var ProductAffiliateSearchPage = React.createClass({
 						<div className="row">
 							<div className="col-xs-12">
 								<div className="alert alert-info" role="alert">
-					              Masukkan nama produk yang dicari di textbox di atas.
+					              Masukkan kriteria pencarian produk yang diinginkan pada panel diatas.
 					            </div>
 							</div>
 						</div>

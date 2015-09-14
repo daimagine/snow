@@ -3,6 +3,8 @@ var AppConstants = require('../constants/AppConstants.js');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
+var StringUtils = require('../utils/StringUtils.js');
+
 var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
@@ -77,6 +79,16 @@ var ProductStore = assign({}, EventEmitter.prototype, {
   		if (user.id == affiliate.customer.id) 
   			return true;
   	}
+  },
+
+  sortProducts: function(criteria) {
+	console.log('ProductStore: sortProducts by criteria', criteria);
+    var order_by = criteria.order_by;
+    console.log('ProductStore: sortProducts product with order_by', _products, order_by);
+    _products = StringUtils.sortBy(_products, order_by);
+    if (criteria.order_method == 1) {
+    	_products = _products.reverse(); 
+    }
   }
 
 });
@@ -89,6 +101,14 @@ ProductStore.dispatchToken = AppDispatcher.register(function(payload) {
 			if (action.json && action.json.products) {
 				_products = action.json.products;
 			}
+			ProductStore.sortProducts(action.criteria);
+			ProductStore.getServerResponses(action);
+			ProductStore.emitChange();
+			break;
+
+		case ActionTypes.SORT_PRODUCTS:
+			console.log('ProductStore: SORT_PRODUCTS');
+			ProductStore.sortProducts(action.criteria);
 			ProductStore.getServerResponses(action);
 			ProductStore.emitChange();
 			break;

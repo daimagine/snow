@@ -6,6 +6,7 @@ var APIEndpoints = AppConstants.APIEndpoints;
 var request = WebAPIUtils.api.request;
 
 var SessionStore = require('../stores/SessionStore.react.jsx');
+var ProductStore = require('../stores/ProductStore.react.jsx');
 
 var getUser = function() {
   return SessionStore.getUser();
@@ -111,9 +112,8 @@ module.exports = {
 
   searchAffiliateProducts: function(criteria) {
     console.log('ProductService: searchAffiliateProducts', getUser());
-    var query = {
-    }
-    // TODO: build advance search query if needed
+    var query = {}
+    // build advance search query if needed
     if (criteria.advance) {
       query = criteria;
     } else {
@@ -131,16 +131,21 @@ module.exports = {
           console.log(res);
           if (res.error) {
             var errorMsgs = WebAPIUtils.getErrors(res);
-            ServerActionCreators.receiveProducts(null, errorMsgs);
+            ServerActionCreators.receiveProducts(null, errorMsgs, null, criteria);
             GrowlActionCreators.notify(errorMsgs, 'error');
           } else {
             var json = res.body;
             var messages = WebAPIUtils.getMessages(res);
-            ServerActionCreators.receiveProducts(json, null);
+            ServerActionCreators.receiveProducts(json, null, messages, criteria);
             GrowlActionCreators.notify(messages, 'success');
           }
         }
       });
+  },
+
+  sortAffiliateProducts: function(criteria) {
+    console.log('ProductService: sortAffiliateProducts', criteria);
+    ServerActionCreators.sortProducts(criteria);
   },
 
   joinAffiliate: function(user, product) {

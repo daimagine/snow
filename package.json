@@ -12,6 +12,10 @@
   "author": "",
   "dependencies": {
     "accounting": "^0.4.1",
+    "amp-iteratee": "^1.0.1",
+    "amp-map": "^1.0.1",
+    "amp-pluck": "^1.0.0",
+    "amp-sort-by": "^1.0.0",
     "bootstrap": "^3.3.0",
     "flux": "^2.0.1",
     "jsonwebtoken": "^3.1.0",
@@ -26,7 +30,8 @@
     "react-router": "^0.13.2",
     "react-script-loader": "daimagine/ReactScriptLoader",
     "superagent": "^1.2.0",
-    "timeago": "latest"
+    "timeago": "latest",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "axios": "^0.5.4",
