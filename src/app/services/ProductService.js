@@ -111,9 +111,19 @@ module.exports = {
 
   searchAffiliateProducts: function(criteria) {
     console.log('ProductService: searchAffiliateProducts', getUser());
+    var query = {
+    }
+    // TODO: build advance search query if needed
+    if (criteria.advance) {
+      query = criteria;
+    } else {
+      query.name = criteria.name
+    }
+    // set customer id
+    query.customer = getUser().id;
+    console.log('ProductService: query params', query);
     request.get(APIEndpoints.SEARCH_AFFILIATES)
-      .query('customer=' + getUser().id )
-      .query('name=' + criteria )
+      .query(query)
       .type('application/json')
       .set('Authorization', getAccessToken())
       .end(function(error, res){
