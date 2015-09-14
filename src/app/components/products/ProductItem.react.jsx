@@ -115,7 +115,7 @@ var AffiliatorButton = React.createClass({
 
 	_onChange: function() {
     	console.log('AffiliatorButton.react: _onChange');
-    	if (this.props.product.id == ProductStore.getProduct().id) {
+    	if (ProductStore.getProduct() && this.props.product.id == ProductStore.getProduct().id) {
 			this.setState({
 				is_affiliator: ProductStore.isProductAffiliator(this.props.user, ProductStore.getProduct()),
 				processing: false
