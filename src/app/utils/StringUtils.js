@@ -7,6 +7,8 @@ var map = require('amp-map');
 module.exports = {
 
 	split2: function(str, delim=' ') {
+		if (str == null || str.length < 1)
+			return [str,''];
 	    var parts=str.split(delim);
 	    return [parts[0], parts.splice(1,parts.length).join(delim)];
 	},

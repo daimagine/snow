@@ -83,12 +83,14 @@ var ProductStore = assign({}, EventEmitter.prototype, {
 
   sortProducts: function(criteria) {
 	console.log('ProductStore: sortProducts by criteria', criteria);
-    var order_by = criteria.order_by;
-    console.log('ProductStore: sortProducts product with order_by', _products, order_by);
-    _products = StringUtils.sortBy(_products, order_by);
-    if (criteria.order_method == 1) {
-    	_products = _products.reverse(); 
-    }
+	if (criteria) {
+	    var order_by = criteria.order_by;
+	    console.log('ProductStore: sortProducts product with order_by', _products, order_by);
+	    _products = StringUtils.sortBy(_products, order_by);
+	    if (criteria.order_method == 1) {
+	    	_products = _products.reverse(); 
+	    }
+	}
   }
 
 });
