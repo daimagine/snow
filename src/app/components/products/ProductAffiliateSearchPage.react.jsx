@@ -4,6 +4,7 @@ var Link = Router.Link;
 var ReactPropTypes = React.PropTypes;
 var ProductStore = require('../../stores/ProductStore.react.jsx')
 var ProductActionCreators = require('../../actions/ProductActionCreators.react.jsx');
+var GrowlActionCreators = require('../../actions/GrowlActionCreators.react.jsx');
 var AuthenticatedMixin = require('../../components/common/AuthenticatedMixin.react.jsx');
 
 var Breadcrumb = require('../../components/common/Breadcrumb.react.jsx');
@@ -89,14 +90,16 @@ var ProductAffiliateSearchPage = React.createClass({
 				advance_search.price_max = val;
 				break;
 		}
-		console.log('ProductAffiliateSearchPage.react: advance_search state', advance_search);
+		console.log('ProductAffiliateSearchPage.react: advance_search state', advance_search)
+
 		if (this.state.timeout !== null) {
 	        clearTimeout(this.state.timeout);
 	    }
 	    var that = this;
 	    this.setState({
 	    	timeout: setTimeout(function () {
-				        	that._searchAffiliateProduct(advance_search, true);
+	    					// uncoment for reactive search
+				        	// that._searchAffiliateProduct(advance_search, true);
 				    	}, 1000)
 	    });
 	},
@@ -111,9 +114,21 @@ var ProductAffiliateSearchPage = React.createClass({
 	    var that = this;
 	    this.setState({
 	    	timeout: setTimeout(function () {
-				        	that._searchAffiliateProduct(criteria);
+	    					// uncoment for reactive search
+				        	// that._searchAffiliateProduct(criteria, false);
 				    	}, 1000)
 	    });
+	},
+
+	refreshSearch: function(e) {
+		e.preventDefault();
+		console.log('ProductAffiliateSearchPage.react: refreshSearch');
+		var is_advance = this.state.advance_search.advance;
+		if (is_advance) {
+			this._searchAffiliateProduct(this.state.advance_search, true);
+		} else {
+			this._searchAffiliateProduct(this.state.advance_search.name, false);
+		}
 	},
 
 	_searchAffiliateProduct: function(criteria, advance) {
@@ -121,6 +136,24 @@ var ProductAffiliateSearchPage = React.createClass({
 		var advance_search = this.state.advance_search;
 		if (advance) {
 			advance_search = criteria;
+			// validate
+			var valid = true;
+			var messages = [];
+			if (advance_search.fee_max && advance_search.fee_max < advance_search.fee_min) {
+				messages.push("Komisi Maksimal tidak boleh lebih kecil dari Komisi Minimal");
+				valid = false;
+			}
+			if (advance_search.price_max && advance_search.price_max < advance_search.price_min) {
+				messages.push("Harga Maksimal tidak boleh lebih kecil dari Harga Minimal");
+				valid = false;
+			}
+			if (!valid) {
+				console.log("ProductAffiliateSearchPage.react: _onAdvanceSearchChange validate", messages);
+				GrowlActionCreators.notify(messages, 'error');
+				this.setState({ searching: false });
+				return;
+			}
+
 		} else {
 			advance_search.name = criteria;
 		}
@@ -175,61 +208,88 @@ var ProductAffiliateSearchPage = React.createClass({
 					<div className="col-xs-12" style={{ display: this.state.advance_search.advance ? 'block' : 'none' }}>
 						<h3>Cari berdasarkan kriteria lebih lanjut</h3>
 						<div className="col-xs-6">
-							Nama Produk:
-							<input value={this.state.advance_search.name} 
-								data-attribute='name'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Nama Produk:</label>
+								<input value={this.state.advance_search.name} 
+									data-attribute='name'
+									onChange={this._onAdvanceSearchChange} 
+									className="form-control" />
+							</div>
 						</div>
 						<div className="col-xs-6">
-							Nama Penjual:
-							<input value={this.state.advance_search.seller} 
-								data-attribute='seller'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Nama Penjual:</label>
+								<input value={this.state.advance_search.seller} 
+									data-attribute='seller'
+									onChange={this._onAdvanceSearchChange} 
+									className="form-control" />
+							</div>
 						</div>
 						<div className="col-xs-6">
-							Harga Minimal:
-							<input value={this.state.advance_search.price_min} 
-								data-attribute='price_min'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Harga Minimal:</label>
+								<input value={this.state.advance_search.price_min} 
+									data-attribute='price_min'
+									onChange={this._onAdvanceSearchChange} 
+									className="form-control" />
+							</div>
 						</div>
 						<div className="col-xs-6">
-							Harga Maksimal:
-							<input value={this.state.advance_search.price_max} 
-								data-attribute='price_max'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Harga Maksimal:</label>
+								<input value={this.state.advance_search.price_max} 
+									data-attribute='price_max'
+									onChange={this._onAdvanceSearchChange}
+									className="form-control" />
+							</div>
 						</div>
 						<div className="col-xs-6">
-							Komisi Minimal:
-							<input value={this.state.advance_search.fee_min} 
-								data-attribute='fee_min'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Komisi Minimal:</label>
+								<input value={this.state.advance_search.fee_min} 
+									data-attribute='fee_min'
+									onChange={this._onAdvanceSearchChange}
+									className="form-control" />
+							</div>
 						</div>
 						<div className="col-xs-6">
-							Komisi Maksimal:
-							<input value={this.state.advance_search.fee_max} 
-								data-attribute='fee_max'
-								onChange={this._onAdvanceSearchChange} />
+							<div className="form-group">
+								<label className="form-label">Komisi Maksimal:</label>
+								<input value={this.state.advance_search.fee_max} 
+									data-attribute='fee_max'
+									onChange={this._onAdvanceSearchChange} 
+									className="form-control" />
+							</div>
 						</div>
 
 						<div className="col-xs-6">
-							Urut berdasarkan:
-							<select value={this.state.advance_search.order_by}
-								onChange={this._onChangeOrderBy}>
-								<option value='name'>Nama</option>
-								<option value='affiliate_fee'>Komisi</option>
-								<option value='price'>Harga</option>
-								<option value='customer.name'>Penjual</option>
-							</select>
-							<select value={this.state.advance_search.order_method}
-								onChange={this._onChangeOrderMethod}>
-								<option value='1'>Tertinggi ke terendah</option>
-								<option value='0'>Terendah ke tertinggi</option>
-							</select>
+							<div className="form-group">
+								<label className="form-label">Urut berdasarkan:</label>
+								<select value={this.state.advance_search.order_by}
+									onChange={this._onChangeOrderBy}
+									className="form-control">
+										<option value='name'>Nama</option>
+										<option value='affiliate_fee'>Komisi</option>
+										<option value='price'>Harga</option>
+										<option value='customer.name'>Penjual</option>
+								</select>
+								<select value={this.state.advance_search.order_method}
+									onChange={this._onChangeOrderMethod}
+									className="form-control">
+										<option value='1'>Tertinggi ke terendah</option>
+										<option value='0'>Terendah ke tertinggi</option>
+								</select>
+							</div>
 						</div>
 					</div>
 					<div className="col-xs-6 col-xs-offset-6 text-right">
-						<a href="#" className="btn btn-link" onClick={this.showAdvanceSearch}>
-							{this.state.advance_search.advance ? 'Pencarian Sederhana' : 'Pencarian Lanjut'}
+						<a href="#" className="btn btn-small btn-success" onClick={this.refreshSearch}
+							style={{margin:'15px 0px', minWidth: '100px', fontSize: '1.1em'}}>
+								Cari Produk
+						</a>
+						<a href="#" className="btn btn-small btn-default" onClick={this.showAdvanceSearch}
+							style={{margin:'15px'}}>
+								{this.state.advance_search.advance ? 'Pencarian Sederhana' : 'Aktifkan Pencarian Lanjut'}
 						</a>
 					</div>
 				</div>
