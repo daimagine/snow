@@ -2883,7 +2883,7 @@ body.modal-open .chat-window-wrapper { display: none; }
 .page-sidebar .outer-tab-nav-section { display: inline-block; width: 45px; position: absolute; height: 100%; background-color: #2471b9 !important; }
 .page-sidebar .inner-menu { display: inline-block; width: 200px; }
 .page-sidebar .inner-menu ul { width: 200px; }
-.page-sidebar .page-sidebar-wrapper { position: relative; overflow-y: auto; }
+.page-sidebar .page-sidebar-wrapper { position: relative; overflow-y: auto; overflow: visible; }
 .page-sidebar .page-sidebar-wrapper > ul { list-style: none; margin: 0; padding: 0; margin: 0; padding: 0; }
 .page-sidebar .page-sidebar-wrapper > ul > li { display: block; margin: 0; padding: 0; border: 0px; }
 .page-sidebar .page-sidebar-wrapper > ul > li > a { color: #ededed; display: block; position: relative; margin: 0; border: 0px; padding: 11.5px 31px 11.5px 31px; text-decoration: none; font-size: 14px; font-weight: normal; }
@@ -4522,6 +4522,10 @@ form legend, .form-view legend { margin-bottom: 15px !important; }
 
 .dropdown-menu.pull-right { right: 0; left: auto; }
 
+/** growl **/
+#growl-wrapper { position: fixed; right: 8px; z-index: 9999; top: 120px; opacity: 0.8; }
+#growl-wrapper .message-notice .alert { margin-bottom: 5px; }
+
 .tiles-container { margin-left: 0px; margin-right: 0px; }
 
 .tiles { background-color: #bcbcbc; color: #ffffff; position: relative; }
@@ -5366,7 +5370,7 @@ ul.payment-list > li { margin-bottom: 10px; }
   .page-sidebar.fixed { position: fixed; }
   .page-sidebar ul { width: 250px; }
   /*** Page content ***/
-  .page-content { margin-left: 250px; min-height: 100%; }
+  .page-content { margin-left: 250px; height: 100%; }
   .page-content.no-min-height { min-height: auto; }
   .full-width-page .page-content { margin-left: 0px !important; }
   .inner-menu { padding-top: 60px; }

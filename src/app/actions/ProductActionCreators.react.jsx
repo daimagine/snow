@@ -44,6 +44,14 @@ module.exports = {
     });
   },
 
+  sortAffiliateProducts: function(criteria) {
+    ProductService.sortAffiliateProducts(criteria);
+    AppDispatcher.handleViewAction({
+      type: ActionTypes.LOAD_AFFILIATE_PRODUCTS,
+      criteria: criteria
+    });
+  },
+
   joinAffiliate: function(user, product) {
     ProductService.joinAffiliate(user, product);
     AppDispatcher.handleViewAction({

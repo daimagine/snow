@@ -147,7 +147,7 @@ var Growl = React.createClass({
 
 		return (
 		  <div className="row-fluid">
-			<div id="growl-wrapper" className="col-xs-12 pull-right">
+			<div id="growl-wrapper" className="col-xs-6 pull-right">
 			  <div className="message-notice">
 				{this.state.notifications.map(function(n) {					
 					count += 1;

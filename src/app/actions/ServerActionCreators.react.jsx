@@ -44,12 +44,21 @@ module.exports = {
     });
   },
 
-  receiveProducts: function(json, errors) {
+  receiveProducts: function(json, errors, messages, criteria) {
     AppDispatcher.handleServerAction({
       type: ActionTypes.RECEIVE_PRODUCTS,
       json: json,
-      errors: errors
+      errors: errors,
+      messages: messages,
+      criteria: criteria
     });
+  },
+
+  sortProducts: function(criteria) {
+    AppDispatcher.handleServerAction({
+      type: ActionTypes.SORT_PRODUCTS,
+      criteria: criteria
+    })
   },
 
   receiveProduct: function(json, errors) {

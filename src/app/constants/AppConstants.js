@@ -77,6 +77,7 @@ module.exports = {
     RECEIVE_PRODUCT: null,
     UPDATE_PRODUCT: null,
     RECEIVE_UPDATED_PRODUCT: null,
+    SORT_PRODUCTS: null,
 
     // Socmeds
     LOAD_SOCMED_ACCOUNTS: null,

@@ -162,7 +162,7 @@ var ProductOverview = React.createClass({
 				                        <td width="110px">Komisi Affiliate</td>
 				                        <td width="10px">:</td>
 				                        <td>
-			                        		<span className="semi-bold">Rp {this.props.product.affiliate_fee}</span>
+			                        		<span className="semi-bold">{NumberFormatter.formatMoney(this.props.product.affiliate_fee)}</span>
 				                        </td>
 				                      </tr>
 				                      {this.props.product.affiliate_fee_type == "0" ? ("") : (
@@ -311,7 +311,11 @@ var AffiliateModal = React.createClass({
 		console.log('AffiliateModal: _calculateFee', fee, percent, type);
 		var product = this.state.product;
 		if (type == undefined || type == null) {
-			type = product.affiliate_fee_type
+			if (product.affiliate_fee_type) {
+				type = product.affiliate_fee_type
+			} else {
+				type = '0'; // default to flat
+			}
 		}
 		if (type == "0") {
 			percent = 0;
@@ -400,20 +404,7 @@ var AffiliateModal = React.createClass({
 								</select>
 							</label>
 			          	</div>
-			          	{this.state.product.affiliate_fee_type == '0' ? (
-			          			<div className="form-group">
-						            <label htmlFor="affiliateFee" className="form-label">
-						              Komisi Affiliate :
-						            </label>
-						            <input
-						            	type="number"
-						            	ref="affiliateFee"
-						            	className="form-control" 
-						            	value={this.state.product.affiliate_fee}
-						            	onChange={this.onAffiliateFeeChange}
-						            	addonBefore='Rp' />
-						        </div>
-			          		) : (
+			          	{this.state.product.affiliate_fee_type == '1' ? (
 			          			<div>
 				          			<div className="form-group">
 							            <label htmlFor="affiliateFee" className="form-label">
@@ -438,6 +429,19 @@ var AffiliateModal = React.createClass({
 							            	value={this.state.product.affiliate_fee}
 							            	addonBefore='Rp' />
 							        </div>
+						        </div>
+			          		) : (
+			          			<div className="form-group">
+						            <label htmlFor="affiliateFee" className="form-label">
+						              Komisi Affiliate :
+						            </label>
+						            <input
+						            	type="number"
+						            	ref="affiliateFee"
+						            	className="form-control" 
+						            	value={this.state.product.affiliate_fee}
+						            	onChange={this.onAffiliateFeeChange}
+						            	addonBefore='Rp' />
 						        </div>
 			          		)
 			          	}

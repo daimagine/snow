@@ -32,10 +32,10 @@ var ProductList = React.createClass({
 			<ReactInfinity
 		      data={this.props.products}
 		      elementWidth={320}
-		      elementHeight={400}
+		      elementHeight={480}
 			  justifyOnMobile={false} // pass true to switch to a list instead of a grid on mobile.
 			  elementMobileWidth={400} // element width to use for mobile view when `justifyOnMobile === false`
-			  elementMobileHeight={400}
+			  elementMobileHeight={480}
 		      margin={10}
 		      align="left"
 		      childComponent={ProductItemWithProps(defaultProps)}
