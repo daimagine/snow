@@ -5744,3 +5744,4 @@ ul.payment-list > li { margin-bottom: 10px; }
   body.open-menu-right .chat-window-wrapper { visibility: visible; opacity: 1; transition-delay: 0s; }
   body.open-menu-left .page-sidebar { visibility: visible; opacity: 1; transition-delay: 0s; -webkit-backface-visibility: hidden; } }
 img.center { display: block; margin-left: auto; margin-right: auto; }
+.infinite-container {height: 100% !important;}
