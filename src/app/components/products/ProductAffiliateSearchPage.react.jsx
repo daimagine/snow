@@ -95,11 +95,16 @@ var ProductAffiliateSearchPage = React.createClass({
 		if (this.state.timeout !== null) {
 	        clearTimeout(this.state.timeout);
 	    }
+
+		var fieldType = e.target.attributes.getNamedItem('data-type').value;
+
 	    var that = this;
 	    this.setState({
 	    	timeout: setTimeout(function () {
-	    					// uncoment for reactive search
-				        	// that._searchAffiliateProduct(advance_search, true);
+	    					// reactive search only for sorting
+	    					if (fieldType == "sort") {
+	    						that._searchAffiliateProduct(advance_search, true);
+	    					}
 				    	}, 1000)
 	    });
 	},
@@ -266,6 +271,7 @@ var ProductAffiliateSearchPage = React.createClass({
 							<div className="form-group">
 								<label className="form-label">Urut berdasarkan:</label>
 								<select value={this.state.advance_search.order_by}
+									data-type="sort"
 									onChange={this._onChangeOrderBy}
 									className="form-control">
 										<option value='name'>Nama</option>
@@ -274,6 +280,7 @@ var ProductAffiliateSearchPage = React.createClass({
 										<option value='customer.name'>Penjual</option>
 								</select>
 								<select value={this.state.advance_search.order_method}
+									data-type="sort"
 									onChange={this._onChangeOrderMethod}
 									className="form-control">
 										<option value='1'>Tertinggi ke terendah</option>
@@ -283,9 +290,10 @@ var ProductAffiliateSearchPage = React.createClass({
 						</div>
 					</div>
 					<div className="col-xs-6 col-xs-offset-6 text-right">
-						<a href="#" className="btn btn-small btn-success" onClick={this.refreshSearch}
+						<a href="#" className="btn btn-small btn-success" 
+							onClick={this.state.searching ? null : this.refreshSearch}
 							style={{margin:'15px 0px', minWidth: '100px', fontSize: '1.1em'}}>
-								Cari Produk
+								{this.state.searching ? 'searching...' : 'Cari Produk'}
 						</a>
 						<a href="#" className="btn btn-small btn-default" onClick={this.showAdvanceSearch}
 							style={{margin:'15px'}}>
