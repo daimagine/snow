@@ -17,6 +17,7 @@ var ProductsEditPage = require('./components/products/ProductsEditPage.react.jsx
 var ProductsAffiliatePage = require('./components/products/ProductsAffiliatePage.react.jsx');
 var ProductDetailAffiliatePage = require('./components/products/ProductDetailAffiliatePage.react.jsx');
 var ProductAffiliateSearchPage = require('./components/products/ProductAffiliateSearchPage.react.jsx');
+var AffiliateTransactionPage = require('./components/transactions/AffiliateTransactionPage.react.jsx');
 var RepostPage = require('./components/socmed/RepostPage.react.jsx');
 var ProfilePage = require('./components/users/ProfilePage.react.jsx');
 var TwitterCallbackPage = require('./components/socmed/TwitterCallbackPage.react.jsx');
@@ -41,6 +42,7 @@ module.exports = (
     <Route name="edit-product" path="/products/:productId/edit" handler={ProductsEditPage}/>
 
     <Route name="affiliate-products" path="/affiliates" handler={ProductsAffiliatePage}/>
+    <Route name="affiliate-transactions" path="/affiliates/transactions" handler={AffiliateTransactionPage}/>
     <Route name="affiliate-search" path="/affiliates/search" handler={ProductAffiliateSearchPage}/>
     <Route name="affiliate-detail" path="/affiliates/:productId" handler={ProductDetailAffiliatePage}/>
 
@@ -49,7 +51,6 @@ module.exports = (
     <Route name="profile" path="/profile" handler={ProfilePage}/>
     <Route name="twitter_callback" path="/socmeds/callback_url/twitter" handler={TwitterCallbackPage}/>
     <Route name="fb_callback" path="/socmeds/callback_url/fb" handler={FbCallbackPage}/>
-    
   </Route>
 );
 

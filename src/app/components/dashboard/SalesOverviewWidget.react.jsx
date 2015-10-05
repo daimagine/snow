@@ -6,7 +6,7 @@ var ReportActionCreators = require('../../actions/ReportActionCreators.react.jsx
 
 var SalesOverviewWidget = React.createClass({
 	getInitialState: function() {
-		return {
+    return {
 			salesOverview: ReportStore.getSalesOverview(),
 			timeout: null,
 			minute: 5
